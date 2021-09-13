@@ -1,0 +1,18 @@
+version: '3.1'
+
+# original source:
+# https://hub.docker.com/_/mongo
+
+services:
+
+  mongo:
+    image: mongo:4.4-bionic
+    #restart: always
+    
+    environment:
+      ME_CONFIG_MONGODB_URL: "mongodb://root:example@mongo:27017/"
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+    ports:
+      - "27017:27017"

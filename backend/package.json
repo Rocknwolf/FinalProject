@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "yarn start && nodemon server.js",
+    "start": "docker-compose up -d mongo && sleep 2 && docker-compose ps && echo \"*** Run 'yarn stop' or 'yarn down' once you are done ***\"",
+    "stop": "docker-compose stop",
+    "down": "docker-compose down",
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "resolutions": {
+    
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
