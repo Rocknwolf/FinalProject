@@ -19,7 +19,7 @@ faker.seed(42);
             _id: id,
             name: firstName + ' ' + lastName,
             email: faker.internet.email(firstName, lastName),
-            password: faker.internet.password(10, false, /[0-9a-zA-Z]/)
+            hashedPw: faker.internet.password(10, false, /[0-9a-zA-Z]/)
         });
     }
 

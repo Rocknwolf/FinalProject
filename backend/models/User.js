@@ -25,53 +25,53 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true
     }
-}, { _id: false, timestamps: true });
+}, { versionKey: false, timestamps: true });
 
 const User = mongoose.model('User', UserSchema);
 
 const register = () =>
 {
-    return null
+    return null;
 }
 
 const login = () =>
 {
-    return null
+    return null;
 }
 
 const logout = () =>
 {
-    return null
+    return null;
 }
 
 const findByEmail = () =>
 {
-    return null
+    return null;
 }
 
 const findByUsername = () =>
 {
-    return null
+    return null;
 }
 
 const saveResettedPassword = () =>
 {
-    return null
+    return null;
 }
 
 const suspend = () =>
 {
-    return null
+    return null;
 }
 
 const reactivate = () =>
 {
-    return null
+    return null;
 }
 
 const deleteUser = () =>
 {
-    return null
+    return null;
 }
 
 export default {
