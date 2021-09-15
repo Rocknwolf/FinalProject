@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "yarn start && nodemon server.js",
     "start": "docker-compose up -d mongo && sleep 2 && docker-compose ps && echo \"*** Run 'yarn stop' or 'yarn down' once you are done ***\"",
@@ -11,14 +12,14 @@
     "seed": "node seed.js"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
   },
-  "resolutions": {
-    
-  },
+  "resolutions": {},
   "keywords": [],
   "author": "",
   "license": "ISC"
