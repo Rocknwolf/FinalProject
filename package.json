@@ -3,6 +3,8 @@
   "scripts": {
     "build": "yarn --cwd ./frontend/ build && sleep 2 && echo moving ./frontend/build to ./backend/build && rm -rf ./backend/build && mv ./frontend/build ./backend/ ",
     "dev": "gnome-terminal --tab -- bash -c 'yarn --cwd ./frontend/ start' && gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ dev'",
-    "static": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ dev'"
+    "static": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ dev'",
+    "seed": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ seed'",
+    "down": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ down'"
   }
 }

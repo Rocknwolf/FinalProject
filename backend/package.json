@@ -17,6 +17,8 @@
     "mongoose": "^6.0.5"
   },
   "devDependencies": {
+    "faker": "^5.5.3",
+    "mongodb": "^4.1.2",
     "nodemon": "^2.0.12"
   },
   "resolutions": {},
