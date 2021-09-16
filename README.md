@@ -14,8 +14,8 @@ Dieses Projekt umfasst eine Filmdatenbank, die über mehrere Social Media Funkti
 
 The MIT License (MIT)
 
-Copyright (c) 2021 Nakrankh, Rocknwolf, 
-LexLuthor-official
+Copyright (c) 2021 [Nakrankh](https://github.com/Nakrankh), [Rocknwolf](https://github.com/Rocknwolf), 
+[LexLuthor-official](https://github.com/LexLuthor-official)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
