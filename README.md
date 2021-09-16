@@ -10,7 +10,9 @@ Dieses Projekt umfasst eine Filmdatenbank, die über mehrere Social Media Funkti
 
 3 Step: start ```npm run```
 
-## License
+## LICENSE
+
+[LICENSE.md](https://github.com/Nakrankh/fbwFinalProject/blob/master/LICENSE.md)
 
 The MIT License (MIT)
 
