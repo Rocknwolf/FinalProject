@@ -1,6 +1,6 @@
 # Filmdatenbank
 
-Dieses Projekt umfasst eine Filmdatenbank, die über mehrere Social Media Funktionen verfügt. Enthalten sind unter Anderem ein Forum/Merchandise Tauschbörse und eine Chatfunktion für Gruppen, sowie Private Nachrichten. 
+Dieses Projekt umfasst eine Filmdatenbank, die über mehrere Social Media Funktionen verfügt. Enthalten sind unter Anderem ein Forum/Merchandise Tauschbörse und eine Chatfunktion für Gruppen, sowie Private Nachrichten. Filme können bewertet und nach Bewertung, Genre, Erscheinungsjahr, sortiert werden. 
 
 ## Install
 
