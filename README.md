@@ -4,11 +4,11 @@ Dieses Projekt umfasst eine Filmdatenbank, die über mehrere Social Media Funkti
 
 ## Install
 
-1 Step: Clone Repo ´´´Git clone´´´
+1 Step: Clone Repo ```Git clone```
 
-2 Step: Install npm ´´´npm i´´´
+2 Step: Install npm ```npm i```
 
-3 Step: start ´´´npm run´´´
+3 Step: start ```npm run```
 
 ## License
 
