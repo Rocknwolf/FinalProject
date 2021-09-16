@@ -1,10 +1,12 @@
 import express from 'express';
 
 import userController from '../controllers/user.js';
+import authController from '../controllers/auth.js';
+import token from '../middlewares/token.js';
 
 const router = express.Router();
 
-router.post('/', userController.register);
+router.post('/', userController.register, authController.login, token.signToken);
 router.delete('/:username', userController.deleteUser);
 router.patch('/suspended/:username', userController.reactivate);
 router.patch('/suspend/:username', userController.suspend);

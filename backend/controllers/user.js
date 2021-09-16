@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt';
+
 import { errorOptions } from '../lib/errors.js';
 import User from '../models/User.js';
 
@@ -12,8 +14,14 @@ const deleteUser = async (req, res, next) => {
 
 const register = async (req, res, next) => {
     try {
-        const temp = await User.register();
-        res.status(200).json(temp);
+        const hashedPw = await bcrypt.hash(
+            req.body.password + process.env.PEPPER,
+            +process.env.SALT_ROUNDS
+        );
+
+        await User.register(req.body.username, req.body.email, hashedPw);
+
+        next(); //login
     } catch (e) {
         next(errorOptions(e));
     }
