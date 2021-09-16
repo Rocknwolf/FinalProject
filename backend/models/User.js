@@ -2,30 +2,33 @@ const UserSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     bio: {
         type: String,
-        required: true,
-        unique: true
     },
-    Avatar: String,
+    Avatar: {
+        type: String,
+    },
     hashedPw: {
         type: String,
         required: true,
-        unique: true
     },
     salt: {
         type: String,
         required: true,
-        unique: true
-    }
+    },
+    isActive: {
+        type: Boolean,
+        required: true,
+    },
 }, { versionKey: false, timestamps: true });
+
 
 const User = mongoose.model('User', UserSchema);
 
