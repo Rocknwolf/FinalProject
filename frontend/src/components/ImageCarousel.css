@@ -1,7 +1,4 @@
-body{
-    background: linear-gradient(90deg, black, rgb(24, 23, 23), darkgrey, grey, lightgrey, grey, darkgrey,rgb(24, 23, 23),black);
-}
-img{
+.imgC{
     width: 320px;
     height: 200px;
     position: absolute;
