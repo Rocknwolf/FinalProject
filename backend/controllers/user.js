@@ -5,7 +5,7 @@ import User from '../models/User.js';
 
 const deleteUser = async (req, res, next) => {
     try {
-        const temp = await User.deleteUser();
+        const temp = await User.deleteUser(req.body.email);
         res.status(200).json(temp);
     } catch (e) {
         next(errorOptions(e));
