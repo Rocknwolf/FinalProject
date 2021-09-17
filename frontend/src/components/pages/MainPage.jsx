@@ -4,7 +4,7 @@ import logo from '../../images/logo.png';
 import Login from '../Login.jsx';
 import Navbar from '../../components/Navbar.jsx';
 
-// import ImageCarousel from '../ImageCarousel.jsx';
+import ImageCarousel from '../ImageCarousel.jsx';
 // import TopTenCards from '../TopTenCards.jsx';
 
 function MainPage() {
@@ -27,7 +27,7 @@ function MainPage() {
                     </div>
 
                     <div className="mainCarousel">
-                        {/* <ImageCarousel/> */}
+                        <ImageCarousel/>
                     </div>
 
                     <div className="mainCards">

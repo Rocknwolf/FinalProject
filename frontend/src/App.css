@@ -5,7 +5,8 @@
 }
 body{
   /* background: linear-gradient(90deg, black, rgb(24, 23, 23), darkgrey, grey, lightgrey, grey, darkgrey,rgb(24, 23, 23),black); */
-  background: linear-gradient(90deg,rgb(15, 15, 15),darkblue,black,darkblue, rgb(15, 15, 15));
+  background: linear-gradient(90deg, rgb(15, 15, 15),darkblue,black,darkblue, rgb(15, 15, 15));
+  color: cornsilk;
 }
 
 .App {

@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 import RegistrationForm from './components/pages/RegistrationForm';
 import MainPage from './components/pages/MainPage';
-import Navbar from './components/Navbar.jsx';
 
 
 function App() {

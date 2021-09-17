@@ -37,25 +37,25 @@
         transform: rotateY(360deg);
     }
 }
-img:nth-child(1){
+.imgC:nth-child(1){
     transform: rotateY(60deg) translateZ(300px);
 }
-img:nth-child(2){
+.imgC:nth-child(2){
     transform: rotateY(120deg) translateZ(300px);
 }
-img:nth-child(3){
+.imgC:nth-child(3){
     transform: rotateY(180deg) translateZ(300px);
 }
-img:nth-child(4){
+.imgC:nth-child(4){
     transform: rotateY(240deg) translateZ(300px);
 }
-img:nth-child(5){
+.imgC:nth-child(5){
     transform: rotateY(300deg) translateZ(300px);
 }
-img:nth-child(6){
+.imgC:nth-child(6){
     transform: rotateY(360deg) translateZ(300px);
 }
-img:hover{
+.imgC:hover{
     width: 340px;
     height: 220px;
     cursor: pointer;

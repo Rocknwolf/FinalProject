@@ -4,10 +4,10 @@
     box-sizing: border-box;
 }
 
-body{
+/* body{
     background: linear-gradient(90deg, rgb(15, 15, 15), darkblue, black, darkblue, rgb(15, 15, 15));
     color:cornsilk;
-}
+} */
 .loginContainer{
     display: flex;
     flex-direction: column;
