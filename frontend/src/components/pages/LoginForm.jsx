@@ -3,6 +3,7 @@ import './LoginForm.css';
 
 function LoginForm() {
     const [submitting, setSubmitting] = useState(false);
+
         const handleSubmit = event => {
             event.preventDefault();
             setSubmitting(true);
@@ -19,11 +20,11 @@ function LoginForm() {
                 <form onSubmit={handleSubmit}>
                     <div className="loginContainer">
                         <label className="logLabel">Name:</label>
-                        <input type="text" name="" id="" placeholder="insert your name"/>
+                        <input type="text" name="" id="" placeholder="insert your name" required/>
                         <label className="logLabel">Password:</label>
-                        <input type="password" name="" id="" placeholder="insert your password"/>
+                        <input type="password" name="" id="" placeholder="insert your password" required/>
                     </div>
-                        <button type="submit">Login</button>
+                        <button type="submit" value="submit">Login</button>
                 </form>
             </div>
         </div>

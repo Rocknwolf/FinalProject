@@ -1,15 +1,23 @@
 import React from 'react'
 import './RegistrationForm.css';
+import Navbar from '../Navbar.jsx';
 
 function RegistrationForm() {
     return (
         <div>
             <div className="frame">
                 <h1>Registration</h1>
+                <div className="navigation">
+                    <Navbar/>
+                </div>
                     <form action="" > {/* onSubmit={handleSubmit} */}
                         <div className="regContainer">
-                            <label className="regLabel">Name:</label>
+                            <label className="regLabel">Username:</label>
                             <input type="text" name="" id="" placeholder="Username"/>
+                            <label className="regLabel">Firstname:</label>
+                            <input type="text" name="" id="" placeholder="Firstname"/>
+                            <label className="regLabel">Lastname:</label>
+                            <input type="text" name="" id="" placeholder="Lastname"/>
                             <label className="regLabel">Email:</label>
                             <input type="email" name="" id="" placeholder="E-Mail"/>
                             <label className="regLabel">Password:</label>
