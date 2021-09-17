@@ -14,7 +14,7 @@ function MainPage() {
                 <img src={logo} alt="" className="mainLogo" />
 
                     <div className="mainTitel">
-                        <h1>Titel</h1>
+                        <h1>Zelluloid Zombies</h1>
                         <p>blablabla guckstu</p>
                     </div>
 

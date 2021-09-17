@@ -1,31 +1,40 @@
 .imgC{
+    display: flex;
     width: 320px;
     height: 200px;
-    position: absolute;
+    position: fixed;
     border: 1px solid black;
 }
 .container{
+    display: flex;
+    align-items: flex-start;
     width: 350px;
     height: 200px;
-    position: relative;
-    margin-top: 15%;
+    position: fixed;
+    margin-top: 1%;
     margin-left: 40%;
     perspective: 1000px;
     transform-style: preserve-3d;
     transform: rotateX(-10deg) rotateZ(-10deg);
-    animation: ror 20s linear infinite;
+    animation: ror 5s linear infinite;
 }
 @keyframes ror{
+    0%{
+        transform: rotateX(-8deg) scale(0.6, 0.6);
+    }
    50%{
-        transform: rotateX(30deg);
+        transform: rotateX(-8deg) scale(0.6, 0.6);
    }
    80%{
-        transform: rotateX(-30deg);
+        transform: rotateX(-8deg) scale(0.6, 0.6);
+   }
+   100%{
+        transform: rotateX(-8deg) scale(0.6, 0.6);
    }
 }
 .images{
     width: 100%;
-    position: absolute;
+    position: fixed;
     transform-style: preserve-3d;
     animation: rotate 20s linear infinite;
 }
