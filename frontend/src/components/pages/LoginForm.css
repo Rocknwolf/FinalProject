@@ -4,10 +4,10 @@
     box-sizing: border-box;
 }
 
-body{
+/* body{
     background: linear-gradient(90deg, rgb(15, 15, 15), darkblue, black, darkblue, rgb(15, 15, 15));
     color:cornsilk;
-}
+} */
 .loginContainer{
     display: flex;
     flex-direction: column;
@@ -39,6 +39,6 @@ button{
     margin-top: 1.5%;
 }
 button:hover{
-    background-color: cornsilk;
-    color: black;
+    background-color: rgba(252, 251, 250, 0.109);
+    border: 1px solid cornsilk;
 }

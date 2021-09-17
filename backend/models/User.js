@@ -1,10 +1,22 @@
+import e from 'express';
 import mongoose from 'mongoose';
 
+
 const UserSchema = new mongoose.Schema({
-    username: {
+    firstName: {
         type: String,
+    },
+    lastName: {
+        type: String,
+    },
+    userName: {
+        type:String,
         required: true,
         unique: true,
+    },
+    birthDate: {
+        type: Date,
+        required: true,
     },
     email: {
         type: String,
@@ -13,15 +25,13 @@ const UserSchema = new mongoose.Schema({
     },
     bio: {
         type: String,
+        default: "",
     },
-    Avatar: {
+    avatarUri: {
         type: String,
+        default: "",
     },
-    hashedPw: {
-        type: String,
-        required: true,
-    },
-    salt: {
+    password: {
         type: String,
         required: true,
     },
@@ -29,34 +39,31 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
+    deactivatedAt:{
+        type: Date,
+        default: Date.now(),
+
+    }
 }, { versionKey: false, timestamps: true });
 
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema,"users");
 
-const register = () =>
+const register = async (userName, email, password, birthDate, firstName, lastName) =>
 {
-    return null;
+    
+    return await User.register({"userName":userName, "email":email, "password":password, "birthDate":birthDate, "firstName":firstName, "lastName":lastName})
 }
 
-const login = () =>
+const findByEmail = async (email) =>
 {
-    return null;
+    return await User.findOne({"email":email})
 }
 
-const logout = () =>
+const findByUsername = async (firstname) =>
 {
-    return null;
-}
-
-const findByEmail = () =>
-{
-    return null;
-}
-
-const findByUsername = () =>
-{
-    return null;
+    return await User.find({"firstName":firstname})
+    // return await User.find({"firstName":firstname.toLowerCase()})
 }
 
 const saveResettedPassword = () =>
@@ -74,15 +81,13 @@ const reactivate = () =>
     return null;
 }
 
-const deleteUser = () =>
+const deleteUser = async(email) =>
 {
-    return null;
+    return await User.findOneAndRemove({"email":email})
 }
 
 export default {
     register,
-    login,
-    logout,
     findByEmail,
     findByUsername,
     saveResettedPassword,
