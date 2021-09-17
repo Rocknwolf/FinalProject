@@ -17,7 +17,7 @@ const login = async (req, res, next) => {
 
         if(check) {
             res.status(201);
-            res.payload = { login: "accepted" }
+            res.payload = { login: "accepted" };
             return next();
         }
         throw new Error('wrong password');
@@ -28,9 +28,14 @@ const login = async (req, res, next) => {
 
 const logout = async (req, res, next) => {
     try {
-        return res.status(200).json();
+        res.payload = { login: false };
+        const tbl = res.app.locals.states.tokenBlacklist;
+        tbl.push(req.token);
+        res.status(200);
+
+        return next();
     } catch (e) {
-        next(errorOptions(e));
+        next(errorOptions(e, 'logout'));
     }
 }
 

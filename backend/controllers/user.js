@@ -19,11 +19,18 @@ const register = async (req, res, next) => {
             +process.env.SALT_ROUNDS
         );
 
-        await User.register(req.body.username, req.body.email, hashedPw);
+        await User.register(
+            req.body.username,
+            req.body.email,
+            req.body.password,
+            req.body.birthDate,
+            req.body.firstName,
+            req.body.lastName
+        );
 
         next(); //login
     } catch (e) {
-        next(errorOptions(e));
+        next(errorOptions(e, 'register'));
     }
 }
 
