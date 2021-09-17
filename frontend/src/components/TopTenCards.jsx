@@ -29,7 +29,7 @@ function TopTenCards() {
                             </ol>
                         </CardText>
                         </CardBody>
-                        <Button color="secondary">Button</Button>
+                        <Button color="secondary" className="cardButton" >Button</Button>
                     </Card>
 
                     <Card className="card">
@@ -52,7 +52,7 @@ function TopTenCards() {
                             </ol>
                         </CardText>
                         </CardBody>
-                        <Button color="secondary">Button</Button>
+                        <Button color="secondary" className="cardButton">Button</Button>
                     </Card>
                 </div>
             </div>

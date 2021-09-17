@@ -1,6 +1,6 @@
 import React from 'react'
 import './MainPage.css'
-import logo from '../../images/logo.png';
+import logo from '../../images/logo.jpg';
 import Login from '../Login.jsx';
 import Navbar from '../../components/Navbar.jsx';
 
