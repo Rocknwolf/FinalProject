@@ -2,15 +2,16 @@
     display: flex;
     width: 320px;
     height: 200px;
-    position: fixed;
-    border: 1px solid black;
+    position: absolute;
+    border: 2px solid rgb(20, 20, 20);
+    border-radius: 5%;
 }
 .container{
     display: flex;
     align-items: flex-start;
     width: 350px;
     height: 200px;
-    position: fixed;
+    position: absolute;
     margin-top: 1%;
     margin-left: 40%;
     perspective: 1000px;
@@ -22,11 +23,14 @@
     0%{
         transform: rotateX(-8deg) scale(0.6, 0.6);
     }
-   50%{
-        transform: rotateX(-8deg) scale(0.6, 0.6);
+    25%{
+        transform: rotateX(-9deg) scale(0.6, 0.6);
    }
-   80%{
-        transform: rotateX(-8deg) scale(0.6, 0.6);
+   50%{
+        transform: rotateX(-10deg) scale(0.6, 0.6);
+   }
+   75%{
+        transform: rotateX(-9deg) scale(0.6, 0.6);
    }
    100%{
         transform: rotateX(-8deg) scale(0.6, 0.6);
@@ -34,7 +38,7 @@
 }
 .images{
     width: 100%;
-    position: fixed;
+    position: absolute;
     transform-style: preserve-3d;
     animation: rotate 20s linear infinite;
 }

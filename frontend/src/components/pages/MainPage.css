@@ -1,3 +1,4 @@
+/* HeaderArea */
 .mainHeader{
     width: 100%;
     display: inline-flex;
@@ -14,6 +15,12 @@
     margin-right: 14%;
     width: 70%;
 }
+.mainTitel{
+    position: absolute;
+    left: 40%;
+}
+
+/* InputTypes */
 input[type="text"]{
     background-color: rgba(0, 0, 139, 0.315);
 }
@@ -27,20 +34,31 @@ input[type="date"]{
     background-color: rgba(0, 0, 139, 0.315);
 }
 
+/* Navigation */
 .navigation{
     color:cornsilk;
 }
-
-.mainCards{
-    display: flex;
-    width: 50%;
-    color: black;
-    justify-content: center;
+.navFont{
+    color: cornsilk;
 }
-.cardGroup{
+
+/* TopTenCards */
+.mainCard{
+    display: inline-flex;
+    width: 20%;
+    color: black;
+    justify-content: space-between;
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+.card{
     display: flex;
-    width: 100%;
-    margin-left: 30%;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: rgb(24, 17, 17);
+    color: cornsilk;
 }
 .cardButton{
     background-color: darkblue;
@@ -50,7 +68,11 @@ input[type="date"]{
     background-color: cornsilk;
     color: darkblue;
 }
+li>a{
+    color: cornsilk;
+}
 
+/* Buttons */
 .button{
     display: flexbox;
     background: rgb(71, 168, 212, 0.466);
@@ -68,4 +90,9 @@ input[type="date"]{
 .button:hover{
     background-color: rgba(252, 251, 250, 0.109);
     border: 1px solid cornsilk;
+}
+.divider{
+    display: block;
+    width: 100%;
+    border-bottom: 10px solid cornsilk;
 }

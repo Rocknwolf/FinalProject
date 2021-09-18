@@ -5,7 +5,7 @@ import Login from '../Login.jsx';
 import Navbar from '../../components/Navbar.jsx';
 
 import ImageCarousel from '../ImageCarousel.jsx';
-// import TopTenCards from '../TopTenCards.jsx';
+import TopTenCards from '../TopTenCards.jsx';
 
 function MainPage() {
     return (
@@ -31,7 +31,13 @@ function MainPage() {
                     </div>
 
                     <div className="mainCards">
-                        {/* <TopTenCards/> */}
+                        <TopTenCards/>
+                    </div>
+
+                    <span className="divider"></span>
+
+                    <div className="footer">
+                        
                     </div>
 
             
