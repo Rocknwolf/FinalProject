@@ -12,7 +12,7 @@
     border-radius: 50%;
 }
 .loginbox{
-    margin-right: 14%;
+    padding-right: 14%;
     width: 70%;
 }
 .mainTitel{
@@ -49,20 +49,21 @@ input[type="date"]{
     color: black;
     justify-content: space-between;
     margin-top: 20%;
-    margin-bottom: 20%;
+    /* margin-bottom: 20%; */
 }
 .card{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 5%;
-    margin-right: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
     background-color: rgb(24, 17, 17);
     color: cornsilk;
 }
 .cardButton{
     background-color: darkblue;
     color: cornsilk;
+    margin-bottom: 20px;
 }
 .cardButton:hover{
     background-color: cornsilk;
@@ -85,14 +86,45 @@ li>a{
     border-radius: 15px;
     font-weight: bold;
     line-height: 20px;
-    margin-top: 1.5%;
 }
 .button:hover{
     background-color: rgba(252, 251, 250, 0.109);
     border: 1px solid cornsilk;
 }
+
+/* Divider */
 .divider{
-    display: block;
+    display: flex;
     width: 100%;
-    border-bottom: 10px solid cornsilk;
+    position: absolute;
+    bottom: -370px;
+    border-bottom: 1px solid cornsilk;
+}
+
+/* Footer */
+.footer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5%;
+    padding-top: 3%;
+    padding-right: 10%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    background-color: rgba(0, 0, 139, 0.404);
+}
+.dropDownButton{
+    padding-left: 8%;
+}
+.pFooter{
+    padding-left: 5%;
+}
+.footerLogo{
+    position: absolute;
+    left: 48%;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
 }

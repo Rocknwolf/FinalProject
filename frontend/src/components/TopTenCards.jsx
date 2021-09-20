@@ -1,5 +1,4 @@
 import React from 'react'
-import './TopTenCards.css'
 import topTen from '../images/top10.jpg';
 
 import { Card, Button, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
@@ -11,8 +10,8 @@ function TopTenCards() {
                 <Card className="card">
                     <CardImg className="cardImg" src={topTen} alt="Card image cap" />
                     <CardBody>
-                    <CardTitle tag="h3">Card Title</CardTitle>
-                    <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
+                    <CardTitle tag="h3">newest</CardTitle>
+                    <CardText>Die neusten Blockbuster</CardText>
                     <CardText>
                         <ol>
                             <li><a href="#" >Blockbuster</a></li>
@@ -36,8 +35,8 @@ function TopTenCards() {
                 <Card className="card">
                         <CardImg className="cardImg" src={topTen} alt="Card image cap" />
                         <CardBody>
-                        <CardTitle tag="h3">Card Title</CardTitle>
-                        <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
+                        <CardTitle tag="h3">best rated</CardTitle>
+                        <CardText>Best of community</CardText>
                         <CardText>
                             <ol>
                                 <li><a href="#" >Blockbuster</a></li>
