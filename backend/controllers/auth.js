@@ -5,15 +5,19 @@ import User from '../models/User.js';
 
 const login = async (req, res, next) => {
     try {
-        let hashedPw;
-        // if(req.body.username)
-        //     hashedPw = await User.findByUsername(req.body.username);
-        // if(req.body.email && !hashedPw)
-        //     hashedPw = await User.findByUsername(req.body.email);
-
-        hashedPw = "$2b$10$cVuFs.DgOd3gp20KRCCEIueLbJQeEjZxr6uXpJphMNmtnD9aY3g4q";
+        let user, hashedPw;
+        if(req.body.username)
+        {
+            user = await User.findByUsername(req.body.username);
+            if(user) hashedPw = user.password;
+        }
+        if(req.body.email && !hashedPw){
+            user = await User.findByEmail(req.body.email);
+            if(user) hashedPw = user.password;
+        }
 
         const check = await bcrypt.compare(req.body.password + process.env.PEPPER, hashedPw);
+        console.log(check)
 
         if(check) {
             res.status(201);

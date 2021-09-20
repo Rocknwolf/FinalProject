@@ -22,10 +22,10 @@ const register = async (req, res, next) => {
         await User.register(
             req.body.username,
             req.body.email,
-            req.body.password,
+            hashedPw,
             req.body.birthDate,
-            req.body.firstName,
-            req.body.lastName
+            req.body.firstName || '',
+            req.body.lastName || ''
         );
 
         next(); //login

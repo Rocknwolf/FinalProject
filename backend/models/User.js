@@ -14,14 +14,26 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    birthDate: {
-        type: Date,
-        required: true,
-    },
     email: {
         type: String,
         required: true,
         unique: true,
+    },
+    emailVerificationCode: {
+        type: String
+    },
+    isEmailVerified: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    birthDate: {
+        type: Date,
+        required: true,
     },
     bio: {
         type: String,
@@ -31,13 +43,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    password: {
-        type: String,
-        required: true,
-    },
     isActive: {
         type: Boolean,
         required: true,
+        default: true
     },
     deactivatedAt:{
         type: Date,
@@ -49,20 +58,26 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema,"users");
 
-const register = async (userName, email, password, birthDate, firstName, lastName) =>
+const register = async (userNameP, emailP, passwordP, birthDateP, firstNameP, lastNameP) =>
 {
-    
-    return await User.register({"userName":userName, "email":email, "password":password, "birthDate":birthDate, "firstName":firstName, "lastName":lastName})
+    return await User.create({
+        userName: userNameP,
+        email: emailP,
+        password: passwordP,
+        birthDate: birthDateP,
+        firstName: firstNameP,
+        lastName: lastNameP
+    });
 }
 
-const findByEmail = async (email) =>
+const findByEmail = async (emailP) =>
 {
-    return await User.findOne({"email":email})
+    return await User.findOne({ email: emailP });
 }
 
-const findByUsername = async (firstname) =>
+const findByUsername = async (firstnameP) =>
 {
-    return await User.find({"firstName":firstname})
+    return await User.findOne({ firstname: firstnameP });
     // return await User.find({"firstName":firstname.toLowerCase()})
 }
 
