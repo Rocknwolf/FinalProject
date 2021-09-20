@@ -6,6 +6,7 @@ import Navbar from '../../components/Navbar.jsx';
 
 import ImageCarousel from '../ImageCarousel.jsx';
 import TopTenCards from '../TopTenCards.jsx';
+import Footer from '../Footer';
 
 function MainPage() {
     return (
@@ -37,7 +38,9 @@ function MainPage() {
                     <span className="divider"></span>
 
                     <div className="footer">
-                        
+                        <p className="pFooter">&copy; 2021 by Alex, Frieder, Sven</p>
+                        <img src={logo} alt="" className="footerLogo" />
+                        <Footer/>
                     </div>
 
             
