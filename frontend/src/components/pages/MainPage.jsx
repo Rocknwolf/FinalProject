@@ -6,7 +6,7 @@ import Navbar from '../../components/Navbar.jsx';
 
 import ImageCarousel from '../ImageCarousel.jsx';
 import TopTenCards from '../TopTenCards.jsx';
-import Footer from '../Footer';
+import Footer from '../Footer.jsx';
 
 function MainPage() {
     return (

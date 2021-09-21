@@ -17,7 +17,6 @@ const login = async (req, res, next) => {
         }
 
         const check = await bcrypt.compare(req.body.password + process.env.PEPPER, hashedPw);
-
         if(check) {
             res.status(201);
             res.payload = { login: "accepted" };
