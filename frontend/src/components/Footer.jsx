@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, ButtonGroup, DropdownToggle, ButtonDropdown, DropdownItem, DropdownMenu } from 'reactstrap';
+import { ButtonGroup, DropdownToggle, ButtonDropdown, DropdownItem, DropdownMenu } from 'reactstrap';
 
 function Footer(props) {
     const [dropdownOpenA, setOpenA] = useState(false);
