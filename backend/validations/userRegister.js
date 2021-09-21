@@ -12,7 +12,7 @@ const schema = {
         },
         password: {
             type: 'string',
-            minLength: 4
+            minLength: 8
             //pattern: '^((?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[ °^!§$%&\/()=?<>|\'\"`´µ€@²³#+*~_-]).+)$' // doesn't work in ajv
         },
         birthDate: {

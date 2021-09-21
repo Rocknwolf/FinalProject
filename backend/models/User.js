@@ -75,10 +75,9 @@ const findByEmail = async (emailP) =>
     return await User.findOne({ email: emailP });
 }
 
-const findByUsername = async (firstnameP) =>
+const findByUsername = async (usernameP) =>
 {
-    return await User.findOne({ firstname: firstnameP });
-    // return await User.find({"firstName":firstname.toLowerCase()})
+    return await User.findOne({ username: usernameP });
 }
 
 const saveResettedPassword = () =>
