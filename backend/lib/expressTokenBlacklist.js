@@ -4,7 +4,8 @@
  * @param {{ instanceOf: "Express"}} server current Express app
  */
 const tokenBlackList = (server) => {
-    server.locals.states = { tokenBlacklist: [] };
+    if(!server.locals.states) server.locals.states = {};
+    server.locals.states.tokenBlacklist = [];
     
     setInterval(() => {
         server.locals.states.tokenBlacklist = 

@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cookieParser from 'cookie-parser';
+import expressMongoSanitize from 'express-mongo-sanitize';
 
 import database from './lib/db.mongoose.js';
 import errorHandler from './middlewares/errorHandler.js';
@@ -32,6 +33,9 @@ server.use((req, res, next) => {
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(cookieParser());
+
+// This module searches for any keys in objects that begin with a $ sign or contain a ., from req.body, req.query or req.params
+server.use(expressMongoSanitize({ replaceWith: '_' })); // default delete theese keys
 
 server.use('/api/user', userRouter);
 server.use('/api/auth', authRouter);
