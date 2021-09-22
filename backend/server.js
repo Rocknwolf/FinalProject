@@ -24,7 +24,8 @@ server.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', process.env.CORS_FRONTEND);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Credentials', true);
+    if(process.env.CORS_CREDENTIALS === 'true')
+        res.header('Access-Control-Allow-Credentials', true);   // The only valid value for this header is true
     if (req.method === 'OPTIONS') { //cors preflight request method
         return res.status(200).send();
     }
