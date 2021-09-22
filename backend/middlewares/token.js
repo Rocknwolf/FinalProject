@@ -7,7 +7,7 @@ const duration = +process.env.TOKEN_DURATION * 60
 const setTokenCookie = (res, token, duration) => res.cookie('token', token, {
     maxAge: duration * 1000, //in ms
     httpOnly: true,
-    SameSite: process.env.COOKIE_SAMESITE
+    sameSite: process.env.COOKIE_SAMESITE
 });
 
 const setToken = (res, duration, object) => {
@@ -44,13 +44,13 @@ const verifyToken = (req, res, next) => {
                 process.env.TOKEN_SECRET,
                 { algorithm: 'HS256' , complete: true }
             );
-        else return res.status(401).send('missing token');
+        else throw errorOptions(Error(), null, null, false, 'missing token');
         
         if( !res.app.locals.states.tokenBlacklist
             .map(item => item.signature)
             .includes(tokenVerified.signature)
         ) req.token = { exp: tokenVerified.payload.exp * 1000, signature: tokenVerified.signature };
-        else throw new Error;
+        else throw new Error();
 
         //token refresh expiring in < 2 min
         if((tokenVerified.payload.exp - Date.now() / 1000) / 60 < 2) {

@@ -18,12 +18,13 @@ etb.tokenBlackList(server);
 
 server.listen(process.env.PORT, () => 
     console.log(`server listening on port ${process.env.PORT}`));
-
+    
 //cors
 server.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', process.env.CORS_FRONTEND);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Credentials', true);
     if (req.method === 'OPTIONS') { //cors preflight request method
         return res.status(200).send();
     }
