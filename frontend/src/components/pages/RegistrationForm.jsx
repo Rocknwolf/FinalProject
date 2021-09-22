@@ -2,32 +2,65 @@ import React, {useState} from 'react'
 import './RegistrationForm.css';
 import Navbar from '../Navbar.jsx';
 import fetchCors from '../../lib/fetchCors';
-
+    
 function RegistrationForm() {
-
+        
         const [username, setUsername] = useState("");
         const [firstname, setFirstname] = useState("");
         const [lastname, setLastname] = useState("");
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
         const [passwordVerify, setPasswordVerify] = useState("");
-        const [birthday, setBirthday] = useState(0)
+        const [birthday, setBirthday] = useState(0);
+        const [passwordErr, setPasswordErr] = useState("");
+        const [isValid, setIsValid] = useState([]);
+
 
         const handleRegistration = async (e) => {
-          e.preventDefault();
-          await fetchCors( "/api/user", "POST", 
-            JSON.stringify({
-                username: username,
-                firstName: firstname,
-                lastName: lastname,
-                email: email,
-                password: password,
-                birthDate: birthday,
-                // passwordVerify
-            })
+            e.preventDefault();
 
-          )};
+            setIsValid(formValidation());
+            if (!isValid) {
+                return;
+            }
 
+            await fetchCors( "/api/user", "POST", 
+                JSON.stringify({
+                    username: username,
+                    firstName: firstname,
+                    lastName: lastname,
+                    email: email,
+                    password: password,
+                    birthDate: birthday,
+                    // passwordVerify
+                })   
+            )
+        };
+
+        const formValidation = () => {
+            let isValid;
+            isValid = true;
+
+            const isMatch = password.match(/^((?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[ °^!§$%&/()=?<>|'"`´µ€@²³#+*~_-]).+)$/); // returns [...matches] or null
+            if(!isMatch) {
+                setPasswordErr("pw not strong enough");
+                isValid = false;
+            }
+            
+            if (password.trim().length < 8) {
+                setPasswordErr("Password too short");
+                isValid = false;
+            }
+            
+            if (password !== passwordVerify) {
+                setPasswordErr("Passwords dont match");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+    
     return (
         <div>
             <div className="frame">
@@ -54,6 +87,9 @@ function RegistrationForm() {
                             <label htmlFor="age" className="regLabel">Birthdate</label>
                             <input type="date" name="age" id="age" placeholder="age" value={birthday} onChange={(e) => setBirthday(e.target.value)} required/>
                         </div>
+                            <div>
+                                {!isValid ? passwordErr : ""}
+                            </div>
                             <button type="submit" className="button">Registrieren</button>
                     </form>
             </div>
@@ -61,4 +97,4 @@ function RegistrationForm() {
     )
 }
 
-export default RegistrationForm 
+export default RegistrationForm

@@ -4,7 +4,6 @@ import { Form, FormGroup, Label, Input, Button} from 'reactstrap';
 function Login(props) {
 
     return (
-        <div>
           <div className="loginbox">
               <Form inline>
                 <FormGroup>
@@ -17,8 +16,7 @@ function Login(props) {
                 </FormGroup>
                 <Button className="button" >Login</Button>
               </Form>
-            </div>
-        </div>
+          </div>
     )
 }
 
