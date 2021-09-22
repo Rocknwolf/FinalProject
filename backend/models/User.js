@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
     lastName: {
         type: String,
     },
-    userName: {
+    username: {
         type:String,
         required: true,
         unique: true,
@@ -61,7 +61,7 @@ const User = mongoose.model('User', UserSchema,"users");
 const register = async (userNameP, emailP, passwordP, birthDateP, firstNameP, lastNameP) =>
 {
     return await User.create({
-        userName: userNameP,
+        username: userNameP,
         email: emailP,
         password: passwordP,
         birthDate: birthDateP,

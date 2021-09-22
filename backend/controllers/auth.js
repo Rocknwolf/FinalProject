@@ -15,7 +15,6 @@ const login = async (req, res, next) => {
             user = await User.findByEmail(req.body.email);
             if(user) hashedPw = user.password;
         }
-
         const check = await bcrypt.compare(req.body.password + process.env.PEPPER, hashedPw);
         if(check) {
             res.status(201);
