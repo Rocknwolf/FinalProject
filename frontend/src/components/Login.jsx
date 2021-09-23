@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import fetchCors from '../lib/fetchCors';
 
-import logIOToggler from '../../lib/logIOToggler.js'
+import logIOToggler from '../lib/logIOToggler.js';
 
 function Login(props) {
     const [username, setUsername] = useState("");
