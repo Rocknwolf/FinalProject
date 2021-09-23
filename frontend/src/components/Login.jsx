@@ -1,10 +1,12 @@
 import React from 'react';
 import { Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
+import logIOToggler from '../../lib/logIOToggler.js'
+
 function Login(props) {
 
     return (
-          <div className="loginbox">
+          <div className="loginBox">
               <Form inline>
                 <FormGroup>
                   <Label for="exampleEmail" hidden>Username</Label>

@@ -1,15 +1,29 @@
 import React from 'react'
+import { useEffect } from 'react';
+
 import './MainPage.css'
 import logo from '../../images/logo.jpg';
 import Login from '../Login.jsx';
 import Logout from '../Logout.jsx';
-import Navbar from '../../components/Navbar.jsx';
-
+import Navbar from '../Navbar.jsx';
 import ImageCarousel from '../ImageCarousel.jsx';
 import TopTenCards from '../TopTenCards.jsx';
 import Footer from '../Footer.jsx';
 
+import logIOToggler from '../../lib/logIOToggler.js'
+
 function MainPage() {
+
+    useEffect(() => {
+        logIOToggler();
+        const interval = setInterval(() => {
+            logIOToggler();
+        }, 60 * 1000);
+        return () => {
+            clearInterval(interval);
+        }
+    }, []);
+
     return (
         <div>
             <div className="mainHeader">
