@@ -4,6 +4,7 @@ import logo from '../../images/logo.jpg';
 import Login from '../Login.jsx';
 import Logout from '../Logout.jsx';
 import Navbar from '../../components/Navbar.jsx';
+// import RegistrationForm from './RegistrationForm';
 
 import ImageCarousel from '../ImageCarousel.jsx';
 import TopTenCards from '../TopTenCards.jsx';
@@ -22,6 +23,7 @@ function MainPage() {
 
                 <div className="dropLogin">
                     <Login/>
+                    {/* <RegistrationForm/> */}
                     <Logout/>
                 </div>
             </div>

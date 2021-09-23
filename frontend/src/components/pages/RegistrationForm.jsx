@@ -71,7 +71,7 @@ function RegistrationForm() {
                     <form action="" onSubmit={handleRegistration}>
                         <div className="regContainer">
                             <label htmlFor="Username" className="regLabel">Username:</label>
-                            <input type="text" name="Username" id="Username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}required/>
+                            <input type="text" name="Username" id="Username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
                             <label htmlFor="Firstname" className="regLabel">Firstname:</label>
                             <input type="text" name="Firstname" id="Firstname" placeholder="Firstname" value={firstname} onChange={(e) => setFirstname(e.target.value)}/>
                             <label htmlFor="Lastname" className="regLabel">Lastname:</label>
