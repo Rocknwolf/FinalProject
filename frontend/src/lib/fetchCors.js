@@ -15,6 +15,7 @@ const fetchCors = async (path, method, bodyParam) => {
         method: method,
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
         mode: 'cors',
+        credentials: process.env.FETCH_CREDENTIALS,
         [method.toUpperCase() !== 'GET' ? 'body' : null] : method.toUpperCase() !== 'GET' ? body : null
     };
     try {
