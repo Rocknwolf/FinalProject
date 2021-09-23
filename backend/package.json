@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "yarn start && nodemon server.js",
-    "start": "docker-compose up -d mongo && sleep 2 && docker-compose ps && echo \"*** Run 'yarn stop' or 'yarn down' once you are done ***\"",
+    "start": "docker-compose up -d mongo && docker-compose ps && echo \"*** Run 'yarn stop' or 'yarn down' once you are done ***\"",
     "stop": "docker-compose stop",
     "down": "docker-compose down",
     "seed": "node seed.js"
