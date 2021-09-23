@@ -36,6 +36,7 @@ function MainPage() {
 
                 <div className="dropLogin">
                     <Login/>
+                    {/* <RegistrationForm/> */}
                     <Logout/>
                 </div>
             </div>
