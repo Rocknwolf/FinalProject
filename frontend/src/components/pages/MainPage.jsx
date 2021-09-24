@@ -3,7 +3,7 @@ import './MainPage.css'
 import logo from '../../images/logo.jpg';
 import Login from '../Login.jsx';
 import Logout from '../Logout.jsx';
-import Navbar from '../../components/Navbar.jsx';
+import Navbar from '../Navbar.jsx';
 // import RegistrationForm from './RegistrationForm';
 
 import ImageCarousel from '../ImageCarousel.jsx';
@@ -17,8 +17,8 @@ function MainPage() {
                 <img src={logo} alt="" className="mainLogo" />
 
                 <div className="mainTitel">
-                    <h1>Zelluloid Zombies</h1>
-                    <p>blablabla guckstu</p>
+                    <h1 contenteditable="true">Zelluloid Zombies</h1>
+                    <p contenteditable="true">blablabla guckstu</p>
                 </div>
 
                 <div className="dropLogin">
