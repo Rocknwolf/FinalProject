@@ -6,7 +6,6 @@ import User from '../models/User.js';
 const login = async (req, res, next) => {
     try {
         let user, hashedPw;
-        console.log(req.body, req.query);
         if(req.body.username)
         {
             user = await User.findByUsername(req.body.username.toLowerCase());
