@@ -21,7 +21,7 @@ const fetchCors = async (path, methodP, bodyParam) => {
     try {
         return await fetch(config.host + path, options);
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
 }
 

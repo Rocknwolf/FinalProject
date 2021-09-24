@@ -15,8 +15,7 @@ function Login(props) {
                 username: username,
                 password: password,
             })   
-        )    
-        console.log(res);
+        )
         if(res) logIOToggler();
     }
 
