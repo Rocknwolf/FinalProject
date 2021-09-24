@@ -12,3 +12,6 @@ body{
 .App {
   text-align: center;
 }
+.inactive{
+  display: none;
+}
