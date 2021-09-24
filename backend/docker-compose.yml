@@ -7,10 +7,11 @@ services:
 
   mongo:
     image: mongo:4.4-bionic
+    container_name: fp_mongo
     #restart: always
     
     environment:
-      ME_CONFIG_MONGODB_URL: "mongodb://root:example@mongo:27017/"
+      #ME_CONFIG_MONGODB_URL: "mongodb://root:example@mongo:27017/"
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
 

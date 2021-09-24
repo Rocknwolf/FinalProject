@@ -8,6 +8,6 @@ const client = await MongoClient.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
-const db = client.db("urlShortener");
+const db = client.db('SoMo');
 
 export default db;

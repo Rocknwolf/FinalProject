@@ -1,13 +1,13 @@
 import Ajv from 'ajv';
 import ajvFormats from 'ajv-formats';
+import ajvKeywords from 'ajv-keywords';
 
-// import { ErrorOptions } from '../Models/Errors.js';
-
-import { errorOptions } from '../Lib/errors.js';
+import { errorOptions } from '../lib/errors.js';
 
 
 const ajv = new Ajv({ allErrors: true });
 ajvFormats(ajv);
+ajvKeywords(ajv, 'regexp');
 
 const validate = (input, action, schema, req, res, next) => {
     const test = ajv.compile(schema);

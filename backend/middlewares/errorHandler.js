@@ -6,7 +6,7 @@ const errorHandler = (err, req, res, next) => {
     res = res.status(err.status);
 
     const returnMessage = err instanceof mongoose.CastError ? err.reason.sendMessage : err.sendMessage;
-    !err.empty ? res.send(returnMessage) : res.send();
+    !err.empty ? res.json({ error: { message: returnMessage } }) : res.json({ error: { message: null } });
 };
 
 export default errorHandler;

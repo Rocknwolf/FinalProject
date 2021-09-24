@@ -1,0 +1,130 @@
+/* HeaderArea */
+.mainHeader{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.mainLogo{
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+.loginBox{
+    padding-right: 14%;
+    width: 70%;
+}
+.mainTitel{
+    position: absolute;
+    left: 40%;
+}
+
+/* InputTypes */
+input[type="text"]{
+    background-color: rgba(0, 0, 139, 0.315);
+}
+input[type="password"]{
+    background-color: rgba(0, 0, 139, 0.315);
+}
+input[type="email"]{
+    background-color: rgba(0, 0, 139, 0.315);
+}
+input[type="date"]{
+    background-color: rgba(0, 0, 139, 0.315);
+}
+
+/* Navigation */
+.navigation{
+    color:cornsilk;
+}
+.navFont{
+    color: cornsilk;
+}
+
+/* TopTenCards */
+.mainCard{
+    display: inline-flex;
+    width: 20%;
+    color: black;
+    justify-content: space-between;
+    margin-top: 20%;
+    /* margin-bottom: 20%; */
+}
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: rgb(24, 17, 17);
+    color: cornsilk;
+}
+.cardButton{
+    background-color: darkblue;
+    color: cornsilk;
+    margin-bottom: 20px;
+}
+.cardButton:hover{
+    background-color: cornsilk;
+    color: darkblue;
+}
+li>a{
+    color: cornsilk;
+}
+
+/* Buttons */
+.button{
+    display: flexbox;
+    background: rgb(71, 168, 212, 0.466);
+    color: cornsilk;
+    width: 60%;
+    justify-content: center;
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid rgba(71, 167, 212, 0.466);
+    border-radius: 15px;
+    font-weight: bold;
+    line-height: 20px;
+}
+.button:hover{
+    background-color: rgba(252, 251, 250, 0.109);
+    border: 1px solid cornsilk;
+}
+
+/* Divider */
+.divider{
+    display: flex;
+    width: 100%;
+    position: absolute;
+    bottom: -370px;
+    border-bottom: 1px solid cornsilk;
+}
+
+/* Footer */
+.footer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5%;
+    padding-top: 3%;
+    padding-right: 10%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    background-color: rgba(0, 0, 139, 0.404);
+}
+.dropDownButton{
+    padding-left: 8%;
+}
+.pFooter{
+    padding-left: 5%;
+}
+.footerLogo{
+    position: absolute;
+    left: 48%;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
