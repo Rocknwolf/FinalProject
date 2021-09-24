@@ -9,7 +9,7 @@ const login = async (req, res, next) => {
         console.log(req.body, req.query);
         if(req.body.username)
         {
-            user = await User.findByUsername(req.body.username);
+            user = await User.findByUsername(req.body.username.toLowerCase());
             if(user) hashedPw = user.password;
         }
         if(req.body.email && !hashedPw){

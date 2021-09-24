@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 import './RegistrationForm.css';
 import Navbar from '../Navbar.jsx';
+
 import fetchCors from '../../lib/fetchCors';
-    
+import logIOToggler from '../../lib/logIOToggler.js'
+
 function RegistrationForm() {
         
         const [username, setUsername] = useState("");
@@ -24,7 +26,7 @@ function RegistrationForm() {
                 return;
             }
 
-            await fetchCors( "/api/user", "POST", 
+            const res = await fetchCors( "/api/user", "POST", 
                 JSON.stringify({
                     username: username,
                     firstName: firstname,
@@ -35,6 +37,8 @@ function RegistrationForm() {
                     // passwordVerify
                 })   
             )
+            
+            if(res) logIOToggler();
         };
 
         const formValidation = () => {

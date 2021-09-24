@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-
 const UserSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -57,10 +56,10 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema,"users");
 
-const register = async (userNameP, emailP, passwordP, birthDateP, firstNameP, lastNameP) =>
+const register = async (usernameP, emailP, passwordP, birthDateP, firstNameP, lastNameP) =>
 {
     return await User.create({
-        username: userNameP,
+        username: usernameP,
         email: emailP,
         password: passwordP,
         birthDate: birthDateP,

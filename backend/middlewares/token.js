@@ -2,12 +2,13 @@ import jwt from 'jsonwebtoken';
 
 import { errorOptions } from '../lib/errors.js';
 
-const duration = +process.env.TOKEN_DURATION * 60
+const durationJWT = +process.env.TOKEN_DURATION * 60
 
 const setTokenCookie = (res, token, duration) => res.cookie('token', token, {
     maxAge: duration * 1000, //in ms
-    httpOnly: true,
-    sameSite: process.env.COOKIE_SAMESITE
+    httpOnly: false,
+    sameSite: process.env.COOKIE_SAMESITE,
+    path: '/'
 });
 
 const setToken = (res, duration, object) => {
@@ -54,8 +55,8 @@ const verifyToken = (req, res, next) => {
 
         //token refresh expiring in < 2 min
         if((tokenVerified.payload.exp - Date.now() / 1000) / 60 < 2) {
-            const token = setToken(res, duration , { authentication: 'renewed'});
-            setTokenCookie(res, token, duration);
+            const token = setToken(res, durationJWT , { authentication: 'renewed'});
+            setTokenCookie(res, token, durationJWT);
         }
         next();
     } catch (e) {

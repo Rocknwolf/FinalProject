@@ -20,7 +20,7 @@ const register = async (req, res, next) => {
         );
 
         await User.register(
-            req.body.username,
+            req.body.username.toLowerCase(),
             req.body.email,
             hashedPw,
             req.body.birthDate,
