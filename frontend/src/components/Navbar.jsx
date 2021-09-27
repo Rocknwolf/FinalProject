@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -10,17 +11,17 @@ function Navbar() {
         <div>
             <Nav tabs>
                 <NavItem className="navigation">
-                    <NavLink href="/" className="navFont">Main</NavLink>
+                    <NavLink tag={Link} to="/" className="navFont">Main</NavLink>
                 </NavItem>
                 
                 <NavItem>
-                    <NavLink href="/register" className="navFont">Registrieren</NavLink>
+                    <NavLink tag={Link} to="/register" className="navFont">Registrieren</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/chat" className="navFont">Chat</NavLink>
+                    <NavLink tag={Link} to="/chat" className="navFont">Chat</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/forum" className="navFont">Forum / Tauschbörse</NavLink>
+                    <NavLink tag={Link} to="/forum" className="navFont">Forum / Tauschbörse</NavLink>
                 </NavItem>
 
                 <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>

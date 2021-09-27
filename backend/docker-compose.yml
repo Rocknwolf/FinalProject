@@ -7,7 +7,7 @@ services:
 
   mongo:
     image: mongo:4.4-bionic
-    container_name: fp_mongo
+    container_name: fp_dev_mongo
     #restart: always
     
     environment:

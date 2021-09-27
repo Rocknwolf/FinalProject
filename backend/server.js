@@ -38,8 +38,13 @@ server.use(cookieParser());
 
 // This module searches for any keys in objects that begin with a $ sign or contain a ., from req.body, req.query or req.params
 server.use(expressMongoSanitize({ replaceWith: '_' })); // default delete theese keys
+server.use(express.static('build'));
 
 server.use('/api/user', userRouter);
 server.use('/api/auth', authRouter);
+
+server.get('/', (req, res) => {
+    res.sendFile('build/index.html');
+});
 
 server.use(errorHandler);

@@ -5,6 +5,16 @@
     "dev": "gnome-terminal --tab -- bash -c 'yarn --cwd ./frontend/ start' && gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ dev'",
     "static": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ dev'",
     "seed": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ seed'",
-    "down": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ down'"
+    "down": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ down'",
+
+    "conBuild": "docker-compose up -d --build && echo \"*** Run 'yarn conStop' or 'yarn conDown' once you are done ***\"",
+    "conDown": "docker-compose down",
+    "conStop": "docker-compose stop",
+    "conStart": "docker-compose start && echo \"*** Run 'yarn conStop' or 'yarn conDown' once you are done ***\"",
+
+    "serverBuild": "rsync $(pwd)/mongo/mongo-init.js root@digitalOcean:$(pwd)/mongo/mongo-init.js && export COMPOSE_DOCKER_CLI_BUILD=0 && export DOCKER_HOST='ssh://digitalOcean' && docker-compose up -d --build",
+    "serverPs": "docker-compose -H ssh://digitalOcean ps",
+    "serverStop": "docker-compose -H ssh://digitalOcean stop",
+    "serverStart": "docker-compose -H ssh://digitalOcean start"
   }
 }
