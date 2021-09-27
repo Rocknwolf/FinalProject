@@ -4,7 +4,16 @@
     "build": "yarn --cwd ./frontend/ build && echo moving ./frontend/build to ./backend/build && rm -rf ./backend/build && mv ./frontend/build ./backend/ ",
     "dev": "gnome-terminal --tab -- bash -c 'yarn --cwd ./frontend/ start' && gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ dev'",
     "static": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ dev'",
-    "seed": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ seed'",
-    "down": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ down'"
+    "start": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ start'",
+    "stop": "yarn --cwd ./backend/ seed",
+    "seed": "yarn --cwd ./backend/ seed",
+    "down": "yarn --cwd ./backend/ down",
+
+    "devWin": "start powershell -NoExit -Command 'yarn --cwd ./frontend/ start' && start powershell -NoExit -Command 'yarn --cwd ./backend/ dev'",
+    "staticWin": "start powershell -NoExit -Command 'yarn --cwd ./backend/ dev'",
+    "startWin": "start powershell -NoExit -Command 'yarn --cwd ./backend/ start'",
+
+    "setDev": "bash -c 'cd ./backend/ && ln -sf env.dev.env .env'",
+    "setProd": "bash -c 'cd ./backend/ && ln -sf env.prod.env .env'"
   }
 }
