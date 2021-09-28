@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+
+import { globalContext } from '../App.js';
 
 function Navbar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const context = useContext(globalContext);
 
     const toggle = () => setDropdownOpen(!dropdownOpen);
 
@@ -13,9 +16,13 @@ function Navbar() {
                     <NavLink href="/" className="navFont">Main</NavLink>
                 </NavItem>
                 
-                <NavItem>
-                    <NavLink href="/register" className="navFont">Registrieren</NavLink>
-                </NavItem>
+                {
+                    !context.isLogin ? (
+                        <NavItem>
+                            <NavLink href="/register" className="navFont">Registrieren</NavLink>
+                        </NavItem>
+                    ): null
+                }
                 <NavItem>
                     <NavLink href="/chat" className="navFont">Chat</NavLink>
                 </NavItem>

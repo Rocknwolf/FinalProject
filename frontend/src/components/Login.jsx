@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Form, FormGroup, Label, Input, Button} from 'reactstrap';
-import fetchCors from '../lib/fetchCors';
+import { globalContext } from '../App.js';
+import fetchCors from '../lib/fetchCors.js';
 
 import logIOToggler from '../lib/logIOToggler.js';
 
 function Login(props) {
+    const context = useContext(globalContext); 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -16,7 +18,7 @@ function Login(props) {
                 password: password,
             })   
         )
-        if(res) logIOToggler();
+        if(res) context.updateContext('isLogin', logIOToggler());
     }
 
     return (
@@ -36,4 +38,4 @@ function Login(props) {
     )
 }
 
-export default Login
+export default Login;
