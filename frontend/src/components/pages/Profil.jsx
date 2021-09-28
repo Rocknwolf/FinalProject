@@ -1,14 +1,12 @@
 import React from 'react'
 
-import User from '../../../../backend/models/User.js';
-
 import ProfilePicture from '../../images/ProfileImages/brain.jpg';
 import './Profile.css';
 
 import Navbar from '../Navbar.jsx';
 import Logout from '../Logout.jsx';
 
-function Profil() {
+function Profil(props) {
 
     return (
         <div className="mainProfilBox">
@@ -29,11 +27,11 @@ function Profil() {
             <div className="userObject">
                 <p className="userInformationen">userObject</p> {/*backend*/}
                 <ul className="userData">
-                    <li>Username:{User.usernameP} </li>
-                    <li>E-Mail: {User.emailP} </li>
-                    <li>Firstname: {User.firstNameP} </li>
-                    <li>Lastname: {User.firstNameP} </li>
-                    <li>Birthdate: {User.lastNameP} </li>
+                    <li>Username:{props.usernameP} </li>
+                    <li>E-Mail: {props.emailP} </li>
+                    <li>Firstname: {props.firstNameP} </li>
+                    <li>Lastname: {props.firstNameP} </li>
+                    <li>Birthdate: {props.lastNameP} </li>
                     <li>Gender:  </li> {/*Hinten angestellt*/}
                     <li>Timezone:  </li> {/*Hinten angestellt*/}
                 </ul>

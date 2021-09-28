@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 
 import RegistrationForm from './components/pages/RegistrationForm';
 import MainPage from './components/pages/MainPage';
-import Profil from './components/pages/Profil';
+import Profile from './components/pages/Profil.jsx';
+import DSGVO from './components/pages/DSGVO';
+import Impressum from './components/pages/Impressum';
+import AGB from './components/pages/AGB';
 
 import logIOToggler from './lib/logIOToggler.js'
 
@@ -12,18 +15,7 @@ const globalContext = createContext();
 
 function App() {
 
-  return (
-    <div className="App">
-      <Router>
-          <Switch>
-            <Route exact path="/" component={MainPage}/>
-            <Route path="/register" component={RegistrationForm}/>
-            <Route path="/profile" component={Profil}/>
-          </Switch>
-      </Router>
-    </div>
-  );
-
+    
     const [context, setContext] = useState({
         isLogin: false,
         updateContext: (key, value) => {
@@ -32,11 +24,11 @@ function App() {
             setContext(newContext);
         }
     });
-
+    
     const setLogin = () => {
         context.updateContext('isLogin' ,logIOToggler());
     };
-
+    
     useEffect( () => {
         let interval;
         (() => {
@@ -58,12 +50,16 @@ function App() {
                     <Switch>
                         <Route exact path="/" component={MainPage}/>
                         <Route path="/register" component={RegistrationForm}/>
+                        <Route path="/profile" component={Profile}/>
+                        <Route path="/dsgvo" component={DSGVO}/>
+                        <Route path="/impressum" component={Impressum}/>
+                        <Route path="/agb" component={AGB}/>
                     </Switch>
                 </Router>
             </globalContext.Provider>
         </div>
     );
-
+    
 }
 
 export default App;

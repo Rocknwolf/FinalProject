@@ -16,15 +16,10 @@ function Navbar() {
                 <NavItem className="navigation">
                     <NavLink href="/" className="navFont">Main</NavLink>
                 </NavItem>
-                
-
-                <NavItem>
-                    <NavLink tag={Link} to="/register" className="navFont">Registrieren</NavLink>
-                </NavItem>
                 {
                     !context.isLogin ? (
                         <NavItem>
-                            <NavLink href="/register" className="navFont">Registrieren</NavLink>
+                            <NavLink tag={Link} to="/register" className="navFont">Registrieren</NavLink>
                         </NavItem>
                     ): null
                 }
