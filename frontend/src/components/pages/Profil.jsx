@@ -4,7 +4,6 @@ import ProfilePicture from '../../images/ProfileImages/brain.jpg';
 import './Profile.css';
 
 import Navbar from '../Navbar.jsx';
-import Logout from '../Logout.jsx';
 
 function Profil(props) {
 
@@ -23,7 +22,6 @@ function Profil(props) {
                 <p><a href="/messages">Postfach</a></p> {/*Route anlegen*/}
                 <p><a href="/sendedMessages">gesendete Nachrichten</a></p> {/*Route anlegen*/}
                 <Navbar/>
-                <Logout className="logoutProfil" />
             <div className="userObject">
                 <p className="userInformationen">userObject</p> {/*backend*/}
                 <ul className="userData">
