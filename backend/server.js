@@ -8,6 +8,7 @@ import errorHandler from './middlewares/errorHandler.js';
 
 import userRouter from './routers/user.js';
 import authRouter from './routers/auth.js';
+import profileRouter from './routers/profile.js';
 import etb from './lib/expressTokenBlacklist.js';
 
 dotenv.config();
@@ -41,5 +42,6 @@ server.use(expressMongoSanitize({ replaceWith: '_' })); // default delete theese
 
 server.use('/api/user', userRouter);
 server.use('/api/auth', authRouter);
+server.use('/api/profile', profileRouter);
 
 server.use(errorHandler);
