@@ -24,7 +24,10 @@ const server = app.listen(process.env.PORT, () =>
 const io = new ioServer(server, {
     path: '/api/ws/',
     cors: {
-        origin: process.env.CORS_FRONTEND
+        origin: process.env.CORS_FRONTEND,
+        pingInterval: 25000,
+        pingTimeout: 30000,
+        upgradeTimeout: 20000
     },
     allowUpgrades: false,
 });
