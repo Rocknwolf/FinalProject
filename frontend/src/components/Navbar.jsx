@@ -14,7 +14,7 @@ function Navbar() {
         <div>
             <Nav tabs>
                 <NavItem className="navigation">
-                    <NavLink href="/" className="navFont">Main</NavLink>
+                    <NavLink tag={Link} to="/" className="navFont">Main</NavLink>
                 </NavItem>
                 {
                     !context.isLogin ? (

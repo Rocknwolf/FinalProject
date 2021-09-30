@@ -1,4 +1,9 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+
+import fetchCors from '../../lib/fetchCors';
+
+// import logIOToggler from '../../lib/logIOToggler.js'
+// import globalContext from '../../App.js';
 
 import ProfilePicture from '../../images/ProfileImages/brain.jpg';
 import './Profile.css';
@@ -6,12 +11,30 @@ import './Profile.css';
 import Navbar from '../Navbar.jsx';
 
 function Profil(props) {
+    // e.preventDefault();
+    // const context = useContext(globalContext); 
+    const [profileData, setProfileData] = useState({ hits: [] });
 
+    useEffect(() => {
+        const handleUserProfileApi = async () => {
+            const res = await fetchCors(
+            "/api/profile/merlin", "GET",
+            );
+            const data = await res.json();
+            setProfileData(data);
+            console.log("dataaaa:", profileData);
+            // return data;
+        }; 
+            handleUserProfileApi();
+            // if(res) context.updateContext('isLogin' ,logIOToggler());
+    }, [profileData]);
+    
     return (
         <div className="mainProfilBox">
             <br />
             <br />
             <h3>Profil-Informationen</h3>
+            {/* <button type="submit" onClick={(e)=>handleUserProfileApi}>API</button> */}
             <br />
             <br />
             <div className="pictureBack">
@@ -19,19 +42,19 @@ function Profil(props) {
             </div>
             <br />
             <br />
-                <p><a href="/messages">Postfach</a></p> {/*Route anlegen*/}
-                <p><a href="/sendedMessages">gesendete Nachrichten</a></p> {/*Route anlegen*/}
+                {/* <p><a href="/messages">Postfach</a></p>
+                <p><a href="/sendedMessages">gesendete Nachrichten</a></p> */}
                 <Navbar/>
             <div className="userObject">
-                <p className="userInformationen">userObject</p> {/*backend*/}
+                <h2 className="userInformationen">{profileData.username}</h2>
                 <ul className="userData">
-                    <li>Username:{props.usernameP} </li>
-                    <li>E-Mail: {props.emailP} </li>
-                    <li>Firstname: {props.firstNameP} </li>
-                    <li>Lastname: {props.firstNameP} </li>
-                    <li>Birthdate: {props.lastNameP} </li>
-                    <li>Gender:  </li> {/*Hinten angestellt*/}
-                    <li>Timezone:  </li> {/*Hinten angestellt*/}
+                    <li>Username: {profileData.username} </li>
+                    <li>E-Mail: {profileData.email} </li>
+                    <li>Firstname: {profileData.firstname} </li>
+                    <li>Lastname: {profileData.lastname} </li>
+                    <li>Birthdate: {profileData.birthdate} </li>
+                    {/* <li>Gender:  </li> Hinten angestellt*/}
+                    {/* <li>Timezone:  </li> Hinten angestellt */}
                 </ul>
             </div>
 
