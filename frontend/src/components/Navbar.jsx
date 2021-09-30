@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import { globalContext } from '../App.js';
 
@@ -13,21 +14,21 @@ function Navbar() {
         <div>
             <Nav tabs>
                 <NavItem className="navigation">
-                    <NavLink href="/" className="navFont">Main</NavLink>
+                    <NavLink to="/" tag={ Link } className="navFont">Main</NavLink>
                 </NavItem>
                 
                 {
                     !context.isLogin ? (
                         <NavItem>
-                            <NavLink href="/register" className="navFont">Registrieren</NavLink>
+                            <NavLink to="/register" tag={ Link } className="navFont">Registrieren</NavLink>
                         </NavItem>
                     ): null
                 }
                 <NavItem>
-                    <NavLink href="/chat" className="navFont">Chat</NavLink>
+                    <NavLink to="/chat" tag={ Link } className="navFont">Chat</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/forum" className="navFont">Forum / Tauschbörse</NavLink>
+                    <NavLink to="/forum" tag={ Link } className="navFont">Forum / Tauschbörse</NavLink>
                 </NavItem>
 
                 <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>

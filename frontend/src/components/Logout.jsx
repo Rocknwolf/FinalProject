@@ -12,7 +12,11 @@ const Logout = () => {
     {
         const error = await fetchCors('/api/auth', 'delete');
         if(error.message) throw Error(error.message);     
-        context.updateContext('isLogin' ,logIOToggler());
+        const isLogin = logIOToggler();
+        context.updateContext({
+            isLogin: isLogin,
+            username: isLogin ? context.username : ''
+        });
     }
 
     return (

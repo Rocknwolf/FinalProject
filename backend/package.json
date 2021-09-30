@@ -23,6 +23,7 @@
     "express-unless": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.5",
+    "socket.io": "^4.2.0",
     "xss": "^1.0.9"
   },
   "devDependencies": {

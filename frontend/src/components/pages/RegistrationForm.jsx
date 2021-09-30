@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react'
 import './RegistrationForm.css';
 import Navbar from '../Navbar.jsx';
 
-import fetchCors from '../../lib/fetchCors';
+import fetchCors from '../../lib/fetchCors.js';
 import logIOToggler from '../../lib/logIOToggler.js'
 import { globalContext } from '../../App.js';
 
@@ -40,7 +40,14 @@ function RegistrationForm() {
             })   
         )
         
-        if(res) context.updateContext('isLogin' ,logIOToggler());
+        const is = await res.json();
+        if(is.auth) {
+            const isLogin = logIOToggler();
+            context.updateContext({
+                isLogin: isLogin,
+                username: isLogin ? context.username : ''
+            });
+        }
     };
 
     const formValidation = () => {

@@ -15,11 +15,19 @@ function Login(props) {
         const res = await fetchCors( "/api/auth", "POST", 
             JSON.stringify({
                 username: username,
-                password: password,
-            })   
-        )
-        if(res) context.updateContext('isLogin', logIOToggler());
-    }
+                password: password
+            })
+        );
+        
+        const is = await res.json();
+        if(is.auth) {
+            const isLogin = logIOToggler();
+            context.updateContext({
+                isLogin: isLogin,
+                username: isLogin ? username : ''
+            });
+        }
+    };
 
     return (
         <div className="loginBox">
