@@ -14,21 +14,20 @@ function Navbar() {
         <div>
             <Nav tabs>
                 <NavItem className="navigation">
-                    <NavLink to="/" tag={ Link } className="navFont">Main</NavLink>
+                    <NavLink tag={Link} to="/" className="navFont">Main</NavLink>
                 </NavItem>
-                
                 {
                     !context.isLogin ? (
                         <NavItem>
-                            <NavLink to="/register" tag={ Link } className="navFont">Registrieren</NavLink>
+                            <NavLink tag={Link} to="/register" className="navFont">Registrieren</NavLink>
                         </NavItem>
                     ): null
                 }
                 <NavItem>
-                    <NavLink to="/chat" tag={ Link } className="navFont">Chat</NavLink>
+                <NavLink tag={Link} to="/chat" className="navFont" target="_blank ">Chat</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink to="/forum" tag={ Link } className="navFont">Forum / Tauschbörse</NavLink>
+                    <NavLink tag={Link} to="/forum" className="navFont">Forum / Tauschbörse</NavLink>
                 </NavItem>
 
                 <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
@@ -36,8 +35,8 @@ function Navbar() {
                         Dropdown
                     </DropdownToggle>
                 <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
+                    <DropdownItem header>Options</DropdownItem>
+                    <DropdownItem tag={Link} to="/profile">Profil</DropdownItem>
                     <DropdownItem>Another Action</DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem>Another Action</DropdownItem>

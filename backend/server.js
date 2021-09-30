@@ -10,6 +10,7 @@ import errorHandler from './middlewares/errorHandler.js';
 import userRouter from './routers/user.js';
 import authRouter from './routers/auth.js';
 import ioRouter from './routers/ioRouter.js';
+import profileRouter from './routers/profile.js';
 import etb from './lib/expressTokenBlacklist.js';
 
 dotenv.config();
@@ -52,5 +53,6 @@ app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 
 app.use('/api/ws', ioRouter(io));
+app.use('/api/profile', profileRouter);
 
 app.use(errorHandler);

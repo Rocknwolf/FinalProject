@@ -2,8 +2,12 @@ import './App.css';
 import React, { createContext, useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 
-import RegistrationForm from './components/pages/RegistrationForm.jsx';
-import MainPage from './components/pages/MainPage.jsx';
+import RegistrationForm from './components/pages/RegistrationForm';
+import MainPage from './components/pages/MainPage';
+import Profile from './components/pages/Profil.jsx';
+import DSGVO from './components/pages/DSGVO';
+import Impressum from './components/pages/Impressum';
+import AGB from './components/pages/AGB';
 
 import Chat from './components/Chat.jsx';
 
@@ -12,6 +16,8 @@ import logIOToggler from './lib/logIOToggler.js'
 const globalContext = createContext();
 
 function App() {
+
+    
     const [context, setContext] = useState({
         isLogin: false,
         username: '',
@@ -22,7 +28,7 @@ function App() {
             setContext(newContext);
         }
     });
-
+    
     const setLogin = () => {
         const isLogin = logIOToggler();
         context.updateContext({
@@ -59,11 +65,16 @@ function App() {
                         <Route exact path="/" component={MainPage}/>
                         <Route path="/register" component={RegistrationForm}/>
                         <Route path="/chat" component={Chat}/>
+                        <Route path="/profile" component={Profile}/>
+                        <Route path="/dsgvo" component={DSGVO}/>
+                        <Route path="/impressum" component={Impressum}/>
+                        <Route path="/agb" component={AGB}/>
                     </Switch>
                 </Router>
             </globalContext.Provider>
         </div>
     );
+    
 }
 
 export default App;
