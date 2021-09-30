@@ -1,5 +1,5 @@
 import './App.css';
-import { createContext, useEffect, useState} from 'react';
+import React, { createContext, useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 
 import RegistrationForm from './components/pages/RegistrationForm';
@@ -8,6 +8,8 @@ import Profile from './components/pages/Profil.jsx';
 import DSGVO from './components/pages/DSGVO';
 import Impressum from './components/pages/Impressum';
 import AGB from './components/pages/AGB';
+
+import Chat from './components/Chat.jsx';
 
 import logIOToggler from './lib/logIOToggler.js'
 
@@ -18,23 +20,35 @@ function App() {
     
     const [context, setContext] = useState({
         isLogin: false,
-        updateContext: (key, value) => {
+        username: '',
+        updateContext: (object) => {
             const newContext = { ...context };
-            newContext[key] = value;
+            Object.entries(object)
+                .forEach(item => newContext[item[0]] = item[1]);
             setContext(newContext);
         }
     });
     
     const setLogin = () => {
-        context.updateContext('isLogin' ,logIOToggler());
+        const isLogin = logIOToggler();
+        context.updateContext({
+            isLogin: isLogin,
+            username: isLogin ? context.username : ''
+        });
     };
-    
-    useEffect( () => {
+
+    const [reactIntevalHelper, dispatchReactIntevalHelper] = React.useReducer((state, action) => {
+        //if (action.type === 'contextUpdate') return state = context;
+        setLogin();
+        return state;
+    }, null);
+
+    useEffect(() => {
         let interval;
         (() => {
             setLogin();
-            interval = setInterval( async () => {
-                setLogin();
+            interval = setInterval( () => {
+                dispatchReactIntevalHelper();
             }, 60 * 1000);
         })();
         return () => {
@@ -50,6 +64,7 @@ function App() {
                     <Switch>
                         <Route exact path="/" component={MainPage}/>
                         <Route path="/register" component={RegistrationForm}/>
+                        <Route path="/chat" component={Chat}/>
                         <Route path="/profile" component={Profile}/>
                         <Route path="/dsgvo" component={DSGVO}/>
                         <Route path="/impressum" component={Impressum}/>
