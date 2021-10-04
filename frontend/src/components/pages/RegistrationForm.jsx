@@ -41,6 +41,7 @@ function RegistrationForm() {
         )
         
         const is = await res.json();
+        if(is)
         if(is.auth) {
             const isLogin = logIOToggler();
             context.updateContext({

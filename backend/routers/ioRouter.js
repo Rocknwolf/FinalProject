@@ -8,21 +8,31 @@ const ioRouter = (io) => {
 
 const ws = (io) => {
 
-    io.on('connection', (socket) => {
-        console.log(socket.id, 'connecting');
+    if(!io.data) io.data = {};
+    if(!io.data.messages) io.data.messages = {};
+    if(!io.data.messages.global) io.data.messages.global = [];
+    else throw Error('io.data.messages already exists');
 
-        socket.send('connected');
+    io.on('connection', (socket) => {
+        
         socket.on('name', (username) => {
+            socket.emit('init', io.data.messages.global)
             socket.username = username;
+            console.log(socket.id, 'connecting', socket.username);
         });
 
         socket.on('disconnecting', (reason) => {
-            console.log(socket.id, 'disconnecting');
+            console.log(socket.id, 'disconnecting', socket.username);
         });
 
         socket.on('message', (bcMsg) => {
-            console.log(socket.username, bcMsg);
-            io.sockets.send(socket.username, bcMsg);
+            if(io.data.messages.global.length === 50) io.data.messages.global.shift();
+            io.data.messages.global.push({ username: socket.username, message: bcMsg });
+
+            io.sockets.send({ username: socket.username, message: bcMsg });
+            console.log({ username: socket.username, message: bcMsg }, socket.id);
+
+            //console.log(io)
         });
     });
     return (req, res, next) => {};

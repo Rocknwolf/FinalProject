@@ -24,7 +24,7 @@ function Navbar() {
                     ): null
                 }
                 <NavItem>
-                <NavLink tag={Link} to="/chat" className="navFont" target="_blank ">Chat</NavLink>
+                <NavLink tag={Link} to="/chat" className="navFont">Chat</NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink tag={Link} to="/forum" className="navFont">Forum / Tauschbörse</NavLink>

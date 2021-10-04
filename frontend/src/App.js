@@ -37,11 +37,12 @@ function App() {
         });
     };
 
+    // eslint-disable-next-line no-unused-vars
     const [reactIntevalHelper, dispatchReactIntevalHelper] = React.useReducer((state, action) => {
         //if (action.type === 'contextUpdate') return state = context;
         setLogin();
-        return state;
-    }, null);
+        return state += 1;
+    }, 0);
 
     useEffect(() => {
         let interval;

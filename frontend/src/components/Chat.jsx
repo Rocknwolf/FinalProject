@@ -20,11 +20,19 @@ const Chat = () => {
         if(socket){
             socket.on('connect', () => {
                 socket.emit('name', context.username);
+                /** messages.push({ username: 'system', message: `${context.username} connected` }); **/
+                /** setMessages([...messages]); **/
+
             });
-            socket.on('message', (name, msg) => {
+            socket.on('init', (array) => {
+                messages.push(...array);
+                setMessages([...messages]);
+
+            });
+
+            socket.on('message', (msgObj) => {
                 if(messages.length === 50) messages.shift();
-                messages.push([ name, msg ]);
-                console.log(messages);
+                messages.push(msgObj);
                 setMessages([...messages]);
             });
         }
@@ -48,11 +56,13 @@ const Chat = () => {
             <div>Chat</div>
             <div className="chatBox">
                 <div className="chatMessages">
-                    <div>
-                        {
-                            messages
-                        }
-                    </div>
+                    {
+                        messages.map((item, id) => 
+                            <div key={ id }>
+                                { `${item.username}: ${item.message}` }
+                            </div>
+                        )
+                    }
                 </div>
                 <form action="" onSubmit={ submitHandler }>
                     <input type="text" id="sendMessage" />
