@@ -9,6 +9,7 @@ import ProfilePicture from '../../images/ProfileImages/brain.jpg';
 import './Profile.css';
 
 import Navbar from '../Navbar.jsx';
+import Upload from '../Upload.jsx';
 
 function Profil(props) {
     // e.preventDefault();
@@ -18,7 +19,7 @@ function Profil(props) {
     useEffect(() => {
         const handleUserProfileApi = async () => {
             const res = await fetchCors(
-            "/api/profile/merlin", "GET",
+            `/api/profile/:username`, "GET",
             );
             const data = await res.json();
             setProfileData(data);
@@ -39,6 +40,7 @@ function Profil(props) {
             <br />
             <div className="pictureBack">
                 <img className="userPic" src={ProfilePicture} alt="Profilbild" width="150px" height="150px"/>
+                <Upload/>
             </div>
             <br />
             <br />
