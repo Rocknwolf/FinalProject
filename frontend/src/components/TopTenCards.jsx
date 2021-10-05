@@ -14,16 +14,16 @@ function TopTenCards() {
                     <CardText>Die neusten Blockbuster</CardText>
                     <CardText>
                         <ol>
-                            <li><a href="#" >Blockbuster</a></li>
-                            <li><a href="#" >Blockbuster</a></li>
-                            <li><a href="#" >Blockbuster</a></li>
-                            <li><a href="#" >Blockbuster</a></li>
-                            <li><a href="#" >Blockbuster</a></li>
-                            <li><a href="#" >Blockbuster</a></li>
-                            <li><a href="#" >Blockbuster</a></li>
-                            <li><a href="#" >Blockbuster</a></li>
-                            <li><a href="#" >Blockbuster</a></li>
-                            <li><a href="#" >Blockbuster</a></li>
+                            <li><a href="www" >Blockbuster</a></li>
+                            <li><a href="www" >Blockbuster</a></li>
+                            <li><a href="www" >Blockbuster</a></li>
+                            <li><a href="www" >Blockbuster</a></li>
+                            <li><a href="www" >Blockbuster</a></li>
+                            <li><a href="www" >Blockbuster</a></li>
+                            <li><a href="www" >Blockbuster</a></li>
+                            <li><a href="www" >Blockbuster</a></li>
+                            <li><a href="www" >Blockbuster</a></li>
+                            <li><a href="www" >Blockbuster</a></li>
                         </ol>
                     </CardText>
                     </CardBody>
@@ -39,16 +39,16 @@ function TopTenCards() {
                         <CardText>Best of community</CardText>
                         <CardText>
                             <ol>
-                                <li><a href="#" >Blockbuster</a></li>
-                                <li><a href="#" >Blockbuster</a></li>
-                                <li><a href="#" >Blockbuster</a></li>
-                                <li><a href="#" >Blockbuster</a></li>
-                                <li><a href="#" >Blockbuster</a></li>
-                                <li><a href="#" >Blockbuster</a></li>
-                                <li><a href="#" >Blockbuster</a></li>
-                                <li><a href="#" >Blockbuster</a></li>
-                                <li><a href="#" >Blockbuster</a></li>
-                                <li><a href="#" >Blockbuster</a></li>
+                                <li><a href="www" >Blockbuster</a></li>
+                                <li><a href="www" >Blockbuster</a></li>
+                                <li><a href="www" >Blockbuster</a></li>
+                                <li><a href="www" >Blockbuster</a></li>
+                                <li><a href="www" >Blockbuster</a></li>
+                                <li><a href="www" >Blockbuster</a></li>
+                                <li><a href="www" >Blockbuster</a></li>
+                                <li><a href="www" >Blockbuster</a></li>
+                                <li><a href="www" >Blockbuster</a></li>
+                                <li><a href="www" >Blockbuster</a></li>
                             </ol>
                         </CardText>
                         </CardBody>

@@ -1,4 +1,5 @@
 
+
 const getTokenPayload = (key) => {
     const value = document.cookie
     .split('; ')
@@ -13,19 +14,23 @@ const logIOToggler = () => {
     const loginBox = document.querySelector('.loginBox');
     const logoutButton = document.querySelector('.logoutButton');
 
-    const logout = () => {
-        if(!logoutButton.classList.contains('inactive')) logoutButton.classList.toggle('inactive');
-        if(loginBox.classList.contains('inactive')) loginBox.classList.toggle('inactive');
-    }
-
-    if(document.cookie.includes('token=')) {
-        const exp = +getTokenPayload('token=').exp * 1000;
-        if(exp < Date.now()) logout();
-        if(logoutButton.classList.contains('inactive')) logoutButton.classList.toggle('inactive');
-        if(!loginBox.classList.contains('inactive')) loginBox.classList.toggle('inactive');
-    }
-    else {
-        logout();
+    if(loginBox || logoutButton) {
+        const logout = () => {
+            if(!logoutButton.classList.contains('inactive')) logoutButton.classList.toggle('inactive');
+            if(loginBox.classList.contains('inactive')) loginBox.classList.toggle('inactive');
+            return false;
+        }
+    
+        if(document.cookie.includes('token=')) {
+            const exp = +getTokenPayload('token=').exp * 1000;
+            if(exp < Date.now()) return logout();
+            if(logoutButton.classList.contains('inactive')) logoutButton.classList.toggle('inactive');
+            if(!loginBox.classList.contains('inactive')) loginBox.classList.toggle('inactive');
+            return true;
+        }
+        else {
+            return logout();
+        }
     }
 }
 

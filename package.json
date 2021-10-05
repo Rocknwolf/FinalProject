@@ -4,7 +4,7 @@
     "dev": "gnome-terminal --tab -- bash -c 'yarn --cwd ./frontend/ start' && gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ dev'",
     "static": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ dev'",
     "start": "gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ start'",
-    "stop": "yarn --cwd ./backend/ seed",
+    "stop": "yarn --cwd ./backend/ stop",
     "seed": "yarn --cwd ./backend/ seed",
     "down": "yarn --cwd ./backend/ down",
 

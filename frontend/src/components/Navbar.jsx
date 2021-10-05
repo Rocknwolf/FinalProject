@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
+import { globalContext } from '../App.js';
 
 function Navbar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const context = useContext(globalContext);
 
     const toggle = () => setDropdownOpen(!dropdownOpen);
 
@@ -10,17 +14,20 @@ function Navbar() {
         <div>
             <Nav tabs>
                 <NavItem className="navigation">
-                    <NavLink href="/" className="navFont">Main</NavLink>
+                    <NavLink tag={Link} to="/" className="navFont">Main</NavLink>
                 </NavItem>
-                
+                {
+                    !context.isLogin ? (
+                        <NavItem>
+                            <NavLink tag={Link} to="/register" className="navFont">Registrieren</NavLink>
+                        </NavItem>
+                    ): null
+                }
                 <NavItem>
-                    <NavLink href="/register" className="navFont">Registrieren</NavLink>
+                <NavLink tag={Link} to="/chat" className="navFont">Chat</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/chat" className="navFont">Chat</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink href="/forum" className="navFont">Forum / Tauschbörse</NavLink>
+                    <NavLink tag={Link} to="/forum" className="navFont">Forum / Tauschbörse</NavLink>
                 </NavItem>
 
                 <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
@@ -28,8 +35,8 @@ function Navbar() {
                         Dropdown
                     </DropdownToggle>
                 <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
+                    <DropdownItem header>Options</DropdownItem>
+                    <DropdownItem tag={Link} to="/profile">Profil</DropdownItem>
                     <DropdownItem>Another Action</DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem>Another Action</DropdownItem>

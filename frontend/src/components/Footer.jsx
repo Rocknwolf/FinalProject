@@ -29,10 +29,10 @@ function Footer(props) {
                         Rechtliche Hinweise
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem><a href="http"> Datenschutz </a></DropdownItem>
-                            <DropdownItem><a href="http"> Impressum </a></DropdownItem>
-                            <DropdownItem><a href="http"> AGB </a></DropdownItem>
-                            <DropdownItem><a href="http"> Home </a></DropdownItem>
+                            <DropdownItem><a href="/dsgvo"> Datenschutz </a></DropdownItem>
+                            <DropdownItem><a href="/impressum"> Impressum </a></DropdownItem>
+                            <DropdownItem><a href="/agb"> AGB </a></DropdownItem>
+                            <DropdownItem><a href="/"> Home </a></DropdownItem>
                         </DropdownMenu>
                     </ButtonDropdown>
 

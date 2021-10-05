@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Form, FormGroup, Label, Input, Button} from 'reactstrap';
-import fetchCors from '../lib/fetchCors';
+import { globalContext } from '../App.js';
+import fetchCors from '../lib/fetchCors.js';
 
 import logIOToggler from '../lib/logIOToggler.js';
 
 function Login(props) {
+    const context = useContext(globalContext); 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -13,11 +15,20 @@ function Login(props) {
         const res = await fetchCors( "/api/auth", "POST", 
             JSON.stringify({
                 username: username,
-                password: password,
-            })   
-        )
-        if(res) logIOToggler();
-    }
+                password: password
+            })
+        );
+        
+        const is = await res.json();
+        if(is)
+        if(is.auth) {
+            const isLogin = logIOToggler();
+            context.updateContext({
+                isLogin: isLogin,
+                username: isLogin ? username : ''
+            });
+        }
+    };
 
     return (
         <div className="loginBox">
@@ -36,4 +47,4 @@ function Login(props) {
     )
 }
 
-export default Login
+export default Login;
