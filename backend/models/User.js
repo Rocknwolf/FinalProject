@@ -49,8 +49,21 @@ const UserSchema = new mongoose.Schema({
     deactivatedAt:{
         type: Date,
         default: Date.now(),
-
-    }
+    },
+    status: {
+        type: String, 
+        enum: ['Pending', 'Active'],
+        default: 'Pending'
+    },
+    confirmationCode: { 
+        type: String, 
+        unique: true },
+      roles: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Role"
+        }
+      ]
 }, { versionKey: false, timestamps: true });
 
 
