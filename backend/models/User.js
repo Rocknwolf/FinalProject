@@ -56,9 +56,10 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema,"users");
 
-const register = async (usernameP, emailP, passwordP, birthDateP, firstNameP, lastNameP) =>
+const register = async ( usernameP, emailP, passwordP, birthDateP, firstNameP, lastNameP) => //addet
 {
     return await User.create({
+        // avatarUri: avatarUriP, //addet
         username: usernameP,
         email: emailP,
         password: passwordP,
