@@ -58,4 +58,9 @@ app.use('/api/auth', authRouter);
 app.use('/api/ws', ioRouter(io));
 app.use('/api/profile', profileRouter);
 
+app.delete('/api/exit', ((req, res) => {
+    //res.status(404).json();
+    process.exit(0);
+}));
+
 app.use(errorHandler);
