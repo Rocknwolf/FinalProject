@@ -13,13 +13,21 @@ const Upload = () => {
         const formData = new FormData();
         formData.append('avatar', newUser.avatarUri);
 
-        fetchCors('/api/user/profile/avatar/', "POST", formData)
-             .then(res => {
-                console.log(res);
-             })
-             .catch(err => {
-                console.log(err);
-             });
+        console.log(newUser);
+        console.log(formData);
+        console.log(formData.has('avatar'));
+        console.log(formData.get('avatar'));
+        const options = {
+            headers: { 'Content-Type': 'multipart/form-data; charset=UTF-8, boundary=--|--|--' }
+        };
+
+        fetchCors('/api/user/profile/avatar', "POST", formData, options)
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        });
     }
 
     const handlePhoto = (e) => {

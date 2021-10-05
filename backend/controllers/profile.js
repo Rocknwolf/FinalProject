@@ -2,15 +2,15 @@ import UserSchema from '../models/User.js';
 
     const readProfiles = async (req, res) => {
         try {
-            const response = req.params.username ? await UserSchema.findByUsername(req.params.username) : await UserSchema.readUser; /*"Hallo Welt!"*/
-            if (!response) return res.status(404).send("nönönö");
+            const response = req.params.username ? await UserSchema.findByUsername(req.params.username) : await UserSchema.findByEmail(req.params.email); /*"Hallo Welt!"*/
+            if (!response) return res.status(404).json("nönönö");
             
             const result = {
-                username:response.username,
-                email:response.email,
-                firstname:response.firstName,
-                lastname:response.lastName,
-                birthdate:response.birthDate,
+                username: response.username,
+                email: response.email,
+                firstname: response.firstName,
+                lastname: response.lastName,
+                birthdate: response.birthDate,
             };
 
             res.json(result);
@@ -21,4 +21,6 @@ import UserSchema from '../models/User.js';
         }
     };
 
-    export default {readProfiles}
+    export default { 
+        readProfiles
+    }
