@@ -43,3 +43,7 @@ server.use('/api/user', userRouter);
 server.use('/api/auth', authRouter);
 
 server.use(errorHandler);
+
+console.log(process.platform,
+	process.env,
+);

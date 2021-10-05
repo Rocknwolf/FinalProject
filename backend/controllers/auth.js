@@ -21,6 +21,11 @@ const login = async (req, res, next) => {
             res.payload = { login: "accepted" };
             return next();
         }
+        if (user.status != "Active") {
+            return res.status(401).send({
+              message: "Pending Account. Please Verify Your Email!",
+            });
+          }
         throw new Error('wrong password');
     } catch (e) {
         next(errorOptions(e, 'login', 400, true));
