@@ -1,6 +1,5 @@
 import React, {useState, useContext} from 'react'
 import './RegistrationForm.css';
-import Navbar from '../Navbar.jsx';
 
 import fetchCors from '../../lib/fetchCors.js';
 import logIOToggler from '../../lib/logIOToggler.js'
@@ -78,10 +77,7 @@ function RegistrationForm() {
         <div>
             <div className="frame">
                 <h1>Registration</h1>
-                <div className="navigation">
-                    <Navbar/>
-                </div>
-                    <form action="" onSubmit={handleRegistration} >
+                    <form action="" onSubmit={handleRegistration}>
                         <div className="regContainer">
                             <label htmlFor="Username" className="regLabel">Username:</label>
                             <input type="text" name="Username" id="Username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />

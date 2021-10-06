@@ -13,6 +13,9 @@
     "startWin": "start powershell -NoExit -Command \"yarn --cwd ./backend/ start \"",
 
     "setDev": "bash -c 'cd ./backend/ && ln -sf env.dev.env .env'",
-    "setProd": "bash -c 'cd ./backend/ && ln -sf env.prod.env .env'"
+    "setProd": "bash -c 'cd ./backend/ && ln -sf env.prod.env .env'",
+
+    "devInstall": "gnome-terminal --tab -- bash -c 'cd ./frontend/ && yarn install' && gnome-terminal --tab -- bash -c 'cd ./backend/ && yarn install'",
+    "devInstallWin": "start powershell -Command \"cd ./frontend/ && yarn install \" && start powershell -Command \" cd ./backend/ && yarn install \""
   }
 }
