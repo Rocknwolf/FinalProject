@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { io } from 'socket.io-client';
 import { globalContext } from '../App.js';
-import Navbar from './Navbar.jsx';
 
 const Chat = () => {
     const context = useContext(globalContext);
@@ -57,8 +56,6 @@ const Chat = () => {
             <div className="chatTopBackground">
                 <h1 className="chatTitle" >Chat</h1>
             </div>
-            
-            <Navbar/>
             <div className="chatBox">
                 <div className="chatMessages">
                     {

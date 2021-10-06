@@ -69,27 +69,31 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema,"users");
 
-const register = async ( usernameP, emailP, passwordP, birthDateP, firstNameP, lastNameP) => //addet
+const register = async ( username, email, password, birthDate, firstName, lastName) =>
 {
     return await User.create({
-        // avatarUri: avatarUriP, //addet
-        username: usernameP,
-        email: emailP,
-        password: passwordP,
-        birthDate: birthDateP,
-        firstName: firstNameP,
-        lastName: lastNameP
+        username: username,
+        email: email,
+        password: password,
+        birthDate: birthDate,
+        firstName: firstName,
+        lastName: lastName
     });
 }
 
-const findByEmail = async (emailP) =>
+const findByEmail = async (email) =>
 {
-    return await User.findOne({ email: emailP });
+    return await User.findOne({ email: email });
 }
 
-const findByUsername = async (usernameP) =>
+const findByUsername = async (username) =>
 {
-    return await User.findOne({ username: usernameP });
+    return await User.findOne({ username: username });
+}
+
+const reactivate = () =>
+{
+    return null;
 }
 
 const saveResettedPassword = () =>
@@ -97,12 +101,12 @@ const saveResettedPassword = () =>
     return null;
 }
 
-const suspend = () =>
+const setAvatar = () =>
 {
     return null;
 }
 
-const reactivate = () =>
+const suspend = () =>
 {
     return null;
 }
@@ -116,8 +120,9 @@ export default {
     register,
     findByEmail,
     findByUsername,
-    saveResettedPassword,
-    suspend,
     reactivate,
+    saveResettedPassword,
+    setAvatar,
+    suspend,
     deleteUser,
 };

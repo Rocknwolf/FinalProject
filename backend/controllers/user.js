@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 
-import { errorOptions } from '../lib/errors.js';
+import { errorOptions, notFoundError} from '../lib/errors.js';
 import User from '../models/User.js';
 
 const deleteUser = async (req, res, next) => {
@@ -61,10 +61,33 @@ const suspend = async (req, res, next) => {
     }
 }
 
+const readProfiles = async (req, res, next) => {
+    try {
+        console.log(req.params.username);
+        const response = req.params.username ? await User.findByUsername(req.params.username) : await User.findByEmail(req.params.email); /*"Hallo Welt!"*/
+        if (!response) throw notFoundError('user', 'readProfiles');
+        
+        const result = {
+            username: response.username,
+            email: response.email,
+            firstName: response.firstName,
+            lastName: response.lastName,
+            birthDate: response.birthDate,
+        };
+
+        res.status(200).json(result);
+        console.log(result);
+
+    } catch (e) {
+        next(errorOptions(e, 'readProfiles'));
+    }
+};
+
 export default {
     deleteUser,
     register,
     resetPassword,
     reactivate,
-    suspend
+    suspend,
+    readProfiles
 }

@@ -2,6 +2,8 @@ import './App.css';
 import React, { createContext, useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 
+import Header from './components/Header.jsx';
+import Navbar from './components/Navbar.jsx';
 import RegistrationForm from './components/pages/RegistrationForm';
 import MainPage from './components/pages/MainPage';
 import Profile from './components/pages/Profil.jsx';
@@ -17,13 +19,14 @@ const globalContext = createContext();
 
 function App() {
 
-    
     const [context, setContext] = useState({
         isLogin: false,
         username: '',
-        updateContext: (object) => {
+        lang: document.lastElementChild.attributes.lang.value, // html lang attribute
+        profileData: null,
+        updateContext: (context, updates) => {
             const newContext = { ...context };
-            Object.entries(object)
+            Object.entries(updates)
                 .forEach(item => newContext[item[0]] = item[1]);
             setContext(newContext);
         }
@@ -31,7 +34,7 @@ function App() {
     
     const setLogin = () => {
         const isLogin = logIOToggler();
-        context.updateContext({
+        context.updateContext(context, {
             isLogin: isLogin,
             username: isLogin ? context.username : ''
         });
@@ -62,6 +65,8 @@ function App() {
         <div className="App">
             <globalContext.Provider value={ context }>
                 <Router>
+                    <Header />
+                    <Navbar />
                     <Switch>
                         <Route exact path="/" component={MainPage}/>
                         <Route path="/register" component={RegistrationForm}/>
