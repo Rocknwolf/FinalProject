@@ -24,22 +24,27 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-let upload = multer({ storage, fileFilter });
+const upload = multer({ storage, fileFilter });
 
-router.route("/").post(upload.single("avatar"), (req, res) => {
-  console.log("____________________________________--------------------------________________");
-  const avatarUri = req.file.filename;
-
-  const newUserData = {
-    avatarUri,
-  };
-
-  const newUser = new User(newUserData);
-
-  newUser
-    .save()
-    .then(() => res.json("User Added"))
-    .catch((err) => res.status(400).json("Manual Error: " + err));
+router.route("/").post(upload.single("avatar"), (req, res, next) => {
+  try {
+    console.log("____________________________________--------------------------________________");
+    const avatarUri = req.file.filename;
+    return res.status(200).json({});
+  
+    const newUserData = {
+      avatarUri,
+    };
+  
+    const newUser = new User(newUserData);
+  
+    newUser
+      .save()
+      .then(() => res.json("User Added"))
+      .catch((err) => res.status(400).json("Manual Error: " + err));
+  } catch (err) {
+    next(err);
+  }
 });
 
 export default router;

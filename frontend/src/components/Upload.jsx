@@ -13,15 +13,13 @@ const Upload = () => {
         const formData = new FormData();
         formData.append('avatar', newUser.avatarUri);
 
-        console.log(newUser);
-        console.log(formData);
-        console.log(formData.has('avatar'));
-        console.log(formData.get('avatar'));
         const options = {
-            headers: { 'Content-Type': 'multipart/form-data; charset=UTF-8, boundary=--|--|--' }
+            /** empty header to auto fill Content-Type multipart/form-data header
+             * with matching random generated boundary value **/
+            headers: {}
         };
 
-        fetchCors('/api/user/profile/avatar', "POST", formData, options)
+        fetchCors('/api/user/profile/avatar/', "POST", formData, options)
         .then(res => {
             console.log(res);
         })
