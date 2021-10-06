@@ -1,4 +1,5 @@
 /* HeaderArea */
+
 .mainHeader{
     width: 100%;
     display: inline-flex;
@@ -144,9 +145,112 @@ li>a{
     margin-bottom: 5px;
 }
 
+/* Chat */
+
+.chat{
+    width: 100%;
+    height: 100%;
+}
 .chatTitle{
     color: white;
     font-size: 100px;
     font-weight: bold;
     text-shadow: black 14px 12px 14px, white 5px 15px 5px;
+}
+
+.chatBackground{
+    background-image: url('../../images/cinemaChat.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.chatBox{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    height: 800px;
+}
+
+.chatMessages{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 700px;
+    width: 500%;
+    padding: 2% 5%;
+    background-color: rgba(0, 0, 0, 0.952);
+    border: 3px solid rgba(255, 255, 255, 0.719);
+    border-radius: 15px;
+    box-shadow: -1px -1px 10px 5px #0ff;
+    margin-top: 5px;
+    color: white;
+    padding-top: 50px;
+    word-break: break-all;
+    word-wrap: break-word;
+    text-justify: auto;
+}
+.inputChat{
+    width: 816%;
+    padding-top: 25px;
+    padding-bottom: 40px;
+    background: linear-gradient(90deg, rgb(0, 0, 0),rgb(8, 8, 12),rgba(34, 33, 33, 0.938),rgb(8, 8, 12), rgb(0, 0, 0));
+    border-top: 1px solid white;
+}
+
+.inputChatInput{
+    height: 100px;
+    width: 62%;
+    text-align: start;
+    word-break: break-all;
+    resize: none;
+    overflow: auto;
+    box-sizing:border-box;
+    border: 5px solid black;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.26);
+    color: white;
+    font-size: 1em;
+}
+.inputChatInput::placeholder{
+    color: rgba(255, 255, 255, 0.349);
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}
+.chatButton{
+    width: 62%;
+}
+
+.chatRules{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+    font-size: 1.3em;
+}
+.chatDirections{
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 2em;
+
+    animation-name: animation_blink;
+    animation-timing-function: ease-in;
+    animation-duration: 1.5s; 
+    animation-iteration-count: infinite;   
+}
+
+@keyframes animation_blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.1; }
+    100% { opacity: 1; }    
+}
+@keyframes animation_blink {
+    0% { color: white; }
+    25% { color: #0ff; }
+    50% { color: black; }
+    75% { color: #0ff; }
+    100% { color: white; }    
 }

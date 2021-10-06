@@ -81,7 +81,7 @@ function RegistrationForm() {
                 <div className="navigation">
                     <Navbar/>
                 </div>
-                    <form action="" onSubmit={handleRegistration}>
+                    <form action="" onSubmit={handleRegistration} >
                         <div className="regContainer">
                             <label htmlFor="Username" className="regLabel">Username:</label>
                             <input type="text" name="Username" id="Username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />

@@ -17,9 +17,8 @@ function Footer(props) {
                         About
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem><a href="http"> Login </a></DropdownItem>
-                            <DropdownItem><a href="http"> FAQ </a></DropdownItem>
-                            <DropdownItem><a href="http"> Regeln </a></DropdownItem>
+                            <DropdownItem><a href="/faq"> FAQ </a></DropdownItem>
+                            <DropdownItem><a href="/chatrules"> Regeln </a></DropdownItem>
                             <DropdownItem><a href="http"> Über uns </a></DropdownItem>
                         </DropdownMenu>
                     </ButtonDropdown>

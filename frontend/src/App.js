@@ -5,9 +5,11 @@ import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 import RegistrationForm from './components/pages/RegistrationForm';
 import MainPage from './components/pages/MainPage';
 import Profile from './components/pages/Profil.jsx';
-import DSGVO from './components/pages/DSGVO';
-import Impressum from './components/pages/Impressum';
-import AGB from './components/pages/AGB';
+import RegelnChat from './components/RegelnChat.jsx';
+import FAQ from './components/FAQ.jsx';
+import DSGVO from './components/pages/DSGVO.jsx';
+import Impressum from './components/pages/Impressum.jsx';
+import AGB from './components/pages/AGB.jsx';
 
 import Chat from './components/Chat.jsx';
 
@@ -67,6 +69,8 @@ function App() {
                         <Route path="/register" component={RegistrationForm}/>
                         <Route path="/chat" component={Chat}/>
                         <Route path="/profile" component={Profile}/>
+                        <Route path="/chatrules" component={RegelnChat}/>
+                        <Route exact path="/faq" component={FAQ}/>
                         <Route path="/dsgvo" component={DSGVO}/>
                         <Route path="/impressum" component={Impressum}/>
                         <Route path="/agb" component={AGB}/>

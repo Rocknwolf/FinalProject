@@ -53,26 +53,36 @@ const Chat = () => {
     }
 
     return (
-        <div>
+        <div className="chat">
             <div className="chatTopBackground">
                 <h1 className="chatTitle" >Chat</h1>
             </div>
             
             <Navbar/>
-            <div className="chatBox">
-                <div className="chatMessages">
-                    {
-                        messages.map((item, id) => 
-                            <div key={ id }>
-                                { `${item.username}: ${item.message}` }
-                            </div>
-                        )
-                    }
+            <div className="chatBackground">
+                <div className="chatBox">
+                    <div className="chatMessages">
+                        {
+                            messages.map((item, id) => 
+                                <div key={ id }>
+                                    { `${item.username}: ${item.message}` }
+                                </div>
+                            )
+                        }
+                    </div>
+                    <form className="inputChat" action="" onSubmit={ submitHandler }>
+                        {/* <input type="text" id="sendMessage" maxlength="160" className="inputChatInput" /> */}
+                            <textarea   
+                                placeholder="Remember, be nice!" 
+                                type="text" id="sendMessage"
+                                cols="15" rows="5" 
+                                maxLength="320" 
+                                className="inputChatInput"
+                                required>
+                            </textarea>
+                        <button type="submit" className="chatButton">Send</button>
+                    </form>
                 </div>
-                <form action="" onSubmit={ submitHandler }>
-                    <input type="text" id="sendMessage" />
-                    <button type="submit">Send</button>
-                </form>
             </div>
         </div>
     )

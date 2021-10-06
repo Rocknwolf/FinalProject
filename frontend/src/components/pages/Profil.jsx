@@ -18,10 +18,12 @@ function Profil(props) {
 
     useEffect(() => {
         const handleUserProfileApi = async () => {
+            let data;
             const res = await fetchCors(
             `/api/profile/:username`, "GET",
             );
-            const data = await res.json();
+            if(res)
+            data = await res.json();
             setProfileData(data);
             console.log("dataaaa:", profileData);
             // return data;

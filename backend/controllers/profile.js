@@ -2,7 +2,7 @@ import UserSchema from '../models/User.js';
 
     const readProfiles = async (req, res) => {
         try {
-            const response = req.params.username ? await UserSchema.findByUsername(req.params.username) : await UserSchema.readUser; /*"Hallo Welt!"*/
+            const response = req.params.username ? await UserSchema.findByUsername(req.params.username) : await UserSchema.findByEmail(req.params.email); /*"Hallo Welt!"*/
             if (!response) return res.status(404).send("nönönö");
             
             const result = {
