@@ -195,6 +195,7 @@ li>a{
     word-break: break-all;
     word-wrap: break-word;
     text-justify: auto;
+    overflow: auto;
 }
 .inputChat{
     width: 55%;
