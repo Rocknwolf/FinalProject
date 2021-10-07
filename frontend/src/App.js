@@ -82,8 +82,8 @@ function App() {
         <div className="App">
             <globalContext.Provider value={ context }>
                 <Router>
-                    <Header />
-                    <Navbar />
+                        <Header />
+                        <Navbar />
                     <Switch>
                         <Route exact path="/" component={MainPage}/>
                         <Route path="/register" component={RegistrationForm}/>
