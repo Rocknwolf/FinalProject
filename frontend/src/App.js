@@ -51,6 +51,7 @@ function App() {
 
     useEffect(() => {
         let interval;
+
         (() => {
             setLogin();
             interval = setInterval( () => {
@@ -62,6 +63,20 @@ function App() {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        if (context.isLogin && context.username === "") {
+            // get username from sessionStorage
+            console.log(true)
+            const username = 'sessionStorageUsername';
+
+            context.updateContext(context,
+                {
+                    username: username
+                }
+            )
+        }
+    }, [context]);
 
     return (
         <div className="App">
