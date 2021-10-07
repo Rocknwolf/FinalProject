@@ -32,7 +32,7 @@ const signToken = (durationP) =>
         const token = setToken(res, duration);
         setTokenCookie(res, token, duration);
 
-        res.json({ auth: true });
+        res.json(res.message);
     }
 }
 

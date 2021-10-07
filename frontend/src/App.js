@@ -65,8 +65,14 @@ function App() {
     }, []);
 
     useEffect(() => {
+        // get username from sessionStorage
+        const sessionStorageUsername = '';
+        
+        if (!context.isLogin && sessionStorageUsername ) {
+            // if no token, but sessionStorageUsername
+            // delete sessionStorageUsername
+        }
         if (context.isLogin && context.username === "") {
-            // get username from sessionStorage
             console.log(true)
             const username = 'sessionStorageUsername';
 

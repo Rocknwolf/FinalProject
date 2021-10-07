@@ -1,13 +1,15 @@
-const errorOptions = (err, action, status, emptyRespond, sendMessage, forceOverwright) =>
+const errorOptions = (err, action, status, emptyRespond, sendErrorMessage, forceOverwright, additionalSendValue) =>
 {
     err.action = action || null;
     err.status = status || err.status || 500;
     err.empty = emptyRespond;
-    if(err.isCastError && sendMessage) err.reason.sendMessage = sendMessage;
-    if(!err.isCastError && sendMessage) {
-        if(forceOverwright || !err.sendMessage) err.sendMessage = sendMessage;
+    err.additionalSendValue = additionalSendValue;
+
+    if(err.isCastError && sendErrorMessage) err.reason.sendErrorMessage = sendErrorMessage;
+    if(!err.isCastError && sendErrorMessage) {
+        if(forceOverwright || !err.sendErrorMessage) err.sendErrorMessage = sendErrorMessage;
     }
-    else err.sendMessage = err.message;
+    else err.sendErrorMessage = err.message;
     return err;
 };
 
