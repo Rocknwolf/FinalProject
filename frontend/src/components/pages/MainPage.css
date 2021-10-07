@@ -43,6 +43,12 @@ input[type="date"]{
     color: cornsilk;
 }
 
+/* mainPageBody */
+.mainPageBody{
+    width: 100%;
+    height: auto;
+}
+
 /* TopTenCards */
 .mainCard{
     display: inline-flex;
@@ -75,7 +81,7 @@ li>a{
 }
 
 /* Buttons */
-.button{
+.btn{
     display: flexbox;
     background: rgb(71, 168, 212, 0.466);
     color: cornsilk;
@@ -88,7 +94,7 @@ li>a{
     font-weight: bold;
     line-height: 20px;
 }
-.button:hover{
+.btn:hover{
     background-color: rgba(252, 251, 250, 0.109);
     border: 1px solid cornsilk;
 }
@@ -98,7 +104,7 @@ li>a{
     display: flex;
     width: 100%;
     position: absolute;
-    bottom: -370px;
+    bottom: -270px;
     border-bottom: 1px solid cornsilk;
 }
 
@@ -130,6 +136,7 @@ li>a{
     border-radius: 50%;
 }
 
+/* Chat */
 .chatTopBackground{
     display: flex;
     justify-content: center;
@@ -145,12 +152,10 @@ li>a{
     margin-bottom: 5px;
 }
 
-/* Chat */
-
-.chat{
+/* .chat{
     width: 100%;
     height: 100%;
-}
+} */
 .chatTitle{
     color: white;
     font-size: 100px;
@@ -170,6 +175,7 @@ li>a{
     flex-direction: column;
     align-items: center;
     height: 800px;
+    width: 100%;
 }
 
 .chatMessages{
@@ -177,7 +183,7 @@ li>a{
     justify-content: center;
     flex-direction: column;
     height: 700px;
-    width: 500%;
+    width: 55%;
     padding: 2% 5%;
     background-color: rgba(0, 0, 0, 0.952);
     border: 3px solid rgba(255, 255, 255, 0.719);
@@ -191,7 +197,7 @@ li>a{
     text-justify: auto;
 }
 .inputChat{
-    width: 816%;
+    width: 55%;
     padding-top: 25px;
     padding-bottom: 40px;
     background: linear-gradient(90deg, rgb(0, 0, 0),rgb(8, 8, 12),rgba(34, 33, 33, 0.938),rgb(8, 8, 12), rgb(0, 0, 0));
@@ -223,6 +229,7 @@ li>a{
     width: 62%;
 }
 
+/* About */
 .chatRules{
     display: flex;
     flex-direction: column;

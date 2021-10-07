@@ -9,7 +9,7 @@ import Footer from '../Footer.jsx';
 
 function MainPage() {
     return (
-        <div>
+        <div className="mainPageBody">
             <div className="mainCarousel">
                 <ImageCarousel/>
             </div>
