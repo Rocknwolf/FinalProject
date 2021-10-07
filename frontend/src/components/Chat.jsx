@@ -8,13 +8,20 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        setSocket(socketInstance.connect());
+        if(!context.isLogin) {
+            if(socket) {
+                socket.disconnect();
+                setMessages([ { username: 'System', message: 'disconnected' } ]);
+            }
+        }
+        if(context.isLogin) {
+            if(!socket || !socket.connected) setSocket(socketInstance.connect());
+        }
         return () => {
             if(socket) socket.disconnect();
-            setMessages([ 'disconnected' ]);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [context]);
 
     useEffect(() => {
         if(socket){
@@ -26,6 +33,8 @@ const Chat = () => {
             });
             socket.on('init', (array) => {
                 messages.push(...array);
+                if(messages[0].username === 'System' && messages[0].message === 'disconnected')
+                    messages[0].message = 'connected';
                 setMessages([...messages]);
 
             });
@@ -36,6 +45,7 @@ const Chat = () => {
                 setMessages([...messages]);
             });
         }
+        else setMessages([...messages, { username: 'System', message: 'disconnected'} ]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [socket]);
 
@@ -47,8 +57,10 @@ const Chat = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        const sendMessage = e.target.querySelector('#sendMessage').value
-        socket.send(sendMessage);
+        if(socket) {
+            const sendMessage = e.target.querySelector('#sendMessage').value
+            socket.send(sendMessage);
+        }
     }
 
     return (

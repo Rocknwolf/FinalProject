@@ -43,7 +43,7 @@ function RegistrationForm() {
         if(is)
         if(is.auth) {
             const isLogin = logIOToggler();
-            context.updateContext({
+            context.updateContext(context, {
                 isLogin: isLogin,
                 username: isLogin ? context.username : ''
             });

@@ -49,7 +49,7 @@ const ws = (io) => {
 
 const logger = (linesP) => {
     const lines = linesP;
-    const chatfile = './fpChatLog.log';
+    const chatfile = './fpChat.log';
     let tailTerminal,
         isTail;
 

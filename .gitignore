@@ -7,3 +7,4 @@ backend/images
 *.lock
 
 yarn-error.log
+fpChat.log

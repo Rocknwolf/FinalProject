@@ -18,6 +18,9 @@ const Logout = () => {
             username: isLogin ? context.username : '',
             profileData: null
         });
+        if(!isLogin) {
+            // delete username in sessionStorage
+        }
     }
 
     return (
