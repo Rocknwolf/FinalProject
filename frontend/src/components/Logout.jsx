@@ -15,7 +15,7 @@ const Logout = () => {
         const isLogin = logIOToggler();
         context.updateContext(context, {
             isLogin: isLogin,
-            username: isLogin ? context.username : '',
+            username: isLogin ? context.username : "",
             profileData: null
         });
         if(!isLogin) {

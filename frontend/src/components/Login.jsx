@@ -22,12 +22,6 @@ function Login(props) {
         const is = await res.json();
         if(is.value.auth) {
             const isLogin = logIOToggler();
-            if(isLogin) {
-                if(context.username !== ""){
-                    // save username in sessionStorage
-
-                }
-            }
             context.updateContext(context, {
                 isLogin: isLogin,
                 username: isLogin ? username : ''

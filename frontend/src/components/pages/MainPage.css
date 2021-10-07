@@ -184,21 +184,20 @@ li>a{
     flex-direction: column;
     height: 700px;
     width: 55%;
-    padding: 2% 5%;
+    padding-top: 100px;
     background-color: rgba(0, 0, 0, 0.952);
     border: 3px solid rgba(255, 255, 255, 0.719);
     border-radius: 15px;
     box-shadow: -1px -1px 10px 5px #0ff;
     margin-top: 5px;
     color: white;
-    padding-top: 50px;
     word-break: break-all;
     word-wrap: break-word;
     text-justify: auto;
     overflow: auto;
 }
 .inputChat{
-    width: 55%;
+    width: 100%;
     padding-top: 25px;
     padding-bottom: 40px;
     background: linear-gradient(90deg, rgb(0, 0, 0),rgb(8, 8, 12),rgba(34, 33, 33, 0.938),rgb(8, 8, 12), rgb(0, 0, 0));
@@ -207,7 +206,7 @@ li>a{
 
 .inputChatInput{
     height: 100px;
-    width: 62%;
+    width: 55%;
     text-align: start;
     word-break: break-all;
     resize: none;
@@ -227,7 +226,7 @@ li>a{
     font-size: 2em;
 }
 .chatButton{
-    width: 62%;
+    width: 55%;
 }
 
 /* About */

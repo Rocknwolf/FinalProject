@@ -11,8 +11,8 @@ const Header = () => {
             <img src={logo} alt="" className="mainLogo" />
 
             <div className="mainTitel">
-                <h1 contenteditable="true">Zelluloid Zombies</h1>
-                <p contenteditable="true">blablabla guckstu</p>
+                <h1 contentEditable="true">Zelluloid Zombies</h1>
+                <p contentEditable="true">blablabla guckstu</p>
             </div>
 
             <div className="dropLogin">
