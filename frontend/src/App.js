@@ -66,9 +66,9 @@ function App() {
 
     useEffect(() => {
         if (context.isLogin && context.username === "") {
-            // get username from sessionStorage
-            console.log(true)
-            const username = 'sessionStorageUsername';
+            
+            const username = sessionStorage.getItem('user');
+            console.log(username);
 
             context.updateContext(context,
                 {
@@ -76,6 +76,18 @@ function App() {
                 }
             )
         }
+        if(context.isLogin && context.username !== "") {
+            sessionStorage.setItem('user', context.username);
+        }
+        setTimeout( () => {
+            if(!context.isLogin && context.username === "") {
+                sessionStorage.removeItem('user');
+            }
+        }, 5000)
+        // if(context.isLogin && context.username === null) {
+        //     sessionStorage.removeItem('user');
+        // }
+            
     }, [context]);
 
     return (

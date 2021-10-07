@@ -23,12 +23,6 @@ function Login(props) {
         if(is)
         if(is.auth) {
             const isLogin = logIOToggler();
-            if(isLogin) {
-                if(context.username !== ""){
-                    // save username in sessionStorage
-
-                }
-            }
             context.updateContext(context, {
                 isLogin: isLogin,
                 username: isLogin ? username : ''
