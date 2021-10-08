@@ -5,13 +5,16 @@ import fs from 'fs';
 import { Console } from 'console';
 import ChildProcess from 'child_process';
 
-const ioRouter = (io) => {
+import jwt from 'jsonwebtoken';
+import tokenMW from '../middlewares/token.js'
+
+const ioRouter = (io, app) => {
     const router = express.Router();
-    router.use('/', ws(io));
+    router.use('/', ws(io, app));
     return router;
 };
 
-const ws = (io) => {
+const ws = (io, app) => {
 
     const lines = 50;
     const chatLog = logger(lines);
@@ -27,24 +30,68 @@ const ws = (io) => {
             socket.emit('init', io.data.messages.global)
             socket.username = username;
             chatLog(socket.id, 'connecting', socket.username);
-        });
-
-        socket.on('disconnecting', (reason) => {
+        })
+        .on('disconnecting', (reason) => {
             chatLog(socket.id, 'disconnecting', socket.username);
-        });
+        })
+        .on('message', (bcMsg, token) => {
+            try {
+                tokenVerification(socket, token, app);
 
-        socket.on('message', (bcMsg) => {
-            const global = io.data.messages.global;
+                const global = io.data.messages.global;
 
-            if(global.length === lines) global.shift();
-            global.push({ username: socket.username, message: bcMsg });
+                if(global.length === lines) global.shift();
+                global.push({ username: socket.username, message: bcMsg });
 
-            io.sockets.send({ username: socket.username, message: bcMsg });
-            chatLog({ username: socket.username, message: bcMsg }, socket.id);
-            
+                io.sockets.send({ username: socket.username, message: bcMsg });
+                chatLog({ username: socket.username, message: bcMsg }, socket.id);
+            } catch (e) {
+                socket.disconnect();
+            }
         });
     });
     return (req, res, next) => {};
+}
+
+const tokenVerification = (socket, token, app) => {
+    let _token, cookie, tokenVerified;
+    const durationJWT = +process.env.TOKEN_DURATION * 60;
+
+    // verify token
+    if(token !== undefined)
+        tokenVerified = jwt.verify(
+            token,
+            process.env.TOKEN_SECRET,
+            { algorithm: 'HS256' , complete: true }
+        );
+    else throw Error('token missing');
+    if(!tokenVerified) throw Error('token expired');
+    
+    // add to blacklist
+    if( !app.locals.states.tokenBlacklist
+        .map(item => item.signature)
+        .includes(tokenVerified.signature)
+    ) {
+        _token = { exp: tokenVerified.payload.exp * 1000, signature: tokenVerified.signature };
+        const tbl = app.locals.states.tokenBlacklist;
+        tbl.push(_token);
+    }
+    
+    // create cookie
+    const setTokenCookie = (token, duration) => ['token', token, {
+        maxAge: duration,
+        httpOnly: false,
+        sameSite: process.env.COOKIE_SAMESITE,
+        secure: process.env.COOKIE_SAMESITE === 'None' ? true : false,
+        path: '/'
+    }];
+
+    if((tokenVerified.payload.exp - Date.now() / 1000) / 60 < process.env.TOKEN_RENEW) {
+        const newToken = tokenMW.setToken( {}, durationJWT , { authentication: 'renewed by io' });
+        cookie = setTokenCookie(newToken, durationJWT);
+    }
+
+    socket.emit('cookie', JSON.stringify(cookie));
 }
 
 const logger = (linesP) => {
@@ -107,6 +154,7 @@ const logger = (linesP) => {
     // })
     // tailTerminal.stdout.emit('data', 'test');
 
+    // kill logger
     setTimeout(async () => {
         isTail = await getTail();
         if(isTail) {

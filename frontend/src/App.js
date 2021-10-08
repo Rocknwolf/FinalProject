@@ -19,13 +19,17 @@ import logIOToggler from './lib/logIOToggler.js'
 
 const globalContext = createContext();
 
+const initContextValues = {
+    isLogin: false,
+    username: '',
+    lang: document.lastElementChild.attributes.lang.value, // html lang attribute
+    profileData: null
+}
+
 function App() {
 
     const [context, setContext] = useState({
-        isLogin: false,
-        username: '',
-        lang: document.lastElementChild.attributes.lang.value, // html lang attribute
-        profileData: null,
+        ...initContextValues,
         updateContext: (context, updates) => {
             const newContext = { ...context };
             Object.entries(updates)
@@ -36,15 +40,15 @@ function App() {
     
     const setLogin = () => {
         const isLogin = logIOToggler();
-        context.updateContext(context, {
-            isLogin: isLogin,
-            username: isLogin ? context.username : ''
-        });
+
+        if(!isLogin && context.isLogin) {
+            context.updateContext(context, initContextValues );
+        }
     };
 
     // eslint-disable-next-line no-unused-vars
-    const [reactIntevalHelper, dispatchReactIntevalHelper] = React.useReducer((state, action) => {
-        //if (action.type === 'contextUpdate') return state = context;
+    const [reactIntervalHelper, dispatchReactIntervalHelper] = React.useReducer((state, action) => {
+        //if (action.type === 'contextUpdate') return context;
         setLogin();
         return state += 1;
     }, 0);
@@ -53,9 +57,8 @@ function App() {
         let interval;
 
         (() => {
-            setLogin();
-            interval = setInterval( () => {
-                dispatchReactIntevalHelper();
+            interval = setInterval(() => {
+                dispatchReactIntervalHelper();
             }, 60 * 1000);
         })();
         return () => {
@@ -65,35 +68,23 @@ function App() {
     }, []);
 
     useEffect(() => {
-        // get username from sessionStorage
-        const sessionStorageUsername = '';
-
-        if (!context.isLogin && sessionStorageUsername ) {
-            // if no token, but sessionStorageUsername
-            // delete sessionStorageUsername
-        }
-        if (context.isLogin && context.username === "") {
-            
+        const isLogin = logIOToggler();
+        
+        if (isLogin && context.username === '') {
             const username = sessionStorage.getItem('user');
-            console.log(username);
-
             context.updateContext(context,
-                {
-                    username: username
-                }
-            )
+            {
+                isLogin: isLogin,
+                username: username
+            });
         }
-        if(context.isLogin && context.username !== "") {
+        if(isLogin && context.username !== '') {
             sessionStorage.setItem('user', context.username);
         }
-        setTimeout( () => {
-            if(!context.isLogin && context.username === "") {
-                sessionStorage.removeItem('user');
-            }
-        }, 5000)
-        // if(context.isLogin && context.username === null) {
-        //     sessionStorage.removeItem('user');
-        // }
+
+        if(!isLogin && context.username === '') {
+            sessionStorage.removeItem('user');
+        }
             
     }, [context]);
 
@@ -122,4 +113,4 @@ function App() {
 }
 
 export default App;
-export { globalContext };
+export { globalContext, initContextValues };

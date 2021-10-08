@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import fetchCors from '../lib/fetchCors.js';
 
 import logIOToggler from '../lib/logIOToggler.js';
-import { globalContext } from '../App.js';
+import { globalContext, initContextValues } from '../App.js';
 
 const Logout = () => {
 
@@ -10,17 +10,10 @@ const Logout = () => {
 
     const logoutHandler = async (e) =>
     {
-        const error = await fetchCors('/api/auth', 'delete');
-        if(error.message) throw Error(error.message);     
+        const res = await fetchCors('/api/auth', 'delete');
+        // if(res.message) throw Error(res.message);     
         const isLogin = logIOToggler();
-        context.updateContext(context, {
-            isLogin: isLogin,
-            username: isLogin ? context.username : "",
-            profileData: null
-        });
-        if(!isLogin) {
-            // delete username in sessionStorage
-        }
+        if(!isLogin) context.updateContext(context, initContextValues);
     }
 
     return (
