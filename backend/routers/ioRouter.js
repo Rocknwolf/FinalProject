@@ -57,6 +57,17 @@ const tokenVerification = (socket, token, app) => {
     let _token, cookie, tokenVerified;
     const durationJWT = +process.env.TOKEN_DURATION * 60;
 
+    const addToBlacklist = () => {
+        if( !app.locals.states.tokenBlacklist
+            .map(item => item.signature)
+            .includes(tokenVerified.signature)
+        ) {
+            _token = { exp: tokenVerified.payload.exp * 1000, signature: tokenVerified.signature };
+            const tbl = app.locals.states.tokenBlacklist;
+            tbl.push(_token);
+        }
+    }
+
     // verify token
     if(token !== undefined)
         tokenVerified = jwt.verify(
@@ -66,16 +77,6 @@ const tokenVerification = (socket, token, app) => {
         );
     else throw Error('token missing');
     if(!tokenVerified) throw Error('token expired');
-    
-    // add to blacklist
-    if( !app.locals.states.tokenBlacklist
-        .map(item => item.signature)
-        .includes(tokenVerified.signature)
-    ) {
-        _token = { exp: tokenVerified.payload.exp * 1000, signature: tokenVerified.signature };
-        const tbl = app.locals.states.tokenBlacklist;
-        tbl.push(_token);
-    }
     
     // create cookie
     const setTokenCookie = (token, duration) => ['token', token, {
@@ -87,6 +88,7 @@ const tokenVerification = (socket, token, app) => {
     }];
 
     if((tokenVerified.payload.exp - Date.now() / 1000) / 60 < process.env.TOKEN_RENEW) {
+        addToBlacklist();
         const newToken = tokenMW.setToken( {}, durationJWT , { authentication: 'renewed by io' });
         cookie = setTokenCookie(newToken, durationJWT);
     }

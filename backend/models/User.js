@@ -56,14 +56,14 @@ const UserSchema = new mongoose.Schema({
         default: 'Pending'
     },
     confirmationCode: { 
-        type: String, 
-        unique: true },
-      roles: [
+        type: String
+    },
+    roles: [
         {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Role"
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Role"
         }
-      ]
+    ]
 }, { versionKey: false, timestamps: true });
 
 
