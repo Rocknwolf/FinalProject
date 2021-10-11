@@ -6,6 +6,7 @@ import Header from './components/Header.jsx';
 import Navbar from './components/Navbar.jsx';
 import RegistrationForm from './components/pages/RegistrationForm';
 import MainPage from './components/pages/MainPage';
+import Forum from './components/Forum';
 import Profile from './components/pages/Profil.jsx';
 import RegelnChat from './components/RegelnChat.jsx';
 import FAQ from './components/FAQ.jsx';
@@ -101,6 +102,7 @@ function App() {
                         <Route path="/register" component={RegistrationForm}/>
                         <Route path="/chat" component={Chat}/>
                         <Route path="/profile" component={Profile}/>
+                        <Route path="/forum" component={Forum}/>
                         <Route path="/chatrules" component={RegelnChat}/>
                         <Route exact path="/faq" component={FAQ}/>
                         <Route path="/dsgvo" component={DSGVO}/>

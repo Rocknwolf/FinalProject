@@ -8,7 +8,7 @@ function TopTenCards() {
     return (
         <div>
             <div className="mainCard">
-                <Card className="card">
+                <Card className="card1">
                     <CardImg className="cardImg" src={topTen} alt="Card image cap" />
                     <CardBody>
                     <CardTitle tag="h3">newest</CardTitle>
@@ -31,9 +31,8 @@ function TopTenCards() {
                     <Button color="secondary" className="cardButton" >Button</Button>
                 </Card>
             </div>
-            
             <div className="mainCard">
-                <Card className="card">
+                <Card className="card2">
                         <CardImg className="cardImg" src={topTen} alt="Card image cap" />
                         <CardBody>
                         <CardTitle tag="h3">best rated</CardTitle>

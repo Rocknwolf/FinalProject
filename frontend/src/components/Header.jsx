@@ -17,7 +17,6 @@ const Header = () => {
 
             <div className="dropLogin">
                 <Login/>
-                {/* <RegistrationForm/> */}
                 <Logout/>
             </div>
         </div>
