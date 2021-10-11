@@ -20,8 +20,7 @@ function Login(props) {
         );
         
         const is = await res.json();
-        if(is)
-        if(is.auth) {
+        if(is.value.auth) {
             const isLogin = logIOToggler();
             context.updateContext(context, {
                 isLogin: isLogin,

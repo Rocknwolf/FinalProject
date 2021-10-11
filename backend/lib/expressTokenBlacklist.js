@@ -1,15 +1,15 @@
 /**
- * sets server state for token blacklist
+ * sets app state for token blacklist
  * clearing blacklist all 60s
- * @param {{ instanceOf: "Express"}} server current Express app
+ * @param {{ instanceOf: "Express"}} app current Express app
  */
-const tokenBlackList = (server) => {
-    if(!server.locals.states) server.locals.states = {};
-    server.locals.states.tokenBlacklist = [];
+const tokenBlackList = (app) => {
+    if(!app.locals.states) app.locals.states = {};
+    app.locals.states.tokenBlacklist = [];
     
     setInterval(() => {
-        server.locals.states.tokenBlacklist = 
-            server.locals.states.tokenBlacklist.filter(item => item.exp > Date.now());
+        app.locals.states.tokenBlacklist = 
+            app.locals.states.tokenBlacklist.filter(item => item.exp > Date.now());
     }, 60 * 1000);
 }
 

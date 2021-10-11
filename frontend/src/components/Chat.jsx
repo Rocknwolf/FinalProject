@@ -1,11 +1,18 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { io } from 'socket.io-client';
-import { globalContext } from '../App.js';
+
+import { globalContext, initContextValues } from '../App.js';
+import logIOToggler, { getTokenValue } from '../lib/logIOToggler.js';
+
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const Chat = () => {
+    
     const context = useContext(globalContext);
     const [socket, setSocket] = useState();
     const [messages, setMessages] = useState([]);
+    const [loginFirst, setLoginFirst] = useState('');
 
     useEffect(() => {
         if(!context.isLogin) {
@@ -15,7 +22,7 @@ const Chat = () => {
             }
         }
         if(context.isLogin) {
-            if(!socket || !socket.connected) setSocket(socketInstance.connect());
+            if(!socket) setSocket(socketInstance.connect());
         }
         return () => {
             if(socket) socket.disconnect();
@@ -30,19 +37,29 @@ const Chat = () => {
                 /** messages.push({ username: 'system', message: `${context.username} connected` }); **/
                 /** setMessages([...messages]); **/
 
-            });
-            socket.on('init', (array) => {
+            })
+            .on('init', (array) => {
                 messages.push(...array);
                 if(messages[0].username === 'System' && messages[0].message === 'disconnected')
                     messages[0].message = 'connected';
                 setMessages([...messages]);
 
-            });
-
-            socket.on('message', (msgObj) => {
+            })
+            .on('message', (msgObj) => {
                 if(messages.length === 50) messages.shift();
                 messages.push(msgObj);
                 setMessages([...messages]);
+            })
+            .on('cookie', (cookie) => {
+                
+                if(cookie) {
+                    const [name, value, options] = JSON.parse(cookie);
+                    cookies.set(name, value, options);
+                }
+            })
+            .on('disconnect', (reason) => {
+                if(!logIOToggler()) context.updateContext(context, initContextValues);
+                loginFirstMessage();
             });
         }
         else setMessages([...messages, { username: 'System', message: 'disconnected'} ]);
@@ -51,17 +68,27 @@ const Chat = () => {
 
     const socketInstance = io('ws://localhost:4200', {
         path: '/api/ws/',
-        autoConnect: false,
-        upgrade: false
+        // transports: ["polling", "websocket"],
+        // upgrade: true,
+        autoConnect: false
     });
 
     const submitHandler = (e) => {
         e.preventDefault();
         if(socket) {
-            const sendMessage = e.target.querySelector('#sendMessage').value
-            socket.send(sendMessage);
+            if(socket.connected){
+                const sendMessage = e.target.querySelector('#sendMessage').value
+                const token = getTokenValue('token=');
+                socket.send(sendMessage, token);
+            }
+            else loginFirstMessage();
         }
+        else loginFirstMessage();
     }
+    const loginFirstMessage = () => {
+        setLoginFirst('Login first');
+        setTimeout(() => setLoginFirst(''), 2000);
+    };
 
     return (
         <div className="chat">
@@ -72,6 +99,7 @@ const Chat = () => {
             <div className="chatBackground">
                 <div className="chatBox">
                     <div className="chatMessages">
+                        { loginFirst }
                         {
                             messages.map((item, id) => 
                                 <div key={ id }>

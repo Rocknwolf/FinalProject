@@ -6,11 +6,15 @@ import path from 'path';
 
 import userController from '../controllers/user.js';
 import authController from '../controllers/auth.js';
+
 import token from '../middlewares/token.js';
 import { validateBody } from '../middlewares/validation.js';
 import regexValidator from '../middlewares/regexValidation.js';
 import xssSanitize from '../middlewares/xssSanitizer.js';
+
 import userRegister from '../validations/userRegister.js';
+import userProfile from '../validations/userProfile.js';
+
 
 token.verifyToken.unless = expressUnless;
 const router = express.Router();
@@ -43,7 +47,8 @@ router.use(
         { 
             path: [
                 { url: '/', method: 'POST' },
-                { url: '/profile/:username', method: 'GET' }
+                { url: '/profile/:username', method: 'GET' },
+                { url: '/profile', method: 'PATCH' }
             ],
             useOriginalUrl: false
         }
@@ -72,6 +77,12 @@ router.post('/profile/avatar', upload.single("avatar"), (req, res, next) => {
         next(err);
     }
 });
+
+router.patch('/profile',
+    validateBody(userProfile),
+    xssSanitize('body', 'username firstName lastName'),
+    userController.updateProfilePatch
+);
 
 router.post(
     '/',

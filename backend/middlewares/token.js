@@ -8,6 +8,7 @@ const setTokenCookie = (res, token, duration) => res.cookie('token', token, {
     maxAge: duration * 1000, //in ms
     httpOnly: false,
     sameSite: process.env.COOKIE_SAMESITE,
+    secure: process.env.COOKIE_SAMESITE === 'None' ? true : false,
     path: '/'
 });
 
@@ -32,7 +33,7 @@ const signToken = (durationP) =>
         const token = setToken(res, duration);
         setTokenCookie(res, token, duration);
 
-        res.json({ auth: true });
+        res.json(res.message);
     }
 }
 
@@ -54,7 +55,7 @@ const verifyToken = (req, res, next) => {
         else throw new Error();
 
         //token refresh expiring in < 2 min
-        if((tokenVerified.payload.exp - Date.now() / 1000) / 60 < 2) {
+        if((tokenVerified.payload.exp - Date.now() / 1000) / 60 < process.env.TOKEN_RENEW) {
             const token = setToken(res, durationJWT , { authentication: 'renewed'});
             setTokenCookie(res, token, durationJWT);
         }
@@ -66,5 +67,6 @@ const verifyToken = (req, res, next) => {
 
 export default {
     signToken,
-    verifyToken
+    verifyToken,
+    setToken
 }

@@ -116,6 +116,13 @@ const deleteUser = async(email) =>
     return await User.findOneAndRemove({"email":email})
 }
 
+const updateUserByEmail = async (email, updates) => {
+    const options = {
+        new: true
+    }
+    return await User.findOneAndUpdate({ email: email }, updates, options);
+}
+
 export default {
     register,
     findByEmail,
@@ -125,4 +132,5 @@ export default {
     setAvatar,
     suspend,
     deleteUser,
+    updateUserByEmail
 };

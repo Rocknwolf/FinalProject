@@ -24,17 +24,20 @@ const io = new ioServer(server, {
     path: '/api/ws/',
     cors: {
         origin: process.env.CORS_FRONTEND,
-        pingInterval: 25000,
-        pingTimeout: 30000,
-        upgradeTimeout: 20000
+        methods: ["GET", "POST"]
     },
-    allowUpgrades: false,
+    // transports: ["polling", "websocket"],
+    // allowUpgrades: true,
+    pingInterval: 25000,
+    pingTimeout: 30000,
+    upgradeTimeout: 20000
 });
+
 
 //cors
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', process.env.CORS_FRONTEND);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     if(process.env.CORS_CREDENTIALS === 'true')
     res.header('Access-Control-Allow-Credentials', true);   // The only valid value for this header is true
@@ -54,7 +57,7 @@ app.use(expressMongoSanitize({ replaceWith: '_' })); // default delete theese ke
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 
-app.use('/api/ws', ioRouter(io));
+app.use('/api/ws', ioRouter(io, app));
 
 app.delete('/api/exit', ((req, res) => {
     //res.status(404).json();
