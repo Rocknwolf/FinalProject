@@ -7,7 +7,7 @@ import Navbar from './components/Navbar.jsx';
 import RegistrationForm from './components/pages/RegistrationForm';
 import MainPage from './components/pages/MainPage';
 import Forum from './components/Forum';
-import Profile from './components/pages/Profil.jsx';
+import Profile from './components/pages/Profile.jsx';
 import RegelnChat from './components/RegelnChat.jsx';
 import FAQ from './components/FAQ.jsx';
 import DSGVO from './components/pages/DSGVO.jsx';

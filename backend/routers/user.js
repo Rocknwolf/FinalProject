@@ -13,6 +13,7 @@ import cloudinary from '../middlewares/cloudinary.js';
 
 import userRegister from '../validations/userRegister.js';
 import userProfile from '../validations/userProfile.js';
+import userAvatar from '../validations/userAvatar.js';
 
 token.verifyToken.unless = expressUnless;
 const router = express.Router();
@@ -41,7 +42,8 @@ router.use(
 router.get('/profile/:username', userController.readProfiles);
 
 router.patch(
-    '/profile/avatar', 
+    '/profile/avatar',
+    validateBody(userAvatar),
     multer.single('avatar'),
     cloudinary.upload(cloudynaryOptions),
     userController.updateAvatar,

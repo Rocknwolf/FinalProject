@@ -8,7 +8,7 @@ import './Profile.css';
 
 import Upload from '../Upload.jsx';
 
-function Profil(props) {
+function Profile(props) {
     // e.preventDefault();
     const context = useContext(globalContext);
     const [profileData, setProfileData] = useState({});
@@ -31,11 +31,11 @@ function Profil(props) {
     }, []);
 
     const getAvatar = () => {
-        if(profileData.avatarURI) return profileData.avatarURI;
         if(context.profileData) {
             if(context.profileData.avatarURI) return context.profileData.avatarURI;
-            return ProfilePicture;
         }
+        if(profileData.avatarURI) return profileData.avatarURI;
+        return ProfilePicture;
     }
     
     return (
@@ -48,7 +48,7 @@ function Profil(props) {
             <br />
             <div className="pictureBack">
                 <img className="userPic" src={getAvatar()} alt="Profilbild" width="150px" height="150px"/>
-                <Upload setProfileData={setProfileData}/>
+                <Upload />
             </div>
             <br />
             <br />
@@ -90,4 +90,4 @@ function Profil(props) {
     )
 }
 
-export default Profil
+export default Profile
