@@ -58,6 +58,7 @@ input[type="date"]{
     background-attachment: fixed;
     padding-bottom: 1%;
 }
+
 .cardImg{
     border: 1px solid rgba(0, 248, 248, 0.555);
     border-radius: 10px;
@@ -268,4 +269,30 @@ input[type="date"]{
 .forum{
     width: 98%;
     height: 100vh; 
+}
+
+.restricted{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100vh;
+    max-width: 100%;
+    background-image: url('../../images/restricted.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    background-color: black;
+    border: 3px solid red;
+    border-radius: 25px;
+}
+.restricted h1{
+    color: black;
+    font-size: 4em;
+    font-weight: 500px;
+    border: 8px solid red;
+    padding: 10px;
+    border-radius: 25px;
+    background: rgba(128, 128, 128, 0.521);
+    text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
 }
