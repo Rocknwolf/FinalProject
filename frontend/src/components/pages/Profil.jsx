@@ -32,8 +32,10 @@ function Profil(props) {
 
     const getAvatar = () => {
         if(profileData.avatarURI) return profileData.avatarURI;
-        if(context.profileData) return context.profileData.avatarURI;
-        return ProfilePicture;
+        if(context.profileData) {
+            if(context.profileData.avatarURI) return context.profileData.avatarURI;
+            return ProfilePicture;
+        }
     }
     
     return (

@@ -83,7 +83,7 @@ const readProfiles = async (req, res, next) => {
             firstName: response.firstName,
             lastName: response.lastName,
             birthDate: response.birthDate,
-            avatarURI: `${req.protocol}://${process.env.CLOUDINARY_PATH + response.avatarEndpoint}`
+            avatarURI: response.avatarEndpoint ? `${req.protocol}://${process.env.CLOUDINARY_PATH + response.avatarEndpoint}` : ''
         };
 
         res.status(200).json(result);

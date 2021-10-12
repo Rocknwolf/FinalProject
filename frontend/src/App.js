@@ -1,6 +1,6 @@
 import './App.css';
 import React, { createContext, useEffect, useState} from 'react';
-import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useHistory} from 'react-router-dom';
 
 import Header from './components/Header.jsx';
 import Navbar from './components/Navbar.jsx';
@@ -40,12 +40,15 @@ function App() {
             setContext(newContext);
         }
     });
+
+    const history = useHistory();
     
     const setLogin = () => {
         const isLogin = logIOToggler();
 
         if(!isLogin && context.isLogin) {
             context.updateContext(context, initContextValues );
+            history.push('/');
         }
     };
 
@@ -99,9 +102,9 @@ function App() {
                         <Navbar />
                     <Switch>
                         <Route exact path="/" component={MainPage}/>
-                        <Route path="/register" component={RegistrationForm}/>
+                        <Route path="/register" component={!context.isLogin ? RegistrationForm : null}/>
                         <Route path="/chat" component={Chat}/>
-                        <Route path="/profile" component={Profile}/>
+                        <Route path="/profile" component={context.isLogin ? Profile : null}/>
                         <Route path="/forum" component={Forum}/>
                         <Route path="/movies" component={Movies}/>
                         <Route path="/chatrules" component={RegelnChat}/>
