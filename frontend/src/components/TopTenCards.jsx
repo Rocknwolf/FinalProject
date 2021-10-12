@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import topTen from '../images/top10.jpg';
 
 import { Card, Button, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
 
+
 function TopTenCards() {
+    const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=03ea09ec53921e5dfaf14ebd92c56d08&language=de-DE&page=1";
     
     return (
         <div>
@@ -15,7 +17,7 @@ function TopTenCards() {
                     <CardText>Die neusten Blockbuster</CardText>
                     <CardText>
                         <ol>
-                            <li><a href="www" >Blockbuster</a></li>
+                            <li><a href="www" >kkk</a></li>
                             <li><a href="www" >Blockbuster</a></li>
                             <li><a href="www" >Blockbuster</a></li>
                             <li><a href="www" >Blockbuster</a></li>

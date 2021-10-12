@@ -50,8 +50,8 @@ function Impressum() {
 
             <h5>Urheberrecht</h5>
             <p>
-            Die auf unserer Webseite veröffentlichen Inhalte und Werke unterliegen dem deutschen Urheberrecht ( <a href="http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf" target="_blank" rel="noreferrer">http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf</a>) . 
-            Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung des geistigen Eigentums in ideeller und materieller Sicht des Urhebers außerhalb der Grenzen des Urheberrechtes bedürfen der vorherigen schriftlichen Zustimmung des jeweiligen Urhebers i.S.d. Urhebergesetzes ( <a href="http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf" target="_blank" rel="noreferrer">http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf</a> ). 
+            Die auf unserer Webseite veröffentlichen Inhalte und Werke unterliegen dem deutschen Urheberrecht ( <a href="http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf" target="_blank" rel="noopener noreferrer">http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf</a>) . 
+            Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung des geistigen Eigentums in ideeller und materieller Sicht des Urhebers außerhalb der Grenzen des Urheberrechtes bedürfen der vorherigen schriftlichen Zustimmung des jeweiligen Urhebers i.S.d. Urhebergesetzes ( <a href="http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf" target="_blank" rel=" noopener noreferrer">http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf</a> ). 
             Downloads und Kopien dieser Seite sind nur für den privaten und nicht kommerziellen Gebrauch erlaubt. Sind die Inhalte auf unserer Webseite nicht von uns erstellt wurden, sind die Urheberrechte Dritter zu beachten. 
             
             Die Inhalte Dritter werden als solche kenntlich gemacht. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. 

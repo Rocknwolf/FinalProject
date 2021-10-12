@@ -14,6 +14,8 @@ import DSGVO from './components/pages/DSGVO.jsx';
 import Impressum from './components/pages/Impressum.jsx';
 import AGB from './components/pages/AGB.jsx';
 
+import Movies from './components/pages/Movies.jsx';
+
 import Chat from './components/Chat.jsx';
 
 import logIOToggler from './lib/logIOToggler.js'
@@ -101,6 +103,7 @@ function App() {
                         <Route path="/chat" component={Chat}/>
                         <Route path="/profile" component={Profile}/>
                         <Route path="/forum" component={Forum}/>
+                        <Route path="/movies" component={Movies}/>
                         <Route path="/chatrules" component={RegelnChat}/>
                         <Route exact path="/faq" component={FAQ}/>
                         <Route path="/dsgvo" component={DSGVO}/>
