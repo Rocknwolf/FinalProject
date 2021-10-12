@@ -5,8 +5,6 @@ import './movies.css';
 
     const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=03ea09ec53921e5dfaf14ebd92c56d08&language=de-DE&page=1";
 
-    const IMG_API = "https://image.tmdb.org/t/p/w1280";
-
     const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=03ea09ec53921e5dfaf14ebd92c56d08&language=de-DE&query=`;
 
 function Movies() {

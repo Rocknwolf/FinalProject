@@ -26,10 +26,10 @@ function Navbar() {
                 <NavLink tag={Link} to="/forum" className="navFont">Forum / Tauschbörse</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink tag={Link} to="/movies">Movies</NavLink>
+                <NavLink tag={Link} to="/movies" className="navFont">Movies</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink tag={Link} to="/profile">Profil</NavLink>
+                <NavLink tag={Link} to="/profile" className="navFont">Profil</NavLink>
             </NavItem>
         </Nav>
     )
