@@ -28,9 +28,13 @@ function Navbar() {
             <NavItem>
                 <NavLink tag={Link} to="/movies" className="navFont">Movies</NavLink>
             </NavItem>
-            <NavItem>
-                <NavLink tag={Link} to="/profile" className="navFont">Profil</NavLink>
-            </NavItem>
+            {   
+                context.isLogin ? (
+                    <NavItem>
+                        <NavLink tag={Link} to="/profile" className="navFont">Profil</NavLink>
+                    </NavItem>
+                ): null
+            }
         </Nav>
     )
 }
