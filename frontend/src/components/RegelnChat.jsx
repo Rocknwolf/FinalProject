@@ -1,11 +1,8 @@
 import React from 'react'
-import Navbar from './Navbar.jsx';
 
 function RegelnChat() {
     return (
-        <div>
-            <Navbar/>
-        
+        <div>        
             <div className="chatRules">
                 <h1>Verhalten im Chat</h1>
                     <br />

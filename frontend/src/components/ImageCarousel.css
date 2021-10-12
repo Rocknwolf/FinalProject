@@ -73,3 +73,120 @@
     height: 220px;
     cursor: pointer;
 }
+
+@media only screen and (min-width: 300px) and (max-width: 600px) {
+    @keyframes ror{
+        0%{
+            transform: rotateX(-0.5deg) scale(0.05, 0.05);
+        }
+        25%{
+            transform: rotateX(-1deg) scale(0.05, 0.05);
+       }
+       50%{
+            transform: rotateX(-1.5deg) scale(0.05, 0.05);
+       }
+       75%{
+            transform: rotateX(-1deg) scale(0.05, 0.05);
+       }
+       100%{
+            transform: rotateX(-0.5deg) scale(0.05, 0.05);
+       }
+    }
+
+}
+@media only screen and (min-width: 601px) and (max-width: 700px) {
+    @keyframes ror{
+        0%{
+            transform: rotateX(-0.5deg) scale(0.1, 0.1);
+        }
+        25%{
+            transform: rotateX(-1deg) scale(0.1, 0.1);
+       }
+       50%{
+            transform: rotateX(-1.5deg) scale(0.1, 0.1);
+       }
+       75%{
+            transform: rotateX(-1deg) scale(0.1, 0.1);
+       }
+       100%{
+            transform: rotateX(-0.5deg) scale(0.1, 0.1);
+       }
+    }
+
+}
+@media only screen and (min-width: 701px) and (max-width: 800px) {
+    @keyframes ror{
+        0%{
+            transform: rotateX(-0.5deg) scale(0.2, 0.2);
+        }
+        25%{
+            transform: rotateX(-1deg) scale(0.2, 0.2);
+       }
+       50%{
+            transform: rotateX(-1.5deg) scale(0.2, 0.2);
+       }
+       75%{
+            transform: rotateX(-1deg) scale(0.2, 0.2);
+       }
+       100%{
+            transform: rotateX(-0.5deg) scale(0.2, 0.2);
+       }
+    }
+}
+@media only screen and (min-width: 801px) and (max-width: 900px) {
+    @keyframes ror{
+        0%{
+            transform: rotateX(-0.5deg) scale(0.3, 0.3);
+        }
+        25%{
+            transform: rotateX(-1deg) scale(0.3, 0.3);
+       }
+       50%{
+            transform: rotateX(-1.5deg) scale(0.3, 0.3);
+       }
+       75%{
+            transform: rotateX(-1deg) scale(0.3, 0.3);
+       }
+       100%{
+            transform: rotateX(-0.5deg) scale(0.3, 0.3);
+       }
+    }
+}
+@media only screen and (min-width: 901px) and (max-width: 1000px) {
+    @keyframes ror{
+        0%{
+            transform: rotateX(-0.5deg) scale(0.4, 0.4);
+        }
+        25%{
+            transform: rotateX(-1deg) scale(0.4, 0.4);
+       }
+       50%{
+            transform: rotateX(-1.5deg) scale(0.4, 0.4);
+       }
+       75%{
+            transform: rotateX(-1deg) scale(0.4, 0.4);
+       }
+       100%{
+            transform: rotateX(-0.5deg) scale(0.4, 0.4);
+       }
+    }
+}
+@media only screen and (min-width: 1001px) and (max-width: 1380px) {
+    @keyframes ror{
+        0%{
+            transform: rotateX(-0.5deg) scale(0.5, 0.5);
+        }
+        25%{
+            transform: rotateX(-1deg) scale(0.5, 0.5);
+       }
+       50%{
+            transform: rotateX(-1.5deg) scale(0.5, 0.5);
+       }
+       75%{
+            transform: rotateX(-1deg) scale(0.5, 0.5);
+       }
+       100%{
+            transform: rotateX(-0.5deg) scale(0.5, 0.5);
+       }
+    }
+}

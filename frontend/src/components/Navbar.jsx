@@ -1,14 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import { globalContext } from '../App.js';
 
 function Navbar() {
-    const [dropdownOpen, setDropdownOpen] = useState(false);
     const context = useContext(globalContext);
-
-    const toggle = () => setDropdownOpen(!dropdownOpen);
 
     return (
         <Nav tabs>
@@ -28,19 +25,12 @@ function Navbar() {
             <NavItem>
                 <NavLink tag={Link} to="/forum" className="navFont">Forum / Tauschbörse</NavLink>
             </NavItem>
-
-            <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
-                <DropdownToggle nav caret>
-                    Dropdown
-                </DropdownToggle>
-            <DropdownMenu>
-                <DropdownItem header>Options</DropdownItem>
-                <DropdownItem tag={Link} to="/profile">Profil</DropdownItem>
-                <DropdownItem>Another Action</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Another Action</DropdownItem>
-            </DropdownMenu>
-            </Dropdown>
+            <NavItem>
+                <NavLink tag={Link} to="/movies">Movies</NavLink>
+            </NavItem>
+            <NavItem>
+                <NavLink tag={Link} to="/profile">Profil</NavLink>
+            </NavItem>
         </Nav>
     )
 }
