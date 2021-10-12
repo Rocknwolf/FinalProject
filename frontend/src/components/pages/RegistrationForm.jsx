@@ -6,8 +6,6 @@ import fetchCors from '../../lib/fetchCors.js';
 import logIOToggler from '../../lib/logIOToggler.js'
 import { globalContext } from '../../App.js';
 
-import RestrictedArea from './RestrictedArea.jsx';
-
 function RegistrationForm() {
         
     const context = useContext(globalContext);
@@ -121,7 +119,6 @@ function RegistrationForm() {
                             <button type="submit" className="button">Registrieren</button>
                     </form>
             </div>
-            <RestrictedArea/>
         </div>
     )
 }
