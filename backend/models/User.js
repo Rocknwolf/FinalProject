@@ -37,7 +37,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    avatarUri: {
+    avatarEndpoint: {
         type: String,
         default: "",
     },
@@ -101,9 +101,15 @@ const saveResettedPassword = () =>
     return null;
 }
 
-const setAvatar = () =>
+const setAvatar = async (email, endpoint) =>
 {
-    return null;
+    const updates = {
+        avatarEndpoint: endpoint
+    }
+    const options = {
+        new: false
+    }
+    return await User.findOneAndUpdate({ email: email }, updates, options);
 }
 
 const suspend = () =>

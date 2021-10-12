@@ -1,35 +1,50 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import fetchCors from '../lib/fetchCors';
 
-const Upload = () => {
-    const [newUser, setNewUser] = useState(
+import { globalContext } from '../App.js';
+
+const Upload = ({setProfileData}) => {
+    const context = useContext(globalContext);
+    const [isBlocking, setIsBlocking] = useState(false);
+    const [avatar, setAvatar] = useState(
         {
             avatarUri: '',
         }
     );
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('avatar', newUser.avatarUri);
-
-        const options = {
-            /** empty header to auto fill Content-Type multipart/form-data header
-             * with matching random generated boundary value **/
-            headers: {}
-        };
-
-        fetchCors('/api/user/profile/avatar/', "POST", formData, options)
-        .then(res => {
-            console.log(res);
-        })
-        .catch(err => {
-            console.log(err);
-        });
+        if(!isBlocking)
+        {
+            setIsBlocking(true);
+    
+            const formData = new FormData();
+            formData.append('avatar', avatar.avatarUri);
+            formData.append('email', context.profileData.email);
+    
+            const options = {
+                /** empty header to auto fill Content-Type multipart/form-data header
+                 * with matching random generated boundary value **/
+                headers: {}
+            };
+    
+            const res = await fetchCors('/api/user/profile/avatar/', 'PATCH', formData, options);
+    
+            if(res) {
+                const resObj = await res.json();
+                const profileData = { ...context.profileData }
+                profileData.avatarURI = resObj.src;
+                if(resObj.src){
+                    context.updateContext(context, { avatarURI: profileData });
+                    setProfileData(profileData);
+                }
+            }
+            setIsBlocking(false);
+        }
     }
 
     const handlePhoto = (e) => {
-        setNewUser({...newUser, avatarUri: e.target.files[0]});
+        setAvatar({...avatar, avatarUri: e.target.files[0]});
     }
 
     return (

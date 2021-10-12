@@ -28,8 +28,13 @@ function Profil(props) {
             context.updateContext(context, { profileData: data });
         };
         if(!context.profileData) handleUserProfileApi();
-        // if(res) context.updateContext('isLogin' ,logIOToggler());
     }, []);
+
+    const getAvatar = () => {
+        if(profileData.avatarURI) return profileData.avatarURI;
+        if(context.profileData) return context.profileData.avatarURI;
+        return ProfilePicture;
+    }
     
     return (
         <div className="mainProfilBox">
@@ -40,8 +45,8 @@ function Profil(props) {
             <br />
             <br />
             <div className="pictureBack">
-                <img className="userPic" src={ProfilePicture} alt="Profilbild" width="150px" height="150px"/>
-                <Upload/>
+                <img className="userPic" src={getAvatar()} alt="Profilbild" width="150px" height="150px"/>
+                <Upload setProfileData={setProfileData}/>
             </div>
             <br />
             <br />

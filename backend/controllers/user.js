@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import fs from 'fs';
 
 import { errorOptions, notFoundError} from '../lib/errors.js';
 import User from '../models/User.js';
@@ -82,11 +83,10 @@ const readProfiles = async (req, res, next) => {
             firstName: response.firstName,
             lastName: response.lastName,
             birthDate: response.birthDate,
+            avatarURI: `${req.protocol}://${process.env.CLOUDINARY_PATH + response.avatarEndpoint}`
         };
 
         res.status(200).json(result);
-        console.log(result);
-
     } catch (e) {
         next(errorOptions(e, 'readProfiles'));
     }
@@ -117,6 +117,27 @@ const updateProfilePatch = async (req, res, next) => {
     }
 }
 
+const updateAvatar = async (req, res, next) => {
+    try {
+        const endpoint = `${res.cloudinaryNew.public_id}.${res.cloudinaryNew.format}`;
+        const returnPath = `${req.protocol}://${process.env.CLOUDINARY_PATH + endpoint}`;
+        
+        const old = await User.setAvatar(req.body.email, endpoint);
+        if(old) {
+            res.cloudinaryOld = {
+                publicID: old.avatarEndpoint.split('.')[0]
+            };
+        }
+        res.status(202).json({ src: returnPath });
+
+        fs.rm((req.file.path), (error) => { if(error) throw error });
+
+        next();
+    } catch (e) {
+        next(errorOptions(e, 'updateAvatar', 500, true, `user avatar by ${req.body.email} not updated`));
+    }
+}
+
 export default {
     deleteUser,
     register,
@@ -124,5 +145,6 @@ export default {
     reactivate,
     suspend,
     readProfiles,
-    updateProfilePatch
-}
+    updateProfilePatch,
+    updateAvatar
+};
