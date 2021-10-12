@@ -7,6 +7,8 @@ import logIOToggler, { getTokenValue } from '../lib/logIOToggler.js';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
+const chatDefault = () => [ { username: 'System', message: 'disconnected' } ];
+
 const Chat = () => {
     
     const context = useContext(globalContext);
@@ -14,15 +16,27 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [loginFirst, setLoginFirst] = useState('');
 
+    // eslint-disable-next-line no-unused-vars
+    const [reactListenerHelper, dispatchReactListenerHelper] = React.useReducer((state, action) => {
+        // if (action.type === 'contextUpdate') return context;
+        if (action.type === 'messagesUpdate') {
+            state.messages = messages;
+        }
+        return state;
+    }, {});
+
     useEffect(() => {
         if(!context.isLogin) {
             if(socket) {
                 socket.disconnect();
-                setMessages([ { username: 'System', message: 'disconnected' } ]);
+                setMessages(chatDefault);
             }
         }
         if(context.isLogin) {
             if(!socket) setSocket(socketInstance.connect());
+            if(socket) {
+                if(!socket.connected) socket.connect();
+            }
         }
         return () => {
             if(socket) socket.disconnect();
@@ -39,6 +53,9 @@ const Chat = () => {
 
             })
             .on('init', (array) => {
+                dispatchReactListenerHelper({ type: 'messagesUpdate' });
+                const messages = reactListenerHelper.messages;
+
                 messages.push(...array);
                 if(messages[0].username === 'System' && messages[0].message === 'disconnected')
                     messages[0].message = 'connected';
@@ -51,7 +68,6 @@ const Chat = () => {
                 setMessages([...messages]);
             })
             .on('cookie', (cookie) => {
-                
                 if(cookie) {
                     const [name, value, options] = JSON.parse(cookie);
                     cookies.set(name, value, options);
@@ -62,7 +78,7 @@ const Chat = () => {
                 loginFirstMessage();
             });
         }
-        else setMessages([...messages, { username: 'System', message: 'disconnected'} ]);
+        else setMessages(chatDefault);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [socket]);
 

@@ -1,4 +1,5 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext} from 'react';
+import { useHistory } from 'react-router-dom';
 import './RegistrationForm.css';
 
 import fetchCors from '../../lib/fetchCors.js';
@@ -7,7 +8,7 @@ import { globalContext } from '../../App.js';
 
 function RegistrationForm() {
         
-    const context = useContext(globalContext); 
+    const context = useContext(globalContext);
 
     const [username, setUsername] = useState("");
     const [firstname, setFirstname] = useState("");
@@ -19,6 +20,10 @@ function RegistrationForm() {
     const [passwordErr, setPasswordErr] = useState("");
     const [isValid, setIsValid] = useState([]);
 
+    const [isSend, setIsSend] = useState(false);
+
+    const history = useHistory();
+
     const handleRegistration = async (e) => {
         e.preventDefault();
 
@@ -27,27 +32,39 @@ function RegistrationForm() {
             return;
         }
 
-        const res = await fetchCors( "/api/user", "POST", 
-            JSON.stringify({
-                username: username,
-                firstName: firstname,
-                lastName: lastname,
-                email: email,
-                password: password,
-                birthDate: birthday,
-                // passwordVerify
-            })   
-        )
-        
-        const is = await res.json();
-        if(is)
-        if(is.auth) {
-            const isLogin = logIOToggler();
-            context.updateContext(context, {
-                isLogin: isLogin,
-                username: isLogin ? context.username : ''
-            });
+        setIsSend(true);
+
+        if(!isSend) {
+            const res = await fetchCors( "/api/user", "POST", 
+                JSON.stringify({
+                    username: username,
+                    firstName: firstname,
+                    lastName: lastname,
+                    email: email,
+                    password: password,
+                    birthDate: birthday,
+                    // passwordVerify
+                })   
+            );
+            
+            const is = await res.json();
+            if(is)
+            if(is.value)
+            if(is.value.auth) {
+                const isLogin = logIOToggler();
+                context.updateContext(context, {
+                    isLogin: isLogin,
+                    username: isLogin ? username : ''
+                });
+            
+            }
+            setTimeout(() => {
+                setIsSend(false);
+            }, 1000);
+    
+            history.push('/');
         }
+
     };
 
     const formValidation = () => {
