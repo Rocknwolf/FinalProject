@@ -28,6 +28,7 @@ const ws = (io) => {
             socket.username = username;
             chatLog(socket.id, 'connecting', socket.username);
         });
+        
 
         socket.on('disconnecting', (reason) => {
             chatLog(socket.id, 'disconnecting', socket.username);

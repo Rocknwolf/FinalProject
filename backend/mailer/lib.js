@@ -1,9 +1,6 @@
 import mailer from "nodemailer";
 import { htmlToText } from "nodemailer-html-to-text";
 import fs from "file-system";
-import promises from "dns";
-import Mail from "nodemailer/lib/mailer";
-
 
 
 const config = {
