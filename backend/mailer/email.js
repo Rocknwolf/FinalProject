@@ -1,10 +1,7 @@
-import nodemailer from "nodemailer";
-import SendmailTransport from "nodemailer/lib/sendmail-transport";
-import email from "./email";
 import process from "process";
-import transporter from "./index.d";
+import sendMail from "./lib";
 
-// @TODO AUFRUF EINER FUNKTION MIT ÜBERGABE VON Z:B: EMAIL UND NAME IN EINEM MONGOOSE CONTROLLER
+
 const sendPasswordReset = async (email, name, resetCode) => {
   await sendMail({
     recipients: [email],
@@ -54,9 +51,114 @@ const sendWelcome = async (email, name) => {
   });
 };
 
+// register: async (parent, args, { transporter, models, EMAIL_SECRET }) => {
+//   const hashedPasswort = await bcrypt.hash(args.password, 12);
+//   const user = await models.User.create({
+//     ...args,
+//     password: hashedPassword,
+//   });
+
+//   try {
+//     const emailToken = jwt.sign(
+//       {
+//         user: _.pick(user, 'id'),
+//       },
+//       EMAIL_SECRET,
+//       {
+//         expiresIn: '1d',
+//       },
+//     );
+
+//     const url = `...${emailToken}`;
+
+//     await transporter.sendMail({
+//       to: args.email,
+//       subject: 'Confirm Email',
+//       html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`
+//     });
+//   } catch (e) {
+//     console.log(e);
+//   }
+
+//   return user;
+// };
+
+/*
+  Calculate crc32 of something.
+*/
+let crc32 = (function() {
+  let c, crcTable = []; // generate crc table
+  
+  for (let n = 0; n < 256; n++) {
+    c = n;
+    
+    for (let k = 0; k < 8; k++) {
+      c = ((c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1));
+    }
+    
+    crcTable[n] = c;
+  }
+  
+  return function(str) {
+    let crc = 0 ^ (-1); // calculate actual crc
+    
+    for (let i = 0; i < str.length; i++) {
+      crc = (crc >>> 8) ^ crcTable[(crc ^ str.charCodeAt(i)) & 0xFF];
+    }
+    
+    return (crc ^ (-1)) >>> 0;
+  }
+})();
+
+
+function uuid() {
+  let d = (Date.now !== undefined && typeof Date.now === "function") ? Date.now() : new Date().getTime();
+  
+  if (window.performance && typeof window.performance.now === "function")
+    d += performance.now();
+  
+  let uuid = "xxxxxxxx-xxxx-4xxxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+    let r = (d + Math.random() * 16) % 16 | 0;
+    d = Math.floor(d / 16);
+    return (c == "x" ? r : (r & 0x3 | 0x8)).toString(16);
+  });
+  
+  return uuid;
+}
+
+
+function qs(s) {
+  return document.querySelector(s);
+}
+
+let expirationTimeInMilliseconds = 30 * 1000;
+
+let verification = qs(".verification"),
+    verificationCode = qs(".verification .code");
+
+const crcPattern = "00000000";
+
+function showNewVerificationCode() {
+  let nextCode = crc32(uuid()).toString(16).toUpperCase();
+  nextCode = crcPattern.split(0, crcPattern.length - nextCode.length) + nextCode;
+  
+  verification.classList.remove("running");
+  verificationCode.innerHTML = nextCode;
+  verification.offsetWidth = verification.offsetWidth;
+  verification.classList.add("running");
+  
+  setTimeout(showNewVerificationCode, expirationTimeInMilliseconds);
+}
+
+showNewVerificationCode();
+
+
  export default {
    sendPasswordReset,
    sendWelcome,
    sendConfirmation,
    sendGoodBye,
+   uuid,
+   qs,
+   showNewVerificationCode
  };
