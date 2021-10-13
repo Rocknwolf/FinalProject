@@ -1,4 +1,5 @@
 /* HeaderArea */
+
 .mainHeader{
     width: 100%;
     display: inline-flex;
@@ -42,39 +43,52 @@ input[type="date"]{
     color: cornsilk;
 }
 
+/* mainPageBody */
+.mainPageBody{
+    width: 100%;
+    height: auto;
+}
+
 /* TopTenCards */
+.mainCards{
+    width: 100%;
+    background-image: url('../../images/deadpool2.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-attachment: fixed;
+    padding-bottom: 1%;
+}
+
+.cardImg{
+    border: 1px solid rgba(0, 248, 248, 0.555);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 3px rgb(0, 248, 248);
+}
 .mainCard{
     display: inline-flex;
-    width: 20%;
-    color: black;
-    justify-content: space-between;
+    width: 40%;
     margin-top: 20%;
-    /* margin-bottom: 20%; */
+}
+.mainCard a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
 }
 .card{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 5%;
-    padding-right: 5%;
-    background-color: rgb(24, 17, 17);
+    padding: 1% 3%;
+    background-color: rgba(58, 49, 49, 0.863);
     color: cornsilk;
-}
-.cardButton{
-    background-color: darkblue;
-    color: cornsilk;
-    margin-bottom: 20px;
-}
-.cardButton:hover{
-    background-color: cornsilk;
-    color: darkblue;
-}
-li>a{
-    color: cornsilk;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border: 1px solid white;
+    border-radius: 15px;
 }
 
 /* Buttons */
-.button{
+.btn{
     display: flexbox;
     background: rgb(71, 168, 212, 0.466);
     color: cornsilk;
@@ -87,19 +101,19 @@ li>a{
     font-weight: bold;
     line-height: 20px;
 }
-.button:hover{
+.btn:hover{
     background-color: rgba(252, 251, 250, 0.109);
     border: 1px solid cornsilk;
 }
 
 /* Divider */
-.divider{
+/* .divider{
     display: flex;
     width: 100%;
     position: absolute;
-    bottom: -370px;
+    bottom: -266px;
     border-bottom: 1px solid cornsilk;
-}
+} */
 
 /* Footer */
 .footer{
@@ -107,12 +121,12 @@ li>a{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 5%;
     padding-top: 3%;
     padding-right: 10%;
     padding-bottom: 2%;
     padding-left: 5%;
     background-color: rgba(0, 0, 139, 0.404);
+    border-top: 2px solid white;
 }
 .dropDownButton{
     padding-left: 8%;
@@ -129,6 +143,7 @@ li>a{
     border-radius: 50%;
 }
 
+/* Chat */
 .chatTopBackground{
     display: flex;
     justify-content: center;
@@ -149,4 +164,135 @@ li>a{
     font-size: 100px;
     font-weight: bold;
     text-shadow: black 14px 12px 14px, white 5px 15px 5px;
+}
+
+.chatBackground{
+    background-image: url('../../images/cinemaChat.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.chatBox{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    height: 800px;
+    width: 100%;
+}
+
+.chatMessages{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 700px;
+    width: 55%;
+    padding-top: 100px;
+    background-color: rgba(0, 0, 0, 0.952);
+    border: 3px solid rgba(255, 255, 255, 0.719);
+    border-radius: 15px;
+    box-shadow: -1px -1px 10px 5px #0ff;
+    margin-top: 5px;
+    color: white;
+    word-break: break-all;
+    word-wrap: break-word;
+    text-justify: auto;
+    overflow: auto;
+}
+.inputChat{
+    width: 100%;
+    padding-top: 25px;
+    padding-bottom: 40px;
+    background: linear-gradient(90deg, rgb(0, 0, 0),rgb(8, 8, 12),rgba(34, 33, 33, 0.938),rgb(8, 8, 12), rgb(0, 0, 0));
+    border-top: 1px solid white;
+}
+
+.inputChatInput{
+    height: 100px;
+    width: 55%;
+    text-align: start;
+    word-break: break-all;
+    resize: none;
+    overflow: auto;
+    box-sizing:border-box;
+    border: 5px solid black;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.26);
+    color: white;
+    font-size: 1em;
+}
+.inputChatInput::placeholder{
+    color: rgba(255, 255, 255, 0.349);
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}
+.chatButton{
+    width: 55%;
+}
+
+/* About */
+.chatRules{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+    font-size: 1.3em;
+}
+.chatDirections{
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 2em;
+
+    animation-name: animation_blink;
+    animation-timing-function: ease-in;
+    animation-duration: 1.5s; 
+    animation-iteration-count: infinite;   
+}
+
+@keyframes animation_blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.1; }
+    100% { opacity: 1; }    
+}
+@keyframes animation_blink {
+    0% { color: white; }
+    25% { color: #0ff; }
+    50% { color: black; }
+    75% { color: #0ff; }
+    100% { color: white; }    
+}
+
+/* Tauschbörse */
+.forum{
+    width: 98%;
+    height: 100vh; 
+}
+
+.restricted{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100vh;
+    max-width: 100%;
+    background-image: url('../../images/restricted.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    background-color: black;
+    border: 3px solid red;
+    border-radius: 25px;
+}
+.restricted h1{
+    color: black;
+    font-size: 4em;
+    font-weight: 500px;
+    border: 8px solid red;
+    padding: 10px;
+    border-radius: 25px;
+    background: rgba(128, 128, 128, 0.521);
+    text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
 }

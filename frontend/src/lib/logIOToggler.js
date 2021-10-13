@@ -1,11 +1,19 @@
 
 
+const getTokenValue = (key) => {
+    if(document.cookie.includes(key)){
+        const value = document.cookie
+            .split('; ')
+            .find(item => item.startsWith(key))
+            .split('=')[1];
+    
+        return value;
+    };
+}
+
 const getTokenPayload = (key) => {
-    const value = document.cookie
-    .split('; ')
-    .find(item => item.startsWith(key))
-    .split('=')[1]
-    .split('.')[1];
+    const value = getTokenValue(key)
+        .split('.')[1];
 
     return JSON.parse(decodeURIComponent(escape(window.atob(value))))
 }
@@ -34,4 +42,5 @@ const logIOToggler = () => {
     }
 }
 
-export default logIOToggler
+export default logIOToggler;
+export { getTokenValue };

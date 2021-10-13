@@ -1,22 +1,10 @@
-import React, {useState, useContext} from 'react';
-import { useHistory } from 'react-router-dom';
-import './RegistrationForm.css';
+import React, {useState} from 'react'
 
-import fetchCors from '../../lib/fetchCors.js';
-import logIOToggler from '../../lib/logIOToggler.js'
-import { globalContext } from '../../App.js';
-
-function RegistrationForm() {
-        
-    const context = useContext(globalContext);
-
-    const [username, setUsername] = useState("");
+function EditProfile() {
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
-    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordVerify, setPasswordVerify] = useState("");
-    const [birthday, setBirthday] = useState(0);
     const [passwordErr, setPasswordErr] = useState("");
     const [isValid, setIsValid] = useState([]);
 
@@ -24,7 +12,7 @@ function RegistrationForm() {
 
     const history = useHistory();
 
-    const handleRegistration = async (e) => {
+    const handleChange = async (e) => {
         e.preventDefault();
 
         setIsValid(formValidation());
@@ -35,7 +23,7 @@ function RegistrationForm() {
         setIsSend(true);
 
         if(!isSend) {
-            const res = await fetchCors( "/api/user", "POST", 
+            const res = await fetchCors( "/api/user", "PATCH", 
                 JSON.stringify({
                     username: username,
                     firstName: firstname,
@@ -89,38 +77,28 @@ function RegistrationForm() {
 
         return isValid;
     }
-    
     return (
         <div>
-            <div className="frame">
-                <h1>Registration</h1>
-                    <form action="" onSubmit={handleRegistration}>
+            <h1>Profil ändern</h1>
+                    <form action="" onSubmit={handleChange}>
                         <div className="regContainer">
-                            <label htmlFor="Username" className="regLabel">Username:</label>
-                            <input type="text" name="Username" id="Username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-                            <label htmlFor="Firstname" className="regLabel">Firstname:</label>
+                            <label htmlFor="Firstname" className="profLabel">Firstname:</label>                            
                             <input type="text" name="Firstname" id="Firstname" placeholder="Firstname" value={firstname} onChange={(e) => setFirstname(e.target.value)}/>
-                            <label htmlFor="Lastname" className="regLabel">Lastname:</label>
+                            
+                            <label htmlFor="Lastname" className="profLabel">Lastname:</label>
                             <input type="text" name="Lastname" id="Lastname" placeholder="Lastname" value={lastname} onChange={(e) => setLastname(e.target.value)}/>
-                            <label htmlFor="Email" className="regLabel">Email:</label>
-                            <input type="email" name="Email" id="Email" placeholder="E-Mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-                            <label htmlFor="Password" className="regLabel">Password:</label>
+                            
                             <input type="password" name="Password" id="Password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-                            <label htmlFor="passwordRepeat" className="regLabel">Password repeat:</label>
+                            <label htmlFor="passwordRepeat" className="profLabel">Password repeat:</label>
                             <input type="password" name="passwordRepeat" id="passwordRepeat" placeholder="repeat Password" value={passwordVerify} onChange={(e) => setPasswordVerify(e.target.value)} required/>
-                        </div>
-                        <div className="birthday">
-                            <label htmlFor="age" className="regLabel">Birthdate</label>
-                            <input type="date" name="age" id="age" placeholder="yyyy-mm-dd" value={birthday} maxlength="10" onChange={(e) => setBirthday(e.target.value)} required/>
                         </div>
                             <div>
                                 {!isValid ? passwordErr : ""}
                             </div>
                             <button type="submit" className="button">Registrieren</button>
                     </form>
-            </div>
         </div>
     )
 }
 
-export default RegistrationForm
+export default EditProfile

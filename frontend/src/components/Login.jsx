@@ -20,10 +20,9 @@ function Login(props) {
         );
         
         const is = await res.json();
-        if(is)
-        if(is.auth) {
+        if(is.value.auth) {
             const isLogin = logIOToggler();
-            context.updateContext({
+            context.updateContext(context, {
                 isLogin: isLogin,
                 username: isLogin ? username : ''
             });
@@ -41,7 +40,7 @@ function Login(props) {
                     <Label for="password" hidden>Password</Label>
                     <Input type="password" name="Password" id="Password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                 </FormGroup>
-                <Button className="button" type="submit" >Login</Button>
+                <Button className="btn" type="submit">Login</Button>
             </Form>
         </div>
     )

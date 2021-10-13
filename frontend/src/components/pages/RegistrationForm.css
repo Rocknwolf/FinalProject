@@ -4,12 +4,8 @@
     box-sizing: border-box;
 }
 
-/* body{
-    background: linear-gradient(90deg, rgb(15, 15, 15), darkblue, black, darkblue, rgb(15, 15, 15));
-    color:cornsilk;
-} */
 .frame{
-    margin-top: 10%;
+    margin-top: 3%;
 }
 .regContainer, .birthday{
     display: flex;

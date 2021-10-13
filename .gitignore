@@ -1,8 +1,10 @@
 node_modules
 build
+backend/images
 *.env
 
 *lock.json
 *.lock
 
 yarn-error.log
+fpChat.log

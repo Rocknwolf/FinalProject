@@ -1,21 +1,48 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { io } from 'socket.io-client';
-import { globalContext } from '../App.js';
-import Navbar from './Navbar.jsx';
+
+import { globalContext, initContextValues } from '../App.js';
+import logIOToggler, { getTokenValue } from '../lib/logIOToggler.js';
+
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
+const chatDefault = () => [ { username: 'System', message: 'disconnected' } ];
 
 const Chat = () => {
+    
     const context = useContext(globalContext);
     const [socket, setSocket] = useState();
     const [messages, setMessages] = useState([]);
+    const [loginFirst, setLoginFirst] = useState('');
+
+    // eslint-disable-next-line no-unused-vars
+    const [reactListenerHelper, dispatchReactListenerHelper] = React.useReducer((state, action) => {
+        // if (action.type === 'contextUpdate') return context;
+        if (action.type === 'messagesUpdate') {
+            state.messages = messages;
+        }
+        return state;
+    }, {});
 
     useEffect(() => {
-        setSocket(socketInstance.connect());
+        if(!context.isLogin) {
+            if(socket) {
+                socket.disconnect();
+                setMessages(chatDefault);
+            }
+        }
+        if(context.isLogin) {
+            if(!socket) setSocket(socketInstance.connect());
+            if(socket) {
+                if(!socket.connected) socket.connect();
+            }
+        }
         return () => {
             if(socket) socket.disconnect();
-            setMessages([ 'disconnected' ]);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [context]);
 
     useEffect(() => {
         if(socket){
@@ -24,55 +51,92 @@ const Chat = () => {
                 /** messages.push({ username: 'system', message: `${context.username} connected` }); **/
                 /** setMessages([...messages]); **/
 
-            });
-            socket.on('init', (array) => {
+            })
+            .on('init', (array) => {
+                dispatchReactListenerHelper({ type: 'messagesUpdate' });
+                const messages = reactListenerHelper.messages;
+
                 messages.push(...array);
+                if(messages[0].username === 'System' && messages[0].message === 'disconnected')
+                    messages[0].message = 'connected';
                 setMessages([...messages]);
 
-            });
-
-            socket.on('message', (msgObj) => {
+            })
+            .on('message', (msgObj) => {
                 if(messages.length === 50) messages.shift();
                 messages.push(msgObj);
                 setMessages([...messages]);
+            })
+            .on('cookie', (cookie) => {
+                if(cookie) {
+                    const [name, value, options] = JSON.parse(cookie);
+                    cookies.set(name, value, options);
+                }
+            })
+            .on('disconnect', (reason) => {
+                if(!logIOToggler()) context.updateContext(context, initContextValues);
+                loginFirstMessage();
             });
         }
+        else setMessages(chatDefault);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [socket]);
 
     const socketInstance = io('ws://localhost:4200', {
         path: '/api/ws/',
-        autoConnect: false,
-        upgrade: false
+        // transports: ["polling", "websocket"],
+        // upgrade: true,
+        autoConnect: false
     });
 
     const submitHandler = (e) => {
         e.preventDefault();
-        const sendMessage = e.target.querySelector('#sendMessage').value
-        socket.send(sendMessage);
+        if(socket) {
+            if(socket.connected){
+                const sendMessage = e.target.querySelector('#sendMessage').value
+                const token = getTokenValue('token=');
+                socket.send(sendMessage, token);
+            }
+            else loginFirstMessage();
+        }
+        else loginFirstMessage();
     }
+    const loginFirstMessage = () => {
+        setLoginFirst('Login first');
+        setTimeout(() => setLoginFirst(''), 2000);
+    };
 
     return (
-        <div>
+        <div className="chat">
             <div className="chatTopBackground">
                 <h1 className="chatTitle" >Chat</h1>
             </div>
             
-            <Navbar/>
-            <div className="chatBox">
-                <div className="chatMessages">
-                    {
-                        messages.map((item, id) => 
-                            <div key={ id }>
-                                { `${item.username}: ${item.message}` }
-                            </div>
-                        )
-                    }
+            <div className="chatBackground">
+                <div className="chatBox">
+                    <div className="chatMessages">
+                        { loginFirst }
+                        {
+                            messages.map((item, id) => 
+                                <div key={ id }>
+                                    { `${item.username}: ${item.message}` }
+                                </div>
+                            )
+                        }
+                    </div>
+                    <form className="inputChat" action="" onSubmit={ submitHandler }>
+                        {/* <input type="text" id="sendMessage" maxlength="160" className="inputChatInput" /> */}
+                            <textarea   
+                                placeholder="Remember, be nice!" 
+                                type="text" id="sendMessage"
+                                cols="15" rows="5" 
+                                maxLength="320" 
+                                className="inputChatInput"
+                                required>
+                            </textarea>
+                        <button type="submit" className="chatButton">Send</button>
+                    </form>
                 </div>
-                <form action="" onSubmit={ submitHandler }>
-                    <input type="text" id="sendMessage" />
-                    <button type="submit">Send</button>
-                </form>
             </div>
         </div>
     )

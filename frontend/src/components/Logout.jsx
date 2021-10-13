@@ -1,27 +1,28 @@
 import React, { useContext } from 'react';
-import fetchCors from '../lib/fetchCors.js';
+import { useHistory } from 'react-router-dom';
 
+import fetchCors from '../lib/fetchCors.js';
 import logIOToggler from '../lib/logIOToggler.js';
-import { globalContext } from '../App.js';
+import { globalContext, initContextValues } from '../App.js';
 
 const Logout = () => {
 
     const context = useContext(globalContext); 
+    const history = useHistory();
 
     const logoutHandler = async (e) =>
     {
-        const error = await fetchCors('/api/auth', 'delete');
-        if(error.message) throw Error(error.message);     
+        const res = await fetchCors('/api/auth', 'delete');
+        // if(res.message) throw Error(res.message);     
         const isLogin = logIOToggler();
-        context.updateContext({
-            isLogin: isLogin,
-            username: isLogin ? context.username : ''
-        });
+        if(!isLogin) context.updateContext(context, initContextValues);
+
+        history.push('/');
     }
 
     return (
         <>
-            <button className="logoutButton inactive" onClick={logoutHandler}>Logout</button>
+            <button className="logoutBtn logoutButton inactive" onClick={logoutHandler}>Logout</button>
         </>
     )
 }

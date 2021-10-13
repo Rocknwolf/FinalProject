@@ -3,7 +3,6 @@ import express from 'express';
 import { Server as ioServer } from 'socket.io';
 import cookieParser from 'cookie-parser';
 import expressMongoSanitize from 'express-mongo-sanitize';
-import uploadRouter from './routers/upload.js';
 
 import database from './lib/db.mongoose.js';
 import errorHandler from './middlewares/errorHandler.js';
@@ -11,7 +10,6 @@ import errorHandler from './middlewares/errorHandler.js';
 import userRouter from './routers/user.js';
 import authRouter from './routers/auth.js';
 import ioRouter from './routers/ioRouter.js';
-import profileRouter from './routers/profile.js';
 import etb from './lib/expressTokenBlacklist.js';
 
 dotenv.config();
@@ -26,17 +24,20 @@ const io = new ioServer(server, {
     path: '/api/ws/',
     cors: {
         origin: process.env.CORS_FRONTEND,
-        pingInterval: 25000,
-        pingTimeout: 30000,
-        upgradeTimeout: 20000
+        methods: ["GET", "POST"]
     },
-    allowUpgrades: false,
+    // transports: ["polling", "websocket"],
+    // allowUpgrades: true,
+    pingInterval: 25000,
+    pingTimeout: 30000,
+    upgradeTimeout: 20000
 });
+
 
 //cors
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', process.env.CORS_FRONTEND);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     if(process.env.CORS_CREDENTIALS === 'true')
     res.header('Access-Control-Allow-Credentials', true);   // The only valid value for this header is true
@@ -53,12 +54,10 @@ app.use(cookieParser());
 // This module searches for any keys in objects that begin with a $ sign or contain a ., from req.body, req.query or req.params
 app.use(expressMongoSanitize({ replaceWith: '_' })); // default delete theese keys
 
-app.use('/api/user/profile/avatar', uploadRouter); //added
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 
-app.use('/api/ws', ioRouter(io));
-app.use('/api/profile', profileRouter);
+app.use('/api/ws', ioRouter(io, app));
 
 app.delete('/api/exit', ((req, res) => {
     //res.status(404).json();

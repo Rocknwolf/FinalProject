@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 
-import { errorOptions } from '../lib/errors.js';
+import { errorOptions, notFoundError } from '../lib/errors.js';
 import User from '../models/User.js';
 
 const login = async (req, res, next) => {
@@ -15,20 +15,19 @@ const login = async (req, res, next) => {
             user = await User.findByEmail(req.body.email);
             if(user) hashedPw = user.password;
         }
+
+        if(!user) throw notFoundError('user', 'user not in db');
         const check = await bcrypt.compare(req.body.password + process.env.PEPPER, hashedPw);
         if(check) {
             res.status(201);
-            res.payload = { login: "accepted" };
+            res.payload = { login: 'accepted' };
+            res.message = { value: { auth: true } };
+            if(!user.isEmailVerified) res.message.message = 'Pending Account. Please Verify Your Email!';
             return next();
         }
-        if (user.status != "Active") {
-            return res.status(401).send({
-              message: "Pending Account. Please Verify Your Email!",
-            });
-          }
         throw new Error('wrong password');
     } catch (e) {
-        next(errorOptions(e, 'login', 400, true));
+        next(errorOptions(e, 'login', 400, true, null, false, { auth: false }));
     }
 }
 

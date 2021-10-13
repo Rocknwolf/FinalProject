@@ -37,7 +37,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    avatarUri: {
+    avatarEndpoint: {
         type: String,
         default: "",
     },
@@ -56,40 +56,44 @@ const UserSchema = new mongoose.Schema({
         default: 'Pending'
     },
     confirmationCode: { 
-        type: String, 
-        unique: true },
-      roles: [
+        type: String
+    },
+    roles: [
         {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Role"
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Role"
         }
-      ]
+    ]
 }, { versionKey: false, timestamps: true });
 
 
 const User = mongoose.model('User', UserSchema,"users");
 
-const register = async ( usernameP, emailP, passwordP, birthDateP, firstNameP, lastNameP) => //addet
+const register = async ( username, email, password, birthDate, firstName, lastName) =>
 {
     return await User.create({
-        // avatarUri: avatarUriP, //addet
-        username: usernameP,
-        email: emailP,
-        password: passwordP,
-        birthDate: birthDateP,
-        firstName: firstNameP,
-        lastName: lastNameP
+        username: username,
+        email: email,
+        password: password,
+        birthDate: birthDate,
+        firstName: firstName,
+        lastName: lastName
     });
 }
 
-const findByEmail = async (emailP) =>
+const findByEmail = async (email) =>
 {
-    return await User.findOne({ email: emailP });
+    return await User.findOne({ email: email });
 }
 
-const findByUsername = async (usernameP) =>
+const findByUsername = async (username) =>
 {
-    return await User.findOne({ username: usernameP });
+    return await User.findOne({ username: username });
+}
+
+const reactivate = () =>
+{
+    return null;
 }
 
 const saveResettedPassword = () =>
@@ -97,12 +101,18 @@ const saveResettedPassword = () =>
     return null;
 }
 
-const suspend = () =>
+const setAvatar = async (email, endpoint) =>
 {
-    return null;
+    const updates = {
+        avatarEndpoint: endpoint
+    }
+    const options = {
+        new: false
+    }
+    return await User.findOneAndUpdate({ email: email }, updates, options);
 }
 
-const reactivate = () =>
+const suspend = () =>
 {
     return null;
 }
@@ -112,12 +122,21 @@ const deleteUser = async(email) =>
     return await User.findOneAndRemove({"email":email})
 }
 
+const updateUserByEmail = async (email, updates) => {
+    const options = {
+        new: true
+    }
+    return await User.findOneAndUpdate({ email: email }, updates, options);
+}
+
 export default {
     register,
     findByEmail,
     findByUsername,
-    saveResettedPassword,
-    suspend,
     reactivate,
+    saveResettedPassword,
+    setAvatar,
+    suspend,
     deleteUser,
+    updateUserByEmail
 };
