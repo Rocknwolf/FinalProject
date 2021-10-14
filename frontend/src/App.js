@@ -1,6 +1,6 @@
 import './App.css';
-import React, { createContext, useEffect, useState} from 'react';
-import { BrowserRouter as Router, Switch, Route, useHistory} from 'react-router-dom';
+import React, { createContext, useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header.jsx';
 import Navbar from './components/Navbar.jsx';
@@ -18,6 +18,7 @@ import Movies from './components/pages/Movies.jsx';
 
 import Chat from './components/Chat.jsx';
 
+import HistoryHelper from './components/HistoryHelper.jsx';
 import logIOToggler from './lib/logIOToggler.js'
 
 const globalContext = createContext();
@@ -26,7 +27,7 @@ const initContextValues = {
     isLogin: false,
     username: '',
     lang: document.lastElementChild.attributes.lang.value, // html lang attribute
-    profileData: null
+    profileData: null,
 }
 
 function App() {
@@ -41,14 +42,14 @@ function App() {
         }
     });
 
-    const history = useHistory();
+    const [historyHelper, setHistoryHelper] = useState(false);
     
     const setLogin = () => {
         const isLogin = logIOToggler();
 
         if(!isLogin && context.isLogin) {
             context.updateContext(context, initContextValues );
-            history.push('/');
+            setHistoryHelper(true);
         }
     };
 
@@ -65,7 +66,7 @@ function App() {
         (() => {
             interval = setInterval(() => {
                 dispatchReactIntervalHelper();
-            }, 60 * 1000);
+            }, 10 * 1000);
         })();
         return () => {
             clearInterval(interval);
@@ -98,8 +99,9 @@ function App() {
         <div className="App">
             <globalContext.Provider value={ context }>
                 <Router>
-                        <Header />
-                        <Navbar />
+                    <HistoryHelper historyHelper={historyHelper} setHistoryHelper={setHistoryHelper} />
+                    <Header />
+                    <Navbar />
                     <Switch>
                         <Route exact path="/" component={MainPage}/>
                         <Route path="/register" component={!context.isLogin ? RegistrationForm : null}/>
