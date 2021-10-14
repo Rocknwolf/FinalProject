@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import fetchCors from '../lib/fetchCors';
 
 import { globalContext } from '../App.js';
