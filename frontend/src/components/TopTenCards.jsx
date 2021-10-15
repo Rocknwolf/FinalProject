@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import topTen from '../images/top10.jpg';
 
-import { Card, Button, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
+import { Card, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
 
 function TopTenCards() {
     const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=03ea09ec53921e5dfaf14ebd92c56d08&language=de-DE&page=1";
@@ -11,7 +11,6 @@ function TopTenCards() {
         fetch(FEATURED_API)
         .then(res => res.json())
         .then(data=>{
-            console.log(data.results);
             setMovies(data.results);
         });
     }, []);   
@@ -24,12 +23,10 @@ function TopTenCards() {
                     <CardBody>
                     <CardTitle tag="h3">Blockbuster</CardTitle>
                     <CardText>Ein kleiner Auszug aus unserer Datenbank</CardText>
-                    <CardText>
                         <div>
                         {movies.length > 0 && 
-                        movies.slice(0, 10).map((movie) => <div key={movie.title} {...movie}> <a href={"http://localhost:3000/movies" + movie.backdrop_path}> {movie.title} </a></div>)} 
+                        movies.slice(0, 10).map((movie) => <div key={movie.title} > <a href={"http://localhost:3000/movies" + movie.backdrop_path}> {movie.title} </a></div>)} 
                         </div>
-                    </CardText>
                     </CardBody>
                 </Card>
             </div>

@@ -8,6 +8,8 @@ import './Profile.css';
 
 import Upload from '../Upload.jsx';
 
+import {Link} from 'react-router-dom'
+
 function Profil(props) {
     // e.preventDefault();
     const context = useContext(globalContext);
@@ -86,6 +88,7 @@ function Profil(props) {
                         </div>
                     : null
             }
+            <Link to="/edit-profile" ><button>Edit Profile</button></Link>
         </div>
     )
 }

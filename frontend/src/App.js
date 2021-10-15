@@ -19,6 +19,7 @@ import Movies from './components/pages/Movies.jsx';
 import Chat from './components/Chat.jsx';
 
 import logIOToggler from './lib/logIOToggler.js'
+import EditProfile from './components/pages/EditProfile.jsx';
 
 const globalContext = createContext();
 
@@ -105,6 +106,7 @@ function App() {
                         <Route path="/register" component={!context.isLogin ? RegistrationForm : null}/>
                         <Route path="/chat" component={Chat}/>
                         <Route path="/profile" component={context.isLogin ? Profile : null}/>
+                        <Route path="/edit-profile" component={EditProfile}/>
                         <Route path="/forum" component={Forum}/>
                         <Route path="/movies" component={Movies}/>
                         <Route path="/chatrules" component={RegelnChat}/>
