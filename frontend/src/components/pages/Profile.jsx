@@ -10,7 +10,7 @@ import Upload from '../Upload.jsx';
 
 import {Link} from 'react-router-dom'
 
-function Profil(props) {
+function Profile (props) {
     // e.preventDefault();
     const context = useContext(globalContext);
     const [profileData, setProfileData] = useState({});
