@@ -1,13 +1,13 @@
 import './App.css';
-import React, { createContext, useEffect, useState} from 'react';
-import { BrowserRouter as Router, Switch, Route, useHistory} from 'react-router-dom';
+import React, { createContext, useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header.jsx';
 import Navbar from './components/Navbar.jsx';
 import RegistrationForm from './components/pages/RegistrationForm';
 import MainPage from './components/pages/MainPage';
 import Forum from './components/Forum';
-import Profile from './components/pages/Profil.jsx';
+import Profile from './components/pages/Profile.jsx';
 import RegelnChat from './components/RegelnChat.jsx';
 import FAQ from './components/FAQ.jsx';
 import DSGVO from './components/pages/DSGVO.jsx';
@@ -18,6 +18,7 @@ import Movies from './components/pages/Movies.jsx';
 
 import Chat from './components/Chat.jsx';
 
+import HistoryHelper from './components/HistoryHelper.jsx';
 import logIOToggler from './lib/logIOToggler.js'
 import EditProfile from './components/pages/EditProfile.jsx';
 
@@ -27,7 +28,7 @@ const initContextValues = {
     isLogin: false,
     username: '',
     lang: document.lastElementChild.attributes.lang.value, // html lang attribute
-    profileData: null
+    profileData: null,
 }
 
 function App() {
@@ -42,14 +43,14 @@ function App() {
         }
     });
 
-    const history = useHistory();
+    const [historyHelper, setHistoryHelper] = useState(false);
     
     const setLogin = () => {
         const isLogin = logIOToggler();
 
         if(!isLogin && context.isLogin) {
             context.updateContext(context, initContextValues );
-            history.push('/');
+            setHistoryHelper(true);
         }
     };
 
@@ -66,7 +67,7 @@ function App() {
         (() => {
             interval = setInterval(() => {
                 dispatchReactIntervalHelper();
-            }, 60 * 1000);
+            }, 10 * 1000);
         })();
         return () => {
             clearInterval(interval);
@@ -99,8 +100,9 @@ function App() {
         <div className="App">
             <globalContext.Provider value={ context }>
                 <Router>
-                        <Header />
-                        <Navbar />
+                    <HistoryHelper historyHelper={historyHelper} setHistoryHelper={setHistoryHelper} />
+                    <Header />
+                    <Navbar />
                     <Switch>
                         <Route exact path="/" component={MainPage}/>
                         <Route path="/register" component={!context.isLogin ? RegistrationForm : null}/>

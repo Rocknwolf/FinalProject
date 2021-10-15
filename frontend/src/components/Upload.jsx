@@ -3,7 +3,7 @@ import fetchCors from '../lib/fetchCors';
 
 import { globalContext } from '../App.js';
 
-const Upload = ({setProfileData}) => {
+const Upload = () => {
     const context = useContext(globalContext);
     const [isBlocking, setIsBlocking] = useState(false);
     const [avatar, setAvatar] = useState(
@@ -32,11 +32,10 @@ const Upload = ({setProfileData}) => {
     
             if(res) {
                 const resObj = await res.json();
-                const profileData = { ...context.profileData }
-                profileData.avatarURI = resObj.src;
                 if(resObj.src){
-                    context.updateContext(context, { avatarURI: profileData });
-                    setProfileData(profileData);
+                    const profileData = { ...context.profileData }
+                    profileData.avatarURI = resObj.src;
+                    context.updateContext(context, { profileData: profileData });
                 }
             }
             setIsBlocking(false);

@@ -12,8 +12,8 @@ const Logout = () => {
 
     const logoutHandler = async (e) =>
     {
-        const res = await fetchCors('/api/auth', 'delete');
-        // if(res.message) throw Error(res.message);     
+        await fetchCors('/api/auth', 'delete');
+
         const isLogin = logIOToggler();
         if(!isLogin) context.updateContext(context, initContextValues);
 

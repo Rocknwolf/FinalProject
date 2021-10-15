@@ -21,11 +21,17 @@ function TopTenCards() {
                 <Card className="card">
                     <CardImg className="cardImg" src={topTen} alt="Card image cap" />
                     <CardBody>
-                    <CardTitle tag="h3">Blockbuster</CardTitle>
-                    <CardText>Ein kleiner Auszug aus unserer Datenbank</CardText>
+                        <CardTitle tag="h3">Blockbuster</CardTitle>
+                        <CardText>Ein kleiner Auszug aus unserer Datenbank</CardText>
                         <div>
-                        {movies.length > 0 && 
-                        movies.slice(0, 10).map((movie) => <div key={movie.title} > <a href={"http://localhost:3000/movies" + movie.backdrop_path}> {movie.title} </a></div>)} 
+                        {
+                            movies.length > 0 && 
+                            movies.slice(0, 10).map((movie) =>
+                                <div key={movie.title}>
+                                    <a href={"http://localhost:3000/movies" + movie.backdrop_path}> {movie.title} </a>
+                                </div>
+                            )
+                        } 
                         </div>
                     </CardBody>
                 </Card>
