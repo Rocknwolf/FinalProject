@@ -1,6 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react';
+import { useHistory } from 'react-router-dom';
+import './RegistrationForm.css';
+
+import fetchCors from '../../lib/fetchCors.js';
+import logIOToggler from '../../lib/logIOToggler.js'
+import { globalContext } from '../../App.js';
 
 function EditProfile() {
+    const context = useContext(globalContext);
+
+    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
     const [password, setPassword] = useState("");
@@ -23,15 +33,16 @@ function EditProfile() {
         setIsSend(true);
 
         if(!isSend) {
-            const res = await fetchCors( "/api/user", "PATCH", 
+            const res = await fetchCors( "/api/user/profile", "PATCH", 
                 JSON.stringify({
-                    username: username,
-                    firstName: firstname,
-                    lastName: lastname,
-                    email: email,
-                    password: password,
-                    birthDate: birthday,
-                    // passwordVerify
+                    updates: {
+                        username: username,
+                        email: email, // new value
+                        password: password,
+                        firstName: firstname,
+                        lastName: lastname
+                    },
+                    email: email //searched user
                 })   
             );
             
@@ -82,20 +93,27 @@ function EditProfile() {
             <h1>Profil ändern</h1>
                     <form action="" onSubmit={handleChange}>
                         <div className="regContainer">
+
+                            <label htmlFor="Username" className="regLabel">Username:</label>
+                            <input type="text" name="Username" id="Username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                            
+                            <label htmlFor="Email" className="regLabel">Email:</label>
+                            <input type="email" name="Email" id="Email" placeholder="E-Mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+
+                            <label htmlFor="Password" className="regLabel">Password:</label>
+                            <input type="password" name="Password" id="Password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+
                             <label htmlFor="Firstname" className="profLabel">Firstname:</label>                            
                             <input type="text" name="Firstname" id="Firstname" placeholder="Firstname" value={firstname} onChange={(e) => setFirstname(e.target.value)}/>
                             
                             <label htmlFor="Lastname" className="profLabel">Lastname:</label>
                             <input type="text" name="Lastname" id="Lastname" placeholder="Lastname" value={lastname} onChange={(e) => setLastname(e.target.value)}/>
-                            
-                            <input type="password" name="Password" id="Password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-                            <label htmlFor="passwordRepeat" className="profLabel">Password repeat:</label>
-                            <input type="password" name="passwordRepeat" id="passwordRepeat" placeholder="repeat Password" value={passwordVerify} onChange={(e) => setPasswordVerify(e.target.value)} required/>
+
                         </div>
                             <div>
                                 {!isValid ? passwordErr : ""}
                             </div>
-                            <button type="submit" className="button">Registrieren</button>
+                            <button type="submit" className="button">update Profile</button>
                     </form>
         </div>
     )

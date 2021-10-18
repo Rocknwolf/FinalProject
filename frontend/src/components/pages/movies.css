@@ -68,7 +68,7 @@ header{
     overflow: auto;
     max-height: 100%;
     transform: translateY(102%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 }
 
 .movie:hover .movieOverview{

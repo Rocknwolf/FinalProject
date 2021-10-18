@@ -9,7 +9,6 @@ import '../components/ImageCarousel.css';
 
 function ImageCarousel() {
     return (
-        <div>
             <div className="container">
                 <div className="images">
                     {/* <img className="imgC" src={img1}  alt="bild"/>
@@ -34,7 +33,6 @@ function ImageCarousel() {
                     <iframe src="https://www.youtube-nocookie.com/embed/AJKVVUfHSyQ?autoplay=1&loop=1&mute=1&controls=0&playlist=AJKVVUfHSyQ&vq=tiny" title="YouTube video player" className="imgC"></iframe>
                 </div>
             </div>
-        </div>
     )
 }
 

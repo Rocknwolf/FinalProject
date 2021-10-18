@@ -10,12 +10,14 @@ import Footer from '../Footer.jsx';
 function MainPage() {
     return (
         <div className="mainPageBody">
+            <div className="backgroundBoxCarouselCards">
             <div className="mainCarousel">
                 <ImageCarousel/>
             </div>
 
             <div className="mainCards">
                 <TopTenCards/>
+            </div>
             </div>
 
             <span className="divider"></span>
