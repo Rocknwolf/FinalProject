@@ -27,14 +27,15 @@ function RegistrationForm() {
     const handleRegistration = async (e) => {
         e.preventDefault();
 
-        setIsValid(formValidation());
-        if (!isValid) {
+        const _isValid = formValidation();
+        setIsValid(_isValid);
+        if (!_isValid) {
             return;
         }
 
-        setIsSend(true);
+        if(!isSend && _isValid) {
+            setIsSend(true);
 
-        if(!isSend) {
             const res = await fetchCors( "/api/user", "POST", 
                 JSON.stringify({
                     username: username,
@@ -58,10 +59,11 @@ function RegistrationForm() {
                 });
             
             }
+
             setTimeout(() => {
                 setIsSend(false);
             }, 1000);
-    
+            
             history.push('/');
         }
 
