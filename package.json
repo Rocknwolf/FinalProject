@@ -8,14 +8,17 @@
     "seed": "yarn --cwd ./backend/ seed",
     "down": "yarn --cwd ./backend/ down",
 
-    "devWin": "start powershell -NoExit -Command \"yarn --cwd ./frontend/ start \" && start powershell -NoExit -Command \"yarn --cwd ./backend/ dev \"",
-    "staticWin": "start powershell -NoExit -Command \"yarn --cwd ./backend/ dev \"",
-    "startWin": "start powershell -NoExit -Command \"yarn --cwd ./backend/ start \"",
-
     "setDev": "bash -c 'cd ./backend/ && ln -sf env.dev.env .env'",
     "setProd": "bash -c 'cd ./backend/ && ln -sf env.prod.env .env'",
 
+    "devWin": "start powershell -NoExit -Command \"yarn --cwd ./frontend/ start \" && start powershell -NoExit -Command \"yarn --cwd ./backend/ dev \"",
+    "staticWin": "start powershell -NoExit -Command \"yarn --cwd ./backend/ dev \"",
+    "startWin": "start powershell -NoExit -Command \"yarn --cwd ./backend/ start \"",
+    
+    "setDevWin":  "Start-Process powershell -Verb runAs -ArgumentList \"-NoExit -Command `\"cd $(pwd)/backend/ ; Remove-Item -Force .env; New-Item -ItemType SymbolicLink -Path .env -Target env.dev.env; cd ..\"",
+    "setProdWin": "bash -c 'cd ./backend/ && ln -sf env.prod.env .env'",
+    
     "devInstall": "gnome-terminal --tab -- bash -c 'cd ./frontend/ && yarn install' && gnome-terminal --tab -- bash -c 'cd ./backend/ && yarn install'",
-    "devInstallWin": "start powershell -Command \"cd ./frontend/ && yarn install \" && start powershell -Command \" cd ./backend/ && yarn install \""
+    "devInstallWin": "start powershell -Command \"cd ./frontend/ ; yarn install \" && start powershell -Command \" cd ./backend/ ; yarn install \""
   }
 }

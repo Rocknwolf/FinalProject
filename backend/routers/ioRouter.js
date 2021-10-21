@@ -6,7 +6,7 @@ import { Console } from 'console';
 import ChildProcess from 'child_process';
 
 import jwt from 'jsonwebtoken';
-import tokenMW from '../middlewares/token.js'
+import tokenMW from '../middlewares/token.js';
 
 const ioRouter = (io, app) => {
     const router = express.Router();
