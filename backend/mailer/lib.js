@@ -48,7 +48,6 @@ const _renderMail = async ({ template, vars }) => {
 const _processMail = async ({ subject, recipients, html, retry, failureCounter, callback }) => {
     return new Promise((resolve, reject) => {
         const transporter = mailer.createTransport({ ...config.transporter });
-        console.log(config.transporter, transporter);
         transporter.use("compile", htmlToText({ tags: { img: { format: "skip" } } }));
 
         transporter.sendMail(
@@ -63,7 +62,6 @@ const _processMail = async ({ subject, recipients, html, retry, failureCounter, 
 
                 if (error !== null) {
                     if (failureCounter >= retry) return reject(error);
-                    console.log(failureCounter);
 
                     await new Promise((resolve) => setTimeout(resolve, 3000));
                     return _processMail({
