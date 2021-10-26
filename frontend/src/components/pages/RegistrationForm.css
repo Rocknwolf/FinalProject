@@ -22,10 +22,33 @@
     align-items: center;
 }
 input{
-    background-color: black;
     width: 60%;
-    height: 30px;
+    height: 36px;
     font-size: larger;
+    border-radius: 15px;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.error{
+    color: red;
+    font-size: larger;
+    font-weight: bold;
+    animation-name: animation_blinkError;
+    animation-timing-function: ease-in;
+    animation-duration: 1.5s; 
+    animation-iteration-count: infinite; 
+}
+@keyframes animation_blinkError{
+    0% { opacity: 1; }
+    50% { opacity: 0.1; }
+    100% { opacity: 1; }    
+}
+@keyframes animation_blinkError {
+    0% { color: white; }
+    25% { color: rgb(255, 0, 0); }
+    50% { color: black; }
+    75% { color: rgb(255, 0, 0); }
+    100% { color: white; }    
 }
 .regLabel{
     margin-top: 0.5%;
