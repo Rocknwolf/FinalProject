@@ -44,6 +44,9 @@ const register = async (req, res, next) => {
         res.emailVerificationCode = uuid;
         next(); //login
     } catch (e) {
+        if(e.keyValue){
+            next(errorOptions(e, 'register', 400, false, e.keyValue))
+        }
         next(errorOptions(e, 'register'));
     }
 }

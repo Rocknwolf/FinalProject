@@ -57,7 +57,7 @@ app.use(expressMongoSanitize({ replaceWith: '_' })); // default delete theese ke
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 
-// app.use('/api/ws', ioRouter(io, app));
+app.use('/api/ws', ioRouter(io, app));
 
 app.delete('/api/exit', ((req, res) => {
     //res.status(404).json();

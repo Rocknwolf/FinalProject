@@ -10,17 +10,16 @@ mongoose.connect(
 		// mongoose ver 6.x
 		// defaults to connection uri
 		// auth: { username: 'root', password: 'example' },
-		authSource: 'admin',
+		authSource: 'admin'
 
 		// mongoose ver 5.x
-		auth: {
-			username: 'root', password: 'example',
-			authSource: 'admin'
-		},
+		// auth: {
+		// 	authSource: 'admin'
+		// },
 		// user: 'root',
 		// pass: 'example'
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
+		// useNewUrlParser: true,
+		// useUnifiedTopology: true,
 		// useFindAndModify: false,
 		// useCreateIndex: true,
 

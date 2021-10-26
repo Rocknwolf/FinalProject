@@ -8,6 +8,8 @@
     "seed": "yarn --cwd ./backend/ seed",
     "down": "yarn --cwd ./backend/ down",
 
+    "devSven": "gnome-terminal --tab -- bash -c 'yarn --cwd ./frontend/ startSven' && gnome-terminal --tab -- bash -c 'yarn --cwd ./backend/ dev'",
+
     "setDev": "bash -c 'cd ./backend/ && ln -sf env.dev.env .env'",
     "setProd": "bash -c 'cd ./backend/ && ln -sf env.prod.env .env'",
 
