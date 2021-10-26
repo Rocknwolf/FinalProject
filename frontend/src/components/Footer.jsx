@@ -19,7 +19,7 @@ function Footer(props) {
                         <DropdownMenu>
                             <DropdownItem><a href="/faq"> FAQ </a></DropdownItem>
                             <DropdownItem><a href="/chatrules"> Regeln </a></DropdownItem>
-                            <DropdownItem><a href="http"> Über uns </a></DropdownItem>
+                            <DropdownItem><a href="/about"> Über uns </a></DropdownItem>
                         </DropdownMenu>
                     </ButtonDropdown>
 

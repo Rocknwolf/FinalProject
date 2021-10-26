@@ -23,16 +23,23 @@
 
 /* InputTypes */
 input[type="text"]{
-    background-color: rgba(0, 0, 139, 0.315);
+    background-color: rgba(0, 0, 139, 0.582);
+    color: white;
+    font-weight: bold;
 }
 input[type="password"]{
-    background-color: rgba(0, 0, 139, 0.315);
+    background-color: rgba(0, 0, 139, 0.582);
+    color: white;
+    font-weight: bold;
 }
 input[type="email"]{
-    background-color: rgba(0, 0, 139, 0.315);
+    background-color: rgba(0, 0, 139, 0.582);
+    color: white;
+    font-weight: bold;
 }
 input[type="date"]{
-    background-color: rgba(0, 0, 139, 0.315);
+    background-color: rgba(0, 0, 139, 0.582);
+    color: white;
 }
 
 /* Navigation */
@@ -270,6 +277,42 @@ input[type="date"]{
     animation-timing-function: ease-in;
     animation-duration: 1.5s; 
     animation-iteration-count: infinite;   
+}
+
+/* Ueber uns */
+
+.aboutBox{
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem;
+}
+.aboutCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+.aboutName{
+    opacity: 0.5;
+}
+.aboutImage{
+    height: 300px;
+    width: 300px;
+    opacity: 0.6;
+    border: 10px solid rgba(255, 255, 255, 0.151);
+    border-radius: 50%;
+}
+.linkedin{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+.linkedin:hover{
+    height: 70px;
+    width: 70px;
+    opacity: 1;
 }
 
 @keyframes animation_blink {
