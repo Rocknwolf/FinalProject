@@ -1,5 +1,6 @@
 import process from "process";
-import sendMail from "./lib";
+import sendMail from "./lib.js";
+import {v4 as uuidV4} from "uuid";
 
 
 const sendPasswordReset = async (email, name, resetCode) => {
@@ -15,31 +16,38 @@ const sendPasswordReset = async (email, name, resetCode) => {
   });
 };
 
-const sendWelcome = async (email, name) => {
+const sendWelcome = async (req, res, next) => {
+  const email = req.body.email;
   await sendMail({
     recipients: [email],
     subject: "Welcome",
     mailType: "welcome",
     vars: {
-      username: name,
+      username: req.body.username,
       userEmail: email,
     },
   });
+  next();
 };
- const sendConfirmation = async (email, name, veryficationCode) => {
-   await sendMail({
+
+const sendConfirmation = async (req, res, next) => {
+  const email = req.body.email;
+
+  await sendMail({
     recipients: [email],
     subject: "Please Confirm Your Account!",
     mailType: "confirmation",
     vars: {
-      username: name,
+      username: req.body.username,
       userEmail: email,
-      virificationLink: `${process.env.NEXTAUTH_URL}/auth/verify?verificationCode=${verificationCode}`,
+      verificationLink: `${process.env.NEXTAUTH_URL}/api/user/emailVerification/${uuidV4()}`,
     },
   });
- };
+  next();
+};
 
- const sendGoodBye = async (email, name) => {
+const sendGoodBye = async (email, name) => {
+
   await sendMail({
     recipients: [email],
     subject: "GoodBye",
@@ -86,79 +94,76 @@ const sendWelcome = async (email, name) => {
 /*
   Calculate crc32 of something.
 */
-let crc32 = (function() {
-  let c, crcTable = []; // generate crc table
+// let crc32 = (function() {
+//   let c, crcTable = []; // generate crc table
   
-  for (let n = 0; n < 256; n++) {
-    c = n;
+//   for (let n = 0; n < 256; n++) {
+//     c = n;
     
-    for (let k = 0; k < 8; k++) {
-      c = ((c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1));
-    }
+//     for (let k = 0; k < 8; k++) {
+//       c = ((c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1));
+//     }
     
-    crcTable[n] = c;
-  }
+//     crcTable[n] = c;
+//   }
   
-  return function(str) {
-    let crc = 0 ^ (-1); // calculate actual crc
+//   return function(str) {
+//     let crc = 0 ^ (-1); // calculate actual crc
     
-    for (let i = 0; i < str.length; i++) {
-      crc = (crc >>> 8) ^ crcTable[(crc ^ str.charCodeAt(i)) & 0xFF];
-    }
+//     for (let i = 0; i < str.length; i++) {
+//       crc = (crc >>> 8) ^ crcTable[(crc ^ str.charCodeAt(i)) & 0xFF];
+//     }
     
-    return (crc ^ (-1)) >>> 0;
-  }
-})();
+//     return (crc ^ (-1)) >>> 0;
+//   }
+// })();
 
 
-function uuid() {
-  let d = (Date.now !== undefined && typeof Date.now === "function") ? Date.now() : new Date().getTime();
+// function uuid() {
+//   let d = (Date.now !== undefined && typeof Date.now === "function") ? Date.now() : new Date().getTime();
   
-  if (window.performance && typeof window.performance.now === "function")
-    d += performance.now();
+//   if (window.performance && typeof window.performance.now === "function")
+//     d += performance.now();
   
-  let uuid = "xxxxxxxx-xxxx-4xxxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
-    let r = (d + Math.random() * 16) % 16 | 0;
-    d = Math.floor(d / 16);
-    return (c == "x" ? r : (r & 0x3 | 0x8)).toString(16);
-  });
+//   let uuid = "xxxxxxxx-xxxx-4xxxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+//     let r = (d + Math.random() * 16) % 16 | 0;
+//     d = Math.floor(d / 16);
+//     return (c == "x" ? r : (r & 0x3 | 0x8)).toString(16);
+//   });
   
-  return uuid;
-}
+//   return uuid;
+// }
 
 
-function qs(s) {
-  return document.querySelector(s);
-}
+// function qs(s) {
+//   return document.querySelector(s);
+// }
 
-let expirationTimeInMilliseconds = 30 * 1000;
+// let expirationTimeInMilliseconds = 30 * 1000;
 
-let verification = qs(".verification"),
-    verificationCode = qs(".verification .code");
+// let verification = qs(".verification"),
+//     verificationCode = qs(".verification .code");
 
-const crcPattern = "00000000";
+// const crcPattern = "00000000";
 
-function showNewVerificationCode() {
-  let nextCode = crc32(uuid()).toString(16).toUpperCase();
-  nextCode = crcPattern.split(0, crcPattern.length - nextCode.length) + nextCode;
+// function showNewVerificationCode() {
+//   let nextCode = uuid().toUpperCase();
+//   nextCode = crcPattern.split(0, crcPattern.length - nextCode.length) + nextCode;
   
-  verification.classList.remove("running");
-  verificationCode.innerHTML = nextCode;
-  verification.offsetWidth = verification.offsetWidth;
-  verification.classList.add("running");
+//   verification.classList.remove("running");
+//   verificationCode.innerHTML = nextCode;
+//   verification.offsetWidth = verification.offsetWidth;
+//   verification.classList.add("running");
   
-  setTimeout(showNewVerificationCode, expirationTimeInMilliseconds);
-}
+//   setTimeout(showNewVerificationCode, expirationTimeInMilliseconds);
+// }
 
-showNewVerificationCode();
+// showNewVerificationCode();
 
 
- export default {
-   sendPasswordReset,
-   sendWelcome,
-   sendConfirmation,
-   sendGoodBye,
-   uuid,
-   qs,
-   showNewVerificationCode
- };
+export default {
+  sendPasswordReset,
+  sendWelcome,
+  sendConfirmation,
+  sendGoodBye,
+};
