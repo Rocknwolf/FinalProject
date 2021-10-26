@@ -1,6 +1,6 @@
 import process from "process";
 import sendMail from "./lib.js";
-import {v4} from "uuid";
+import {v4 as uuidV4} from "uuid";
 
 
 const sendPasswordReset = async (email, name, resetCode) => {
@@ -18,7 +18,6 @@ const sendPasswordReset = async (email, name, resetCode) => {
 
 const sendWelcome = async (req, res, next) => {
   const email = req.body.email;
-
   await sendMail({
     recipients: [email],
     subject: "Welcome",
@@ -41,7 +40,7 @@ const sendConfirmation = async (req, res, next) => {
     vars: {
       username: req.body.username,
       userEmail: email,
-      verificationLink: `${process.env.NEXTAUTH_URL}/api/user/emailVerification/${res.emailVerificationCode}`,
+      verificationLink: `${process.env.NEXTAUTH_URL}/api/user/emailVerification/${uuidV4()}`,
     },
   });
   next();
