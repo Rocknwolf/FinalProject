@@ -114,7 +114,7 @@ function RegistrationForm() {
                         </div>
                         <div className="birthday">
                             <label htmlFor="age" className="regLabel">Birthdate</label>
-                            <input type="date" name="age" id="age" placeholder="yyyy-mm-dd" value={birthday} maxlength="10" onChange={(e) => setBirthday(e.target.value)} required/>
+                            <input type="date" name="age" id="age" placeholder="yyyy-mm-dd" value={birthday} maxLength="10" onChange={(e) => setBirthday(e.target.value)} required/>
                         </div>
                             <div>
                                 {!isValid ? passwordErr : ""}
