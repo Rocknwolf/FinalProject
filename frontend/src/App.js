@@ -13,6 +13,7 @@ import FAQ from './components/FAQ.jsx';
 import DSGVO from './components/pages/DSGVO.jsx';
 import Impressum from './components/pages/Impressum.jsx';
 import AGB from './components/pages/AGB.jsx';
+import About from './components/pages/About.jsx';
 
 import Movies from './components/pages/Movies.jsx';
 
@@ -116,6 +117,7 @@ function App() {
                         <Route path="/dsgvo" component={DSGVO}/>
                         <Route path="/impressum" component={Impressum}/>
                         <Route path="/agb" component={AGB}/>
+                        <Route path="/about" component={About}/>
                     </Switch>
                 </Router>
             </globalContext.Provider>

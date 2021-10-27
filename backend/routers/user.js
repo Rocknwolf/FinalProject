@@ -14,6 +14,7 @@ import cloudinary from '../middlewares/cloudinary.js';
 import userRegister from '../validations/userRegister.js';
 import userProfile from '../validations/userProfile.js';
 import userAvatar from '../validations/userAvatar.js';
+import email from '../mailer/email.js';
 
 token.verifyToken.unless = expressUnless;
 const router = express.Router();
@@ -62,6 +63,8 @@ router.post(
     regexValidator(/^((?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[ °^!§$%&\/()=?<>|\'\"`´µ€@²³#+*~_-]).+)$/, 'body', 'password'),
     xssSanitize('body', [ 'username', 'firstName', 'lastName' ]), // same as 'username firstName lastName'
     userController.register,
+    email.sendWelcome,
+    email.sendConfirmation,
     authController.login,
     token.signToken(+process.env.TOKEN_DURATION * 60)
 );

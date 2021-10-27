@@ -3,6 +3,7 @@ import fs from 'fs';
 
 import { errorOptions, notFoundError} from '../lib/errors.js';
 import User from '../models/User.js';
+import {v4 as uuidV4} from 'uuid';
 
 const hashPassword = async (password) => {
     try {
@@ -29,18 +30,23 @@ const deleteUser = async (req, res, next) => {
 const register = async (req, res, next) => {
     try {
         const hashedPw = await hashPassword(req.body.password);
-
+        const uuid = uuidV4();
         await User.register(
             req.body.username.toLowerCase(),
             req.body.email,
             hashedPw,
             req.body.birthDate,
+            uuid,
             req.body.firstName || '',
             req.body.lastName || ''
         );
 
+        res.emailVerificationCode = uuid;
         next(); //login
     } catch (e) {
+        if(e.keyValue){
+            next(errorOptions(e, 'register', 400, false, e.keyValue))
+        }
         next(errorOptions(e, 'register'));
     }
 }

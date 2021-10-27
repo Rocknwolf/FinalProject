@@ -69,13 +69,14 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema,"users");
 
-const register = async ( username, email, password, birthDate, firstName, lastName) =>
+const register = async ( username, email, password, birthDate, uuid, firstName, lastName) =>
 {
     return await User.create({
         username: username,
         email: email,
         password: password,
         birthDate: birthDate,
+        emailVerificationCode: uuid,
         firstName: firstName,
         lastName: lastName
     });

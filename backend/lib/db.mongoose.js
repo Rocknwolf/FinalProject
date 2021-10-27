@@ -9,7 +9,7 @@ mongoose.connect(
 	{
 		// mongoose ver 6.x
 		// defaults to connection uri
-		//auth: { username: 'root', password: 'example' },
+		// auth: { username: 'root', password: 'example' },
 		authSource: 'admin'
 
 		// mongoose ver 5.x

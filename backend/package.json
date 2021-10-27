@@ -22,8 +22,6 @@
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.1.0",
     "express-unless": "^1.0.0",
-    "file-system": "^2.2.2",
-    "fs": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.5",
     "multer": "^1.4.3",
