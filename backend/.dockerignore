@@ -1,7 +1,0 @@
-node_modules
-.gitignore
-env.sample
-env.dev.env
-env.prod.env
-docker-compose.yml
-seed.js
