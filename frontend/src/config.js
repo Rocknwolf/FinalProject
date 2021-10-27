@@ -1,7 +1,7 @@
 
 const config = {
-    host: 'http://localhost:4200',
-    fetch_credentials: 'include'
+    host: window.location.origin,
+    fetch_credentials: 'same-origin'
 };
 
 export default config;

@@ -1,12 +1,12 @@
 import './App.css';
 import React, { createContext, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Header from './components/Header.jsx';
 import Navbar from './components/Navbar.jsx';
-import RegistrationForm from './components/pages/RegistrationForm';
-import MainPage from './components/pages/MainPage';
-import Forum from './components/Forum';
+import RegistrationForm from './components/pages/RegistrationForm.jsx';
+import MainPage from './components/pages/MainPage.jsx';
+import Forum from './components/Forum.jsx';
 import Profile from './components/pages/Profile.jsx';
 import RegelnChat from './components/RegelnChat.jsx';
 import FAQ from './components/FAQ.jsx';
@@ -33,7 +33,6 @@ const initContextValues = {
 }
 
 function App() {
-
     const [context, setContext] = useState({
         ...initContextValues,
         updateContext: (context, updates) => {
@@ -123,7 +122,6 @@ function App() {
             </globalContext.Provider>
         </div>
     );
-    
 }
 
 export default App;

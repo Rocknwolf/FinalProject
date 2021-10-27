@@ -52,12 +52,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // This module searches for any keys in objects that begin with a $ sign or contain a ., from req.body, req.query or req.params
+
 app.use(expressMongoSanitize({ replaceWith: '_' })); // default delete theese keys
 
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 
 app.use('/api/ws', ioRouter(io, app));
+app.use(express.static('build'));
 
 app.delete('/api/exit', ((req, res) => {
     //res.status(404).json();
@@ -65,3 +67,6 @@ app.delete('/api/exit', ((req, res) => {
 }));
 
 app.use(errorHandler);
+app.get('/', (req, res) => {
+    res.sendFile('build/index.html');
+});

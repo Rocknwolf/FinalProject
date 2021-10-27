@@ -1,6 +1,7 @@
 node_modules
 build
 backend/images
+mongo_data
 *.env
 
 *lock.json
