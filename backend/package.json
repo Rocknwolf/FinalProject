@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node":"16"
+  },
   "scripts": {
     "dev": "yarn start && nodemon server.js",
     "start": "docker-compose up -d mongo && docker-compose ps && echo \"*** Run 'yarn stop' or 'yarn down' once you are done ***\"",
