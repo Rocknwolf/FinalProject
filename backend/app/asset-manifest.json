@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a10a581d.chunk.css",
+    "main.js": "/static/js/main.c5fb3dec.chunk.js",
+    "main.js.map": "/static/js/main.c5fb3dec.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5ab64380.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5ab64380.js.map",
+    "static/js/2.784b9a81.chunk.js": "/static/js/2.784b9a81.chunk.js",
+    "static/js/2.784b9a81.chunk.js.map": "/static/js/2.784b9a81.chunk.js.map",
+    "static/js/3.2f1ce8bc.chunk.js": "/static/js/3.2f1ce8bc.chunk.js",
+    "static/js/3.2f1ce8bc.chunk.js.map": "/static/js/3.2f1ce8bc.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.36437182629dfb679731acefae0cf790.js": "/precache-manifest.36437182629dfb679731acefae0cf790.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.a10a581d.chunk.css.map": "/static/css/main.a10a581d.chunk.css.map",
+    "static/js/2.784b9a81.chunk.js.LICENSE.txt": "/static/js/2.784b9a81.chunk.js.LICENSE.txt",
+    "static/media/Grim-Avatar.png": "/static/media/Grim-Avatar.d922e0a0.png",
+    "static/media/brain.jpg": "/static/media/brain.1715f12c.jpg",
+    "static/media/MainPage.css": "/static/media/restricted.4db6cb41.jpg",
+    "static/media/linkIn.png": "/static/media/linkIn.8d9b5acb.png",
+    "static/media/logo.jpg": "/static/media/logo.ac38cc3e.jpg",
+    "static/media/RegistrationForm.css": "/static/media/silver.5ce6f8b2.jpg",
+    "static/media/top10.jpg": "/static/media/top10.2c3de0be.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5ab64380.js",
+    "static/js/2.784b9a81.chunk.js",
+    "static/css/main.a10a581d.chunk.css",
+    "static/js/main.c5fb3dec.chunk.js"
+  ]
+}

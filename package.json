@@ -22,7 +22,7 @@
     "setProdWin": "bash -c 'cd ./backend/ && ln -sf env.prod.env .env'",
     
     "devInstall": "gnome-terminal --tab -- bash -c 'cd ./frontend/ && yarn install' && gnome-terminal --tab -- bash -c 'cd ./backend/ && yarn install'",
-    "devInstallWin": "start powershell -Command \"cd ./frontend/ ; yarn install \" && start powershell -Command \" cd ./backend/ ; yarn install \""
+    "devInstallWin": "start powershell -Command \"cd ./frontend/ ; yarn install \" && start powershell -Command \" cd ./backend/ ; yarn install \"",
 
     "conBuild": "docker-compose up -d --build && echo \"*** Run 'yarn conStop' or 'yarn conDown' once you are done ***\"",
     "conDown": "docker-compose down",

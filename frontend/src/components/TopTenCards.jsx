@@ -28,7 +28,7 @@ function TopTenCards() {
                             movies.length > 0 && 
                             movies.slice(0, 10).map((movie) =>
                                 <div key={movie.title}>
-                                    <a href={"http://localhost:3000/movies" + movie.backdrop_path}> {movie.title} </a>
+                                    <a href={"/movies" + movie.backdrop_path}> {movie.title} </a>
                                 </div>
                             )
                         } 

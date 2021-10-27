@@ -66,6 +66,9 @@ app.delete('/api/exit', ((req, res) => {
     process.exit(0);
 }));
 
+app.use(express.static("./app/")); 
+app.use((req, res) => res.sendFile("./index.html")); 
+
 app.use(errorHandler);
 app.get('/', (req, res) => {
     res.sendFile('build/index.html');

@@ -82,7 +82,7 @@ const Chat = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [socket]);
 
-    const socketInstance = io('ws://localhost:4200', {
+    const socketInstance = io({
         path: '/api/ws/',
         // transports: ["polling", "websocket"],
         // upgrade: true,
