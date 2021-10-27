@@ -1,6 +1,5 @@
 node_modules
-build
-backend/images
+/images
 mongo_data
 *.env
 
